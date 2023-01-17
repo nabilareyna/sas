@@ -27,17 +27,16 @@ class _HomePageState extends State<HomePage> {
         child: Container(
           height: 80,
           width: 150,
-          decoration: BoxDecoration(
-              color: Colors.blue, borderRadius: BorderRadius.circular(10)),
-          child: FlatButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            child: Text(
-              'Welcome',
-              style: TextStyle(color: Colors.white, fontSize: 25),
-            ),
-          ),
+          decoration: BoxDecoration(color: Colors.blue, borderRadius: BorderRadius.circular(10)),
+          // child: FlatButton(
+          //   onPressed: () {
+          //     Navigator.pop(context);
+          //   },
+          //   child: Text(
+          //     'Welcome',
+          //     style: TextStyle(color: Colors.white, fontSize: 25),
+          //   ),
+          // ),
         ),
       ),
     );
