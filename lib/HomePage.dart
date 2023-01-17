@@ -28,15 +28,15 @@ class _HomePageState extends State<HomePage> {
           height: 80,
           width: 150,
           decoration: BoxDecoration(color: Colors.blue, borderRadius: BorderRadius.circular(10)),
-          // child: FlatButton(
-          //   onPressed: () {
-          //     Navigator.pop(context);
-          //   },
-          //   child: Text(
-          //     'Welcome',
-          //     style: TextStyle(color: Colors.white, fontSize: 25),
-          //   ),
-          // ),
+          child: FloatingActionButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            child: Text(
+              'Welcome',
+              style: TextStyle(color: Colors.white, fontSize: 25),
+            ),
+          ),
         ),
       ),
     );

@@ -58,71 +58,86 @@ class _LoginDemoState extends State<LoginDemo> {
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Column(
-          children: <Widget>[
+          children: [
             Padding(
               padding: const EdgeInsets.only(top: 60.0),
               child: Center(
-                child: Container(
-                    width: 200,
-                    height: 150,
-                    /*decoration: BoxDecoration(
-                        color: Colors.red,
-                        borderRadius: BorderRadius.circular(50.0)),*/
-                    child: Image.asset('assets/images/flutter-logo.png')),
+                child: Container(width: 200, height: 150, child: Image.asset('assets/images/LogoSas.png')),
               ),
             ),
             Padding(
-              //padding: const EdgeInsets.only(left:15.0,right: 15.0,top:0,bottom: 0),
-              padding: EdgeInsets.symmetric(horizontal: 15),
-              child: TextField(
-                controller: namaController,
-                decoration: InputDecoration(border: OutlineInputBorder(), labelText: 'Username', hintText: 'Masukkan nama'),
+                //padding: const EdgeInsets.only(left:15.0,right: 15.0,top:0,bottom: 0),
+                padding: EdgeInsets.symmetric(horizontal: 15),
+                child: Column(
+                  children: [
+                    Container(
+                      decoration: BoxDecoration(
+                          border: Border.all(color: Colors.grey),
+                          color: Colors.white,
+                          borderRadius: BorderRadius.all(Radius.circular(10)),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.50),
+                              spreadRadius: 2,
+                              blurRadius: 4,
+                              offset: Offset.fromDirection(0.5, 1.0),
+                            )
+                          ]),
+                      width: 400,
+                      height: 190,
+                      padding: EdgeInsets.symmetric(vertical: 8, horizontal: 14),
+                      margin: EdgeInsets.symmetric(vertical: 50),
+                      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                        Text('Username'),
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 8, top: 8),
+                          child: TextField(
+                            controller: namaController,
+                            decoration: InputDecoration(
+                              border: OutlineInputBorder(borderRadius: BorderRadius.circular(30.0)),
+                              hintText: 'Masukkan NIS',
+                            ),
+                          ),
+                        ),
+                        Text('Password'),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 8, bottom: 8),
+                          child: TextField(
+                            controller: passController,
+                            obscureText: true,
+                            decoration: InputDecoration(border: OutlineInputBorder(borderRadius: BorderRadius.circular(30.0)), hintText: 'Masukkan password'),
+                          ),
+                        ),
+                      ]),
+                    )
+                  ],
+                )),
+
+            Container(
+              height: 50,
+              width: 250,
+              decoration: BoxDecoration(color: Color(0XFFF61A2BE), borderRadius: BorderRadius.circular(20)),
+              child: TextButton(
+                onPressed: () {
+                  // Navigator.push(
+                  //     context,
+                  //     MaterialPageRoute(
+                  //         builder: (context) => HomePage('aldi')));
+                  @override
+                  void initState() {
+                    // TODO: implement initState
+                    String nama = namaController.text;
+                    String pass = passController.text;
+                    setLogin(nama, pass);
+                    super.initState();
+                  }
+                },
+                child: Text(
+                  'Login',
+                  style: TextStyle(color: Colors.white, fontSize: 25),
+                ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(left: 15.0, right: 15.0, top: 15, bottom: 0),
-              //padding: EdgeInsets.symmetric(horizontal: 15),
-              child: TextField(
-                controller: passController,
-                obscureText: true,
-                decoration: InputDecoration(border: OutlineInputBorder(), labelText: 'Password', hintText: 'Masukkan password'),
-              ),
-            ),
-            // FlatButton(
-            //   onPressed: () {
-            //     //TODO FORGOT PASSWORD SCREEN GOES HERE
-            //   },
-            //   child: Text(
-            //     'Forgot Password',
-            //     style: TextStyle(color: Colors.blue, fontSize: 15),
-            //   ),
-            // ),
-            // Container(
-            //   height: 50,
-            //   width: 250,
-            //   decoration: BoxDecoration(
-            //       color: Colors.blue, borderRadius: BorderRadius.circular(20)),
-            //   child: FlatButton(
-            //     onPressed: () {
-            //       // Navigator.push(
-            //       //     context,
-            //       //     MaterialPageRoute(
-            //       //         builder: (context) => HomePage('aldi')));
-            //       @override
-            //       void initState() {
-            //         // TODO: implement initState
-            //         String nama = namaController.text;
-            //         String pass = passController.text;
-            //         setLogin(nama, pass);
-            //         super.initState();
-            //       }
-            //     },
-            //     child: Text(
-            //       'Login',
-            //       style: TextStyle(color: Colors.white, fontSize: 25),
-            //     ),
-            //   ),
-            // ),
             SizedBox(
               height: 130,
             ),
