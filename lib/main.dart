@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:http/http.dart' as http;
+import 'package:sas/utils/AppThemes.dart';
 
 import 'dart:convert';
 import 'HomePage.dart';
@@ -14,6 +16,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: LoginDemo(),
+      theme: ThemeData(primaryColor: primary),
     );
   }
 }
@@ -62,7 +65,11 @@ class _LoginDemoState extends State<LoginDemo> {
             Padding(
               padding: const EdgeInsets.only(top: 60.0),
               child: Center(
-                child: Container(width: 200, height: 150, child: Image.asset('assets/images/LogoSas.png')),
+                child: SizedBox(
+                    width: MediaQuery.of(context).size.width,
+                    child: Image.asset(
+                      'assets/images/LogoSas.png',
+                    )),
               ),
             ),
             Padding(
@@ -72,12 +79,12 @@ class _LoginDemoState extends State<LoginDemo> {
                   children: [
                     Container(
                       decoration: BoxDecoration(
-                          border: Border.all(color: Colors.grey),
+                          border: Border.all(color: Styles.secondaryColor),
                           color: Colors.white,
                           borderRadius: BorderRadius.all(Radius.circular(10)),
                           boxShadow: [
                             BoxShadow(
-                              color: Colors.grey.withOpacity(0.50),
+                              color: Styles.secondaryColor.withOpacity(0.50),
                               spreadRadius: 2,
                               blurRadius: 4,
                               offset: Offset.fromDirection(0.5, 1.0),
@@ -88,7 +95,10 @@ class _LoginDemoState extends State<LoginDemo> {
                       padding: EdgeInsets.symmetric(vertical: 8, horizontal: 14),
                       margin: EdgeInsets.symmetric(vertical: 50),
                       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                        Text('Username'),
+                            Text(
+                              'Username',
+                              style: TextStyle(fontFamily: 'Montserrat'),
+                            ),
                         Padding(
                           padding: const EdgeInsets.only(bottom: 8, top: 8),
                           child: TextField(
@@ -99,7 +109,10 @@ class _LoginDemoState extends State<LoginDemo> {
                             ),
                           ),
                         ),
-                        Text('Password'),
+                            Text(
+                              'Password',
+                              style: TextStyle(fontFamily: 'Montserrat'),
+                            ),
                         Padding(
                           padding: const EdgeInsets.only(top: 8, bottom: 8),
                           child: TextField(
@@ -112,11 +125,13 @@ class _LoginDemoState extends State<LoginDemo> {
                     )
                   ],
                 )),
-
+            const Gap(65),
             Container(
               height: 50,
-              width: 250,
-              decoration: BoxDecoration(color: Color(0XFFF61A2BE), borderRadius: BorderRadius.circular(20)),
+              width: 450,
+              decoration: BoxDecoration(
+                  color: Styles.primaryColor,
+                  borderRadius: BorderRadius.circular(10)),
               child: TextButton(
                 onPressed: () {
                   // Navigator.push(
@@ -133,8 +148,11 @@ class _LoginDemoState extends State<LoginDemo> {
                   }
                 },
                 child: Text(
-                  'Login',
-                  style: TextStyle(color: Colors.white, fontSize: 25),
+                  'LOGIN',
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 25,
+                      fontFamily: 'Montserrat'),
                 ),
               ),
             ),
