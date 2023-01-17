@@ -88,41 +88,41 @@ class _LoginDemoState extends State<LoginDemo> {
                 decoration: InputDecoration(border: OutlineInputBorder(), labelText: 'Password', hintText: 'Masukkan password'),
               ),
             ),
-            // FlatButton(
-            //   onPressed: () {
-            //     //TODO FORGOT PASSWORD SCREEN GOES HERE
-            //   },
-            //   child: Text(
-            //     'Forgot Password',
-            //     style: TextStyle(color: Colors.blue, fontSize: 15),
-            //   ),
-            // ),
-            // Container(
-            //   height: 50,
-            //   width: 250,
-            //   decoration: BoxDecoration(
-            //       color: Colors.blue, borderRadius: BorderRadius.circular(20)),
-            //   child: FlatButton(
-            //     onPressed: () {
-            //       // Navigator.push(
-            //       //     context,
-            //       //     MaterialPageRoute(
-            //       //         builder: (context) => HomePage('aldi')));
-            //       @override
-            //       void initState() {
-            //         // TODO: implement initState
-            //         String nama = namaController.text;
-            //         String pass = passController.text;
-            //         setLogin(nama, pass);
-            //         super.initState();
-            //       }
-            //     },
-            //     child: Text(
-            //       'Login',
-            //       style: TextStyle(color: Colors.white, fontSize: 25),
-            //     ),
-            //   ),
-            // ),
+            FlatButton(
+              onPressed: () {
+                //TODO FORGOT PASSWORD SCREEN GOES HERE
+              },
+              child: Text(
+                'Forgot Password',
+                style: TextStyle(color: Colors.blue, fontSize: 15),
+              ),
+            ),
+            Container(
+              height: 50,
+              width: 250,
+              decoration: BoxDecoration(
+                  color: Colors.blue, borderRadius: BorderRadius.circular(20)),
+              child: FlatButton(
+                onPressed: () {
+                  // Navigator.push(
+                  //     context,
+                  //     MaterialPageRoute(
+                  //         builder: (context) => HomePage('aldi')));
+                  @override
+                  void initState() {
+                    // TODO: implement initState
+                    String nama = namaController.text;
+                    String pass = passController.text;
+                    setLogin(nama, pass);
+                    super.initState();
+                  }
+                },
+                child: Text(
+                  'Login',
+                  style: TextStyle(color: Colors.white, fontSize: 25),
+                ),
+              ),
+            ),
             SizedBox(
               height: 130,
             ),
