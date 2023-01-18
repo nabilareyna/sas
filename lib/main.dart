@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:sas/utils/AppThemes.dart';
 
@@ -7,10 +8,14 @@ import 'dart:convert';
 import 'HomePage.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(GetMaterialApp(
+    title: 'SAS',
+  ));
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -95,10 +100,10 @@ class _LoginDemoState extends State<LoginDemo> {
                       padding: EdgeInsets.symmetric(vertical: 8, horizontal: 14),
                       margin: EdgeInsets.symmetric(vertical: 50),
                       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                            Text(
-                              'Username',
-                              style: TextStyle(fontFamily: 'Montserrat'),
-                            ),
+                        Text(
+                          'Username',
+                          style: TextStyle(fontFamily: 'Montserrat'),
+                        ),
                         Padding(
                           padding: const EdgeInsets.only(bottom: 8, top: 8),
                           child: TextField(
@@ -109,10 +114,10 @@ class _LoginDemoState extends State<LoginDemo> {
                             ),
                           ),
                         ),
-                            Text(
-                              'Password',
-                              style: TextStyle(fontFamily: 'Montserrat'),
-                            ),
+                        Text(
+                          'Password',
+                          style: TextStyle(fontFamily: 'Montserrat'),
+                        ),
                         Padding(
                           padding: const EdgeInsets.only(top: 8, bottom: 8),
                           child: TextField(
@@ -129,9 +134,7 @@ class _LoginDemoState extends State<LoginDemo> {
             Container(
               height: 50,
               width: 450,
-              decoration: BoxDecoration(
-                  color: Styles.primaryColor,
-                  borderRadius: BorderRadius.circular(10)),
+              decoration: BoxDecoration(color: Styles.primaryColor, borderRadius: BorderRadius.circular(10)),
               child: TextButton(
                 onPressed: () {
                   // Navigator.push(
@@ -149,10 +152,7 @@ class _LoginDemoState extends State<LoginDemo> {
                 },
                 child: Text(
                   'LOGIN',
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 25,
-                      fontFamily: 'Montserrat'),
+                  style: TextStyle(color: Colors.white, fontSize: 25, fontFamily: 'Montserrat'),
                 ),
               ),
             ),
