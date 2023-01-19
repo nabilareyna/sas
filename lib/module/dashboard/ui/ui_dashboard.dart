@@ -2,11 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:sas/module/dashboard/controller/c_dashboard.dart';
+import 'package:sas/module/dashboard/controller/c_page_view.dart';
 import 'package:sas/utils/AppLayout.dart';
 import 'package:sas/utils/AppThemes.dart';
 
 class UIDashboard extends GetView<CDashboard> {
-  const UIDashboard({Key? key}) : super(key: key);
+  UIDashboard({Key? key}) : super(key: key);
+
+  final pageC = Get.find<CPgeView>();
 
   @override
   Widget build(BuildContext context) {
@@ -157,6 +160,30 @@ class UIDashboard extends GetView<CDashboard> {
             ),
           ),
         ],
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+              icon: Icon(
+                Icons.home_outlined,
+                size: 30,
+              ),
+              label: ('Home')),
+          BottomNavigationBarItem(
+              icon: Icon(
+                Icons.history,
+                size: 30,
+              ),
+              label: ('History')),
+          BottomNavigationBarItem(
+              icon: Icon(
+                Icons.person_outline_rounded,
+                size: 30,
+              ),
+              label: ('Profile')),
+        ],
+        currentIndex: pageC.pageIndex.value,
+        onTap: (int i) => pageC.changePage(i),
       ),
     );
   }
