@@ -3,14 +3,11 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
-class WAppBar extends StatelessWidget {
-  const WAppBar({Key? key, this.title, this.isTitleShadow = false, this.centerTitle = true, this.leading, this.titleSpacing}) : super(key: key);
+class AppBarWidget extends StatelessWidget {
+  const AppBarWidget({Key? key, this.title, this.centerTitle = true}) : super(key: key);
 
   final Widget? title;
-  final bool isTitleShadow;
   final bool centerTitle;
-  final Widget? leading;
-  final double? titleSpacing;
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +15,6 @@ class WAppBar extends StatelessWidget {
       child: AppBar(
         title: title,
         centerTitle: centerTitle,
-        leading: leading,
       ),
     );
   }
