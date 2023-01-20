@@ -10,6 +10,7 @@ import 'package:sas/module/dashboard/controller/c_page_view.dart';
 import 'package:sas/module/history/controller/c_history.dart';
 import 'package:sas/routes/routes.dart';
 import 'package:sas/utils/AppThemes.dart';
+import 'package:sas/utils/const.dart';
 
 class UIHistory extends GetView<CHistory> {
   UIHistory({Key? key}) : super(key: key);
@@ -31,12 +32,33 @@ class UIHistory extends GetView<CHistory> {
           onPressed: () => Get.toNamed(Routes.dashboard),
         ),
       ),
-      body: Column(
-        children: [
-          Center(
-            child: Text('HISTORY PAGE'),
-          )
-        ],
+      body: Padding(
+        padding: EdgeInsets.symmetric(horizontal: Const.parentMargin()),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                border: Border.all(color: Styles.secondaryColor),
+                borderRadius: BorderRadius.all(Radius.circular(5)),
+                color: Colors.white,
+              ),
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Jumlah Siswa',
+                        style: TextStyle(color: Styles.secondaryColor, fontFamily: 'Inter', fontSize: 12, fontWeight: FontWeight.w400, letterSpacing: 1),
+                      )
+                    ],
+                  )
+                ],
+              ),
+            )
+          ],
+        ),
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
