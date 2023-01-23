@@ -15,11 +15,241 @@ class UIProfile extends GetView<CHistory> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
+      backgroundColor: Colors.white,
+      body: Stack(
         children: [
-          Center(
-            child: Text('PROFILE PAGE'),
-          )
+          Container(
+            height: 225.0,
+            width: MediaQuery.of(context).size.width,
+            decoration: const BoxDecoration(
+              color: Color(0xFF61A2BE),
+            ),
+            child: Center(
+              child: Container(
+                width: 100,
+                height: 100,
+                decoration: const BoxDecoration(
+                  color: Color(0xFFD9D9D9),
+                  shape: BoxShape.circle,
+                ),
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 225),
+            child: SizedBox(
+                child: Container(
+              color: Colors.white,
+              width: MediaQuery.of(context).size.width,
+              height: 50,
+              child: Padding(
+                padding: const EdgeInsets.only(left: 20),
+                child: Row(
+                  children: const <Widget>[
+                    ImageIcon(
+                      AssetImage('../assets/icons/pencil.png'),
+                      size: 25.0,
+                      color: Color(0xFF777777),
+                    ),
+                    SizedBox(
+                      width: 15.0,
+                    ),
+                    Expanded(
+                      child: Text(
+                        'Ubah Profil',
+                        style: TextStyle(
+                          color: Color(0xFF777777),
+                          fontSize: 16,
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            )),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 275),
+            child: SizedBox(
+                child: Container(
+              color: const Color.fromRGBO(196, 196, 196, 0.12),
+              width: MediaQuery.of(context).size.width,
+              height: 30,
+              child: Padding(
+                padding: const EdgeInsets.only(left: 20),
+                child: Row(
+                  children: const <Widget>[
+                    Expanded(
+                      child: Text(
+                        'Tentang',
+                        style: TextStyle(
+                          color: Color(0xFF777777),
+                          fontSize: 15,
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            )),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 305),
+            child: SizedBox(
+                child: Container(
+              color: Colors.white,
+              width: MediaQuery.of(context).size.width,
+              height: 50,
+              child: Padding(
+                padding: const EdgeInsets.only(left: 20),
+                child: Row(
+                  children: const <Widget>[
+                    ImageIcon(
+                      AssetImage('../assets/icons/lamp.png'),
+                      size: 25.0,
+                      color: Color(0xFF777777),
+                    ),
+                    SizedBox(
+                      width: 15.0,
+                    ),
+                    Expanded(
+                      child: Text(
+                        'Panduan SAS',
+                        style: TextStyle(
+                          color: Color(0xFF777777),
+                          fontSize: 16,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            )),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 355),
+            child: SizedBox(
+                child: Container(
+              color: Colors.white,
+              width: MediaQuery.of(context).size.width,
+              height: 50,
+              child: Padding(
+                padding: const EdgeInsets.only(left: 20),
+                child: Row(
+                  children: const <Widget>[
+                    ImageIcon(
+                      AssetImage('../assets/icons/privacy.png'),
+                      size: 25.0,
+                      color: Color(0xFF777777),
+                    ),
+                    SizedBox(
+                      width: 15.0,
+                    ),
+                    Expanded(
+                      child: Text(
+                        'Kebijakan Privasi',
+                        style: TextStyle(
+                          color: Color(0xFF777777),
+                          fontSize: 16,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            )),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 405),
+            child: SizedBox(
+                child: Container(
+              color: Colors.white,
+              width: MediaQuery.of(context).size.width,
+              height: 50,
+              child: Padding(
+                padding: const EdgeInsets.only(left: 20),
+                child: Row(
+                  children: const <Widget>[
+                    ImageIcon(
+                      AssetImage('../assets/icons/chat.png'),
+                      size: 25.0,
+                      color: Color(0xFF777777),
+                    ),
+                    SizedBox(
+                      width: 15.0,
+                    ),
+                    Expanded(
+                      child: Text(
+                        'Feedback',
+                        style: TextStyle(
+                          color: Color(0xFF777777),
+                          fontSize: 16,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            )),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 455),
+            child: SizedBox(
+                child: Container(
+              color: const Color.fromRGBO(196, 196, 196, 0.12),
+              width: MediaQuery.of(context).size.width,
+              height: 30,
+              child: Padding(
+                padding: const EdgeInsets.only(left: 20),
+                child: Row(
+                  children: const <Widget>[
+                    Expanded(
+                      child: Text(
+                        'Lainnya',
+                        style: TextStyle(
+                          color: Color(0xFF777777),
+                          fontSize: 15,
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            )),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 485),
+            child: SizedBox(
+                child: Container(
+              color: Colors.white,
+              width: MediaQuery.of(context).size.width,
+              height: 50,
+              child: Padding(
+                padding: const EdgeInsets.only(left: 20),
+                child: Row(
+                  children: const <Widget>[
+                    ImageIcon(
+                      AssetImage('../assets/icons/out.png'),
+                      size: 25.0,
+                      color: Color(0xFFD90000),
+                    ),
+                    SizedBox(
+                      width: 15.0,
+                    ),
+                    Expanded(
+                      child: Text(
+                        'Keluar',
+                        style: TextStyle(
+                          color: Color(0xFFD90000),
+                          fontSize: 16,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            )),
+          ),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(

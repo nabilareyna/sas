@@ -16,23 +16,10 @@ class UIDashboard extends GetView<CDashboard> {
     final size = AppLayout.getSize(context);
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Styles.primaryColor,
-        actions: <Widget>[
-          IconButton(
-            icon: const Icon(Icons.account_circle_outlined),
-            // icon: Image.asset("../assets/icons/maleuser.png"),
-            color: Colors.black,
-            iconSize: 30,
-            onPressed: () {},
-          ),
-        ],
-      ),
       body: Stack(
         children: [
           Container(
-              height: 225.0,
+              height: 227.0,
               width: size.width,
               decoration: const BoxDecoration(
                 color: Color(0xFF61A2BE),
@@ -143,7 +130,8 @@ class UIDashboard extends GetView<CDashboard> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(right: 15, left: 15, top: 370, bottom: 15),
+            padding: const EdgeInsets.only(
+                right: 15, left: 15, top: 370, bottom: 15),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: const [
@@ -154,7 +142,8 @@ class UIDashboard extends GetView<CDashboard> {
                 ),
                 Padding(
                   padding: EdgeInsets.only(left: 5, top: 0),
-                  child: Text("Anda berada dalam jangkauan lokasi titik absensi"),
+                  child:
+                      Text("Anda berada dalam jangkauan lokasi titik absensi"),
                 )
               ],
             ),
