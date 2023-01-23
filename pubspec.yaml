@@ -71,6 +71,10 @@ flutter:
     - assets/icons/chat.png
     - assets/icons/out.png
     - assets/icons/personedit.png
+    - assets/icons/greencircle.png
+    - assets/icons/logout.png
+    - assets/icons/enter.png
+    - assets/icons/clip.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

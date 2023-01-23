@@ -279,7 +279,7 @@ class UIProfile extends GetView<CHistory> {
                       child: Text(
                         'Keluar',
                         style: TextStyle(
-                            color: Color(0xFF777777),
+                            color: Color(0xFFD90000),
                             fontFamily: 'Roboto',
                             fontWeight: FontWeight.w400,
                             fontSize: 16),
