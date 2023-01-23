@@ -50,7 +50,12 @@ class UIHistory extends GetView<CHistory> {
                     children: [
                       Text(
                         'Jumlah Siswa',
-                        style: TextStyle(color: Styles.secondaryColor, fontFamily: 'Inter', fontSize: 12, fontWeight: FontWeight.w400, letterSpacing: 1),
+                        style: TextStyle(
+                            color: Styles.secondaryColor,
+                            fontFamily: 'Inter',
+                            fontSize: 12,
+                            fontWeight: FontWeight.w400,
+                            letterSpacing: 1),
                       )
                     ],
                   )
@@ -82,6 +87,8 @@ class UIHistory extends GetView<CHistory> {
               label: ('Profile')),
         ],
         currentIndex: pageC.pageIndex.value,
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
         onTap: (int i) => pageC.changePage(i),
       ),
     );

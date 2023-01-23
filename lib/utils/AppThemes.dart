@@ -8,5 +8,7 @@ class Styles {
   static Color redColor = const Color(0XFFFD90000);
   static Color secondaryColor = const Color(0xFFF777777);
 
-  static TextStyle appBarTitle = TextStyle(color: Colors.black, fontFamily: 'Montserrat', fontWeight: FontWeight.w500, letterSpacing: 2);
+  static TextStyle appBarTitle = const TextStyle(color: Colors.black, fontFamily: 'Montserrat', fontWeight: FontWeight.w500, letterSpacing: 2);
+  static TextStyle profileTitle1 = const TextStyle(color: Colors.white, fontFamily: 'Inter', fontWeight: FontWeight.w700, fontSize: 16);
+  static TextStyle profileTitle2 = const TextStyle(color: Color(0xFF777777), fontFamily: 'Roboto', fontWeight: FontWeight.w400, fontSize: 16);
 }

@@ -70,6 +70,7 @@ flutter:
     - assets/icons/privacy.png
     - assets/icons/chat.png
     - assets/icons/out.png
+    - assets/icons/personedit.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

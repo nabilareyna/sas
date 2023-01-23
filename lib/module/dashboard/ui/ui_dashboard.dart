@@ -172,6 +172,8 @@ class UIDashboard extends GetView<CDashboard> {
               label: ('Profile')),
         ],
         currentIndex: pageC.pageIndex.value,
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
         onTap: (int i) => pageC.changePage(i),
       ),
     );
