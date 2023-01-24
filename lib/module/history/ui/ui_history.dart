@@ -10,6 +10,7 @@ import 'package:get/get.dart';
 import 'package:sas/module/dashboard/controller/c_page_view.dart';
 import 'package:sas/module/history/controller/c_history.dart';
 import 'package:sas/module/history/widget/absent_summary.dart';
+import 'package:sas/module/history/widget/history_card.dart';
 import 'package:sas/routes/routes.dart';
 import 'package:sas/utils/AppThemes.dart';
 import 'package:sas/utils/const.dart';
@@ -56,14 +57,16 @@ class UIHistory extends GetView<CHistory> {
                             style: TextStyle(color: Styles.secondaryColor, fontFamily: 'Roboto', fontSize: 12, fontWeight: FontWeight.w400, letterSpacing: 1),
                           ),
                           DropdownButton(
-                              elevation: 10,
-                              value: controller.selectedValue,
-                              onChanged: (newValue) {
-                                controller.selectedValue = newValue.toString();
-                                controller.update();
-                                print(newValue);
-                              },
-                              items: controller.items.map((e) => DropdownMenuItem(value: e, child: Text(e))).toList())
+                            elevation: 10,
+                            value: controller.selectedValue.value,
+                            onChanged: (String? value) => controller.selectedValue.value = value,
+                            items: controller.items.map((e) => DropdownMenuItem(value: e, child: Text(e))).toList(),
+                            style: TextStyle(fontFamily: 'Roboto', fontSize: 12, fontWeight: FontWeight.w400, color: Colors.black, letterSpacing: 1),
+                            isDense: true,
+                            hint: Text('Pilih...'),
+                            underline: SizedBox(),
+                            icon: Icon(Icons.expand_more),
+                          )
                         ],
                       ),
                       Gap(20),
@@ -74,14 +77,16 @@ class UIHistory extends GetView<CHistory> {
                               style:
                                   TextStyle(color: Styles.secondaryColor, fontFamily: 'Roboto', fontSize: 12, fontWeight: FontWeight.w400, letterSpacing: 1)),
                           DropdownButton(
-                              elevation: 10,
-                              value: controller.selectedValue,
-                              onChanged: (newValue) {
-                                controller.selectedValue = newValue.toString();
-                                controller.update();
-                                print(newValue);
-                              },
-                              items: controller.items.map((e) => DropdownMenuItem(value: e, child: Text(e))).toList())
+                            elevation: 10,
+                            value: controller.selectedValue.value,
+                            onChanged: (String? value) => controller.selectedValue.value = value,
+                            items: controller.items.map((e) => DropdownMenuItem(value: e, child: Text(e))).toList(),
+                            style: TextStyle(fontFamily: 'Roboto', fontSize: 12, fontWeight: FontWeight.w400, color: Colors.black, letterSpacing: 1),
+                            isDense: true,
+                            hint: Text('Pilih...'),
+                            underline: SizedBox(),
+                            icon: Icon(Icons.expand_more),
+                          )
                         ],
                       )
                     ],
@@ -90,8 +95,17 @@ class UIHistory extends GetView<CHistory> {
                 Gap(30),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [AbsentSummary(), AbsentSummary()],
-                )
+                  children: [
+                    AbsentSummary(
+                      title: 'Jumlah Izin',
+                    ),
+                    AbsentSummary(
+                      title: 'Tanpa Keterangan',
+                    )
+                  ],
+                ),
+                Gap(30),
+                HistoryCard()
               ],
             ),
           ),

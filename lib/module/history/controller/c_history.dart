@@ -1,9 +1,9 @@
 import 'package:get/get.dart';
 
 class CHistory extends GetxController {
-  var selectedValue = 'Laporan Semester';
+  Rxn<String> selectedValue = Rxn<String>();
 
-  List items = ['Laporan Semester', 'Laporan Bulanan'];
+  RxList<String> items = <String>['Laporan Semester', 'Laporan Bulanan'].obs;
 
   // void onSelected(String value) {
   //   selectedValue = value;

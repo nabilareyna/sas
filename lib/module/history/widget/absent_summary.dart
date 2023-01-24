@@ -6,7 +6,8 @@ import 'package:sas/utils/AppThemes.dart';
 import 'package:sas/utils/const.dart';
 
 class AbsentSummary extends StatelessWidget {
-  const AbsentSummary({Key? key}) : super(key: key);
+  final String title;
+  const AbsentSummary({Key? key, this.title = ''}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +31,7 @@ class AbsentSummary extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text('0', style: TextStyle(fontFamily: 'Inter', fontSize: 26, fontWeight: FontWeight.w700)),
-              Text('Jumlah Izin', style: TextStyle(fontFamily: 'Roboto', fontSize: 14, fontWeight: FontWeight.w400))
+              Text(title, style: TextStyle(fontFamily: 'Roboto', fontSize: 14, fontWeight: FontWeight.w400))
             ],
           )
         ],
