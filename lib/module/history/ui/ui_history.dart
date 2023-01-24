@@ -46,7 +46,6 @@ class UIHistory extends GetView<CHistory> {
                     color: Colors.white,
                   ),
                   padding: EdgeInsets.symmetric(horizontal: Const.siblingMargin(x: 4), vertical: Const.siblingMargin(x: 3.5)),
-                  width: Get.width,
                   child: Column(
                     children: [
                       Row(

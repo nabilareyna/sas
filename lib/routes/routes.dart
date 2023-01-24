@@ -1,23 +1,37 @@
 import 'package:get/get.dart';
 import 'package:sas/module/dashboard/controller/c_dashboard.dart';
 import 'package:sas/module/dashboard/ui/ui_dashboard.dart';
+import 'package:sas/module/feedback/controller/c_feedback.dart';
+import 'package:sas/module/feedback/ui/ui_feedback.dart';
 import 'package:sas/module/history/controller/c_history.dart';
 import 'package:sas/module/history/ui/ui_history.dart';
+import 'package:sas/module/kebijakan_privasi/ui/ui_kebijakan_privasi.dart';
 import 'package:sas/module/login_page/controller/c_login_page.dart';
 import 'package:sas/module/login_page/ui/ui_loginpage.dart';
+import 'package:sas/module/panduan_sas/ui/ui_panduan_sas.dart';
 import 'package:sas/module/profile/controller/c_profile.dart';
 import 'package:sas/module/profile/ui/ui_profile.dart';
+import 'package:sas/module/ubah_profile/controller/c_ubah_profile.dart';
+import 'package:sas/module/ubah_profile/ui/ui_ubah_profile.dart';
 
 class Routes {
   static const String login = "/";
   static const String dashboard = "/dashboard";
   static const String history = "/history";
   static const String profile = "/profile";
+  static const String feedback = "/feedback";
+  static const String privacypolicy = "/privacypolicy";
+  static const String editprofile = "/edit-profile";
+  static const String panduansas = "/panduan-sas";
 
   static String getLoginRoute() => login;
   static String getDashboardRoute() => dashboard;
   static String getHistoryRoute() => history;
   static String getProfileRoute() => profile;
+  static String getFeedbackRoute() => feedback;
+  static String getEditProfileRoute() => editprofile;
+  static String getPrivacyPolicyRoute() => privacypolicy;
+  static String getPanduanSasRoute() => panduansas;
 
   static List<GetPage> routes = [
     GetPage(
@@ -47,6 +61,22 @@ class Routes {
         binding: BindingsBuilder(() {
           Get.put(CProfile());
         }),
-        transition: Transition.fadeIn)
+        transition: Transition.fadeIn),
+    GetPage(
+        name: feedback,
+        page: () => const UIFeedback(),
+        binding: BindingsBuilder(() {
+          Get.put(CFeedback());
+        }),
+        transition: Transition.fadeIn),
+    GetPage(name: panduansas, page: () => const UIPanduanSAS(), transition: Transition.fadeIn),
+    GetPage(name: privacypolicy, page: () => const UIKebijakanPrivasi(), transition: Transition.fadeIn),
+    GetPage(
+        name: editprofile,
+        page: () => const UIUbahProfile(),
+        binding: BindingsBuilder(() {
+          Get.put(CUbahProfile());
+        }),
+        transition: Transition.fadeIn),
   ];
 }
