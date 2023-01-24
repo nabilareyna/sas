@@ -7,6 +7,7 @@ class Styles {
   static Color greenColor = const Color(0XFFF5FC07C);
   static Color redColor = const Color(0XFFFD90000);
   static Color secondaryColor = const Color(0xFFF777777);
+  static Color secondaryGreyColor = const Color(0xFFFDBDBDB);
 
   static TextStyle appBarTitle = const TextStyle(color: Colors.black, fontFamily: 'Montserrat', fontWeight: FontWeight.w500, letterSpacing: 2);
   static TextStyle profileTitle1 = const TextStyle(color: Colors.white, fontFamily: 'Inter', fontWeight: FontWeight.w700, fontSize: 16);

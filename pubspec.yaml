@@ -39,6 +39,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   gap: ^2.0.0
   get: ^4.6.5
+  google_maps_flutter: ^2.2.3
 
 dev_dependencies:
   flutter_test:
@@ -75,6 +76,7 @@ flutter:
     - assets/icons/logout.png
     - assets/icons/enter.png
     - assets/icons/clip.png
+    - assets/icons/notes.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
@@ -100,6 +102,15 @@ flutter:
           weight: 600
         - asset: lib/fonts/Montserrat/Montserrat-ExtraBold.ttf
           weight: 800
+
+    - family: Roboto
+      fonts:
+        - asset: lib/fonts/Roboto/Roboto-Regular.ttf
+          weight: 400
+        - asset: lib/fonts/Roboto/Roboto-Medium.ttf
+          weight: 500
+        - asset: lib/fonts/Roboto/Roboto-Bold.ttf
+          weight: 700
 
     - family: Inter
       fonts:
