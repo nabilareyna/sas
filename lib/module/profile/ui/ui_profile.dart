@@ -6,6 +6,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 import 'package:sas/module/dashboard/controller/c_page_view.dart';
 import 'package:sas/module/history/controller/c_history.dart';
+import 'package:sas/routes/routes.dart';
 
 class UIProfile extends GetView<CHistory> {
   UIProfile({Key? key}) : super(key: key);
@@ -59,48 +60,45 @@ class UIProfile extends GetView<CHistory> {
                 ),
                 const Text(
                   'Fajar Ainur Roziqin',
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontFamily: 'Inter',
-                      fontWeight: FontWeight.w700,
-                      fontSize: 16),
+                  style: TextStyle(color: Colors.white, fontFamily: 'Inter', fontWeight: FontWeight.w700, fontSize: 16),
                 ),
               ],
             ),
           ),
           Padding(
             padding: const EdgeInsets.only(top: 225),
-            child: SizedBox(
-                child: Container(
-              color: Colors.white,
-              width: MediaQuery.of(context).size.width,
-              height: 50,
-              child: Padding(
-                padding: const EdgeInsets.only(left: 20),
-                child: Row(
-                  children: const <Widget>[
-                    ImageIcon(
-                      AssetImage('../assets/icons/pencil.png'),
-                      size: 25.0,
-                      color: Color(0xFF777777),
-                    ),
-                    SizedBox(
-                      width: 15.0,
-                    ),
-                    Expanded(
-                      child: Text(
-                        'Ubah Profil',
-                        style: TextStyle(
-                            color: Color(0xFF777777),
-                            fontFamily: 'Roboto',
-                            fontWeight: FontWeight.w400,
-                            fontSize: 16),
+            child: InkWell(
+              onTap: () {
+                Get.toNamed(Routes.getEditProfileRoute());
+              },
+              child: SizedBox(
+                  child: Container(
+                color: Colors.white,
+                width: MediaQuery.of(context).size.width,
+                height: 50,
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 20),
+                  child: Row(
+                    children: const <Widget>[
+                      ImageIcon(
+                        AssetImage('../assets/icons/pencil.png'),
+                        size: 25.0,
+                        color: Color(0xFF777777),
                       ),
-                    )
-                  ],
+                      SizedBox(
+                        width: 15.0,
+                      ),
+                      Expanded(
+                        child: Text(
+                          'Ubah Profil',
+                          style: TextStyle(color: Color(0xFF777777), fontFamily: 'Roboto', fontWeight: FontWeight.w400, fontSize: 16),
+                        ),
+                      )
+                    ],
+                  ),
                 ),
-              ),
-            )),
+              )),
+            ),
           ),
           Padding(
             padding: const EdgeInsets.only(top: 275),
@@ -116,11 +114,7 @@ class UIProfile extends GetView<CHistory> {
                     Expanded(
                       child: Text(
                         'Tentang',
-                        style: TextStyle(
-                            color: Color(0xFF777777),
-                            fontFamily: 'Roboto',
-                            fontWeight: FontWeight.w600,
-                            fontSize: 15),
+                        style: TextStyle(color: Color(0xFF777777), fontFamily: 'Roboto', fontWeight: FontWeight.w600, fontSize: 15),
                       ),
                     )
                   ],
@@ -150,11 +144,7 @@ class UIProfile extends GetView<CHistory> {
                     Expanded(
                       child: Text(
                         'Panduan SAS',
-                        style: TextStyle(
-                            color: Color(0xFF777777),
-                            fontFamily: 'Roboto',
-                            fontWeight: FontWeight.w400,
-                            fontSize: 16),
+                        style: TextStyle(color: Color(0xFF777777), fontFamily: 'Roboto', fontWeight: FontWeight.w400, fontSize: 16),
                       ),
                     ),
                   ],
@@ -184,11 +174,7 @@ class UIProfile extends GetView<CHistory> {
                     Expanded(
                       child: Text(
                         'Kebijakan Privasi',
-                        style: TextStyle(
-                            color: Color(0xFF777777),
-                            fontFamily: 'Roboto',
-                            fontWeight: FontWeight.w400,
-                            fontSize: 16),
+                        style: TextStyle(color: Color(0xFF777777), fontFamily: 'Roboto', fontWeight: FontWeight.w400, fontSize: 16),
                       ),
                     ),
                   ],
@@ -218,11 +204,7 @@ class UIProfile extends GetView<CHistory> {
                     Expanded(
                       child: Text(
                         'Feedback',
-                        style: TextStyle(
-                            color: Color(0xFF777777),
-                            fontFamily: 'Roboto',
-                            fontWeight: FontWeight.w400,
-                            fontSize: 16),
+                        style: TextStyle(color: Color(0xFF777777), fontFamily: 'Roboto', fontWeight: FontWeight.w400, fontSize: 16),
                       ),
                     ),
                   ],
@@ -244,11 +226,7 @@ class UIProfile extends GetView<CHistory> {
                     Expanded(
                       child: Text(
                         'Lainnya',
-                        style: TextStyle(
-                            color: Color(0xFF777777),
-                            fontFamily: 'Roboto',
-                            fontWeight: FontWeight.w600,
-                            fontSize: 15),
+                        style: TextStyle(color: Color(0xFF777777), fontFamily: 'Roboto', fontWeight: FontWeight.w600, fontSize: 15),
                       ),
                     )
                   ],
@@ -278,11 +256,7 @@ class UIProfile extends GetView<CHistory> {
                     Expanded(
                       child: Text(
                         'Keluar',
-                        style: TextStyle(
-                            color: Color(0xFFD90000),
-                            fontFamily: 'Roboto',
-                            fontWeight: FontWeight.w400,
-                            fontSize: 16),
+                        style: TextStyle(color: Color(0xFFD90000), fontFamily: 'Roboto', fontWeight: FontWeight.w400, fontSize: 16),
                       ),
                     ),
                   ],
