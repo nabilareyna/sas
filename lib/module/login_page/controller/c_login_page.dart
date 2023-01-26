@@ -1,36 +1,58 @@
 import 'dart:convert';
+import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:unique_identifier/unique_identifier.dart';
 import 'package:http/http.dart' as http;
+import 'package:sas/routes/routes.dart';
 
 class CLoginPage extends GetxController {
   late Rx<TabController> tabController;
 
   RxBool setlog = false.obs;
-  RxString nama = ''.obs;
-  RxString pass = ''.obs;
+  String _nama = '';
+  String _pass = '';
+  String _identifier = 'Unknown';
+  RxString deviceId = ''.obs;
+
   TextEditingController namaController = TextEditingController();
   TextEditingController passController = TextEditingController();
 
-  Future<void> setLogin(String nama, String pass) async {
-    String uri = "192.168.152.110/sas_api/api/login";
+  Future<void> initUniqueIdentifierState() async {
+    String identifier;
 
-    var res = await http.post(Uri.parse(uri), body: {"usernameInput": nama, "passInput": pass});
-    var response = jsonDecode(res.body);
-
-    if (response["respon"] == true) {
-      // Tanpa argument
-      // Navigator.of(context).pushNamedAndRemoveUntil(link, (Route<dynamic> route) => false);
-      // Dengan argument
-      // Navigator.of(context).pushNamedAndRemoveUntil(link, (Route<dynamic> route) => false, arguments: arguments);
-
-      //Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage(nama)));
-    } else {
-      print('salah');
+    try {
+      identifier = (await UniqueIdentifier.serial)!;
+    } on PlatformException {
+      identifier = 'failed';
     }
+    if (!isClosed) return;
+    _identifier = identifier;
+  }
 
-    try {} catch (e) {
+  Future<void> setLogin() async {
+    try {
+      String uri = "http://192.168.90.110/sas_api/api/login";
+
+      var res = await http.post(Uri.parse(uri), body: {"username": _nama, "password": _pass});
+      var response = jsonDecode(res.body);
+
+      if (response["respon"] == true) {
+        if (response["responPass"] == false) {
+          print('Password salah');
+        } else if (!(response['imei'] == _identifier)) {
+          print('Perangkat tidak sesuai dengan Akun');
+        } else {
+          print('Selamat datang ' + _nama);
+          Get.toNamed(Routes.dashboard);
+        }
+      } else {
+        print('Username tidak ditemukan');
+        print('salah');
+      }
+    } catch (e) {
       print(e);
     }
   }

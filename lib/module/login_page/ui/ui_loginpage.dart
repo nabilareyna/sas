@@ -57,7 +57,7 @@ class UILoginPage extends GetView<CLoginPage> {
                         Padding(
                           padding: EdgeInsets.symmetric(vertical: Const.siblingMargin(x: 2)),
                           child: TextField(
-                            // controller: controller.namaController,
+                            controller: controller.namaController,
                             decoration: InputDecoration(
                               border: OutlineInputBorder(borderRadius: BorderRadius.circular(30.0)),
                               hintText: 'Masukkan NIS',
@@ -71,7 +71,7 @@ class UILoginPage extends GetView<CLoginPage> {
                         Padding(
                           padding: const EdgeInsets.only(top: 8, bottom: 8),
                           child: TextField(
-                            // controller: controller.passController,
+                            controller: controller.passController,
                             obscureText: true,
                             decoration: InputDecoration(border: OutlineInputBorder(borderRadius: BorderRadius.circular(30.0)), hintText: 'Masukkan password'),
                           ),
@@ -82,7 +82,7 @@ class UILoginPage extends GetView<CLoginPage> {
                     InkWell(
                       child: WButtonLogin(),
                       onTap: () {
-                        Get.toNamed(Routes.getDashboardRoute());
+                        Get.toNamed(Routes.dashboard);
                       },
                     )
                   ],
