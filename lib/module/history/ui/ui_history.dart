@@ -1,4 +1,4 @@
-import 'dart:html';
+// import 'dart:html';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -36,7 +36,9 @@ class UIHistory extends GetView<CHistory> {
             ),
           ),
           body: Padding(
-            padding: EdgeInsets.symmetric(horizontal: Const.parentMargin(), vertical: Const.parentMargin(x: 2)),
+            padding: EdgeInsets.symmetric(
+                horizontal: Const.parentMargin(),
+                vertical: Const.parentMargin(x: 2)),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
@@ -46,7 +48,9 @@ class UIHistory extends GetView<CHistory> {
                     borderRadius: BorderRadius.all(Radius.circular(5)),
                     color: Colors.white,
                   ),
-                  padding: EdgeInsets.symmetric(horizontal: Const.siblingMargin(x: 4), vertical: Const.siblingMargin(x: 3.5)),
+                  padding: EdgeInsets.symmetric(
+                      horizontal: Const.siblingMargin(x: 4),
+                      vertical: Const.siblingMargin(x: 3.5)),
                   child: Column(
                     children: [
                       Row(
@@ -54,14 +58,28 @@ class UIHistory extends GetView<CHistory> {
                         children: [
                           Text(
                             'Jumlah',
-                            style: TextStyle(color: Styles.secondaryColor, fontFamily: 'Roboto', fontSize: 12, fontWeight: FontWeight.w400, letterSpacing: 1),
+                            style: TextStyle(
+                                color: Styles.secondaryColor,
+                                fontFamily: 'Roboto',
+                                fontSize: 12,
+                                fontWeight: FontWeight.w400,
+                                letterSpacing: 1),
                           ),
                           DropdownButton(
                             elevation: 10,
                             value: controller.selectedValue.value,
-                            onChanged: (String? value) => controller.selectedValue.value = value,
-                            items: controller.items.map((e) => DropdownMenuItem(value: e, child: Text(e))).toList(),
-                            style: TextStyle(fontFamily: 'Roboto', fontSize: 12, fontWeight: FontWeight.w400, color: Colors.black, letterSpacing: 1),
+                            onChanged: (String? value) =>
+                                controller.selectedValue.value = value,
+                            items: controller.items
+                                .map((e) =>
+                                    DropdownMenuItem(value: e, child: Text(e)))
+                                .toList(),
+                            style: TextStyle(
+                                fontFamily: 'Roboto',
+                                fontSize: 12,
+                                fontWeight: FontWeight.w400,
+                                color: Colors.black,
+                                letterSpacing: 1),
                             isDense: true,
                             hint: Text('Pilih...'),
                             underline: SizedBox(),
@@ -74,14 +92,27 @@ class UIHistory extends GetView<CHistory> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text('Periode',
-                              style:
-                                  TextStyle(color: Styles.secondaryColor, fontFamily: 'Roboto', fontSize: 12, fontWeight: FontWeight.w400, letterSpacing: 1)),
+                              style: TextStyle(
+                                  color: Styles.secondaryColor,
+                                  fontFamily: 'Roboto',
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w400,
+                                  letterSpacing: 1)),
                           DropdownButton(
                             elevation: 10,
                             value: controller.selectedValue.value,
-                            onChanged: (String? value) => controller.selectedValue.value = value,
-                            items: controller.items.map((e) => DropdownMenuItem(value: e, child: Text(e))).toList(),
-                            style: TextStyle(fontFamily: 'Roboto', fontSize: 12, fontWeight: FontWeight.w400, color: Colors.black, letterSpacing: 1),
+                            onChanged: (String? value) =>
+                                controller.selectedValue.value = value,
+                            items: controller.items
+                                .map((e) =>
+                                    DropdownMenuItem(value: e, child: Text(e)))
+                                .toList(),
+                            style: TextStyle(
+                                fontFamily: 'Roboto',
+                                fontSize: 12,
+                                fontWeight: FontWeight.w400,
+                                color: Colors.black,
+                                letterSpacing: 1),
                             isDense: true,
                             hint: Text('Pilih...'),
                             underline: SizedBox(),

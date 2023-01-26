@@ -113,7 +113,10 @@ class UIDashboard extends GetView<CDashboard> {
                                   children: const [
                                     Text(
                                       'Absen Datang',
-                                      style: TextStyle(fontFamily: 'Roboto', fontSize: 12, fontWeight: FontWeight.w500),
+                                      style: TextStyle(
+                                          fontFamily: 'Roboto',
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.w500),
                                     )
                                   ],
                                 ),
@@ -139,7 +142,8 @@ class UIDashboard extends GetView<CDashboard> {
                                       Padding(
                                         padding: EdgeInsets.only(right: 6),
                                         child: ImageIcon(
-                                          AssetImage('../assets/icons/logout.png'),
+                                          AssetImage(
+                                              '../assets/icons/logout.png'),
                                           color: Colors.white,
                                           size: 40,
                                         ),
@@ -150,7 +154,13 @@ class UIDashboard extends GetView<CDashboard> {
                                 Padding(
                                   padding: const EdgeInsets.only(top: 9),
                                   child: Column(
-                                    children: const [Text('Absen Pulang', style: TextStyle(fontFamily: 'Roboto', fontSize: 12, fontWeight: FontWeight.w500))],
+                                    children: const [
+                                      Text('Absen Pulang',
+                                          style: TextStyle(
+                                              fontFamily: 'Roboto',
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.w500))
+                                    ],
                                   ),
                                 )
                               ],
@@ -184,7 +194,13 @@ class UIDashboard extends GetView<CDashboard> {
                               Padding(
                                 padding: const EdgeInsets.only(top: 9),
                                 child: Column(
-                                  children: const [Text('Izin', style: TextStyle(fontFamily: 'Roboto', fontSize: 12, fontWeight: FontWeight.w500))],
+                                  children: const [
+                                    Text('Izin',
+                                        style: TextStyle(
+                                            fontFamily: 'Roboto',
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.w500))
+                                  ],
                                 ),
                               )
                             ],

@@ -7,7 +7,7 @@ import 'package:sas/utils/AppThemes.dart';
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   final pageC = Get.put(CPgeView(), permanent: true);
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {

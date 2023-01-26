@@ -36,7 +36,8 @@ class UILoginPage extends GetView<CLoginPage> {
                       decoration: BoxDecoration(
                           border: Border.all(color: Styles.secondaryColor),
                           color: Colors.white,
-                          borderRadius: BorderRadius.all(Radius.circular(10)),
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(10)),
                           boxShadow: [
                             BoxShadow(
                               color: Styles.secondaryColor.withOpacity(0.50),
@@ -47,40 +48,50 @@ class UILoginPage extends GetView<CLoginPage> {
                           ]),
                       width: size.width,
                       height: 190,
-                      padding: EdgeInsets.symmetric(vertical: 8, horizontal: Const.siblingMargin(x: 4)),
-                      margin: EdgeInsets.symmetric(vertical: 50),
-                      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                        Text(
-                          'Username',
-                          style: TextStyle(fontFamily: 'Montserrat'),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.symmetric(vertical: Const.siblingMargin(x: 2)),
-                          child: TextField(
-                            // controller: controller.namaController,
-                            decoration: InputDecoration(
-                              border: OutlineInputBorder(borderRadius: BorderRadius.circular(30.0)),
-                              hintText: 'Masukkan NIS',
+                      padding: EdgeInsets.symmetric(
+                          vertical: 8, horizontal: Const.siblingMargin(x: 4)),
+                      margin: const EdgeInsets.symmetric(vertical: 50),
+                      child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text(
+                              'Username',
+                              style: TextStyle(fontFamily: 'Montserrat'),
                             ),
-                          ),
-                        ),
-                        Text(
-                          'Password',
-                          style: TextStyle(fontFamily: 'Montserrat'),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 8, bottom: 8),
-                          child: TextField(
-                            // controller: controller.passController,
-                            obscureText: true,
-                            decoration: InputDecoration(border: OutlineInputBorder(borderRadius: BorderRadius.circular(30.0)), hintText: 'Masukkan password'),
-                          ),
-                        ),
-                      ]),
+                            Padding(
+                              padding: EdgeInsets.symmetric(
+                                  vertical: Const.siblingMargin(x: 2)),
+                              child: TextField(
+                                // controller: controller.namaController,
+                                decoration: InputDecoration(
+                                  border: OutlineInputBorder(
+                                      borderRadius:
+                                          BorderRadius.circular(30.0)),
+                                  hintText: 'Masukkan NIS',
+                                ),
+                              ),
+                            ),
+                            const Text(
+                              'Password',
+                              style: TextStyle(fontFamily: 'Montserrat'),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 8, bottom: 8),
+                              child: TextField(
+                                // controller: controller.passController,
+                                obscureText: true,
+                                decoration: InputDecoration(
+                                    border: OutlineInputBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(30.0)),
+                                    hintText: 'Masukkan password'),
+                              ),
+                            ),
+                          ]),
                     ),
                     const Gap(65),
                     InkWell(
-                      child: WButtonLogin(),
+                      child: const WButtonLogin(),
                       onTap: () {
                         Get.toNamed(Routes.getDashboardRoute());
                       },
