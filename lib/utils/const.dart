@@ -6,4 +6,7 @@ class Const {
   static double parentMargin({double x = 1}) => Const.PARENT_MARGIN * x;
 
   static double siblingMargin({double x = 1}) => Const.SIBLING_MARGIN * x;
+
+  static const double MAX_MOBILE_SCREEN = 800;
+  static const double MAX_TABLET_SCREEN = 1200;
 }
