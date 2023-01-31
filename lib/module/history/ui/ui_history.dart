@@ -35,109 +35,111 @@ class UIHistory extends GetView<CHistory> {
               onPressed: () => Get.toNamed(Routes.dashboard),
             ),
           ),
-          body: Padding(
-            padding: EdgeInsets.symmetric(
-                horizontal: Const.parentMargin(),
-                vertical: Const.parentMargin(x: 2)),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Container(
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Styles.secondaryGreyColor),
-                    borderRadius: BorderRadius.all(Radius.circular(5)),
-                    color: Colors.white,
-                  ),
-                  padding: EdgeInsets.symmetric(
-                      horizontal: Const.siblingMargin(x: 4),
-                      vertical: Const.siblingMargin(x: 3.5)),
-                  child: Column(
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            'Jumlah',
-                            style: TextStyle(
-                                color: Styles.secondaryColor,
-                                fontFamily: 'Roboto',
-                                fontSize: 12,
-                                fontWeight: FontWeight.w400,
-                                letterSpacing: 1),
-                          ),
-                          DropdownButton(
-                            elevation: 10,
-                            value: controller.selectedValue.value,
-                            onChanged: (String? value) =>
-                                controller.selectedValue.value = value,
-                            items: controller.items
-                                .map((e) =>
-                                    DropdownMenuItem(value: e, child: Text(e)))
-                                .toList(),
-                            style: TextStyle(
-                                fontFamily: 'Roboto',
-                                fontSize: 12,
-                                fontWeight: FontWeight.w400,
-                                color: Colors.black,
-                                letterSpacing: 1),
-                            isDense: true,
-                            hint: Text('Pilih...'),
-                            underline: SizedBox(),
-                            icon: Icon(Icons.expand_more),
-                          )
-                        ],
-                      ),
-                      Gap(20),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text('Periode',
+          body: SafeArea(
+            child: Padding(
+              padding: EdgeInsets.symmetric(
+                  horizontal: Const.parentMargin(),
+                  vertical: Const.parentMargin(x: 2)),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Styles.secondaryGreyColor),
+                      borderRadius: const BorderRadius.all(Radius.circular(5)),
+                      color: Colors.white,
+                    ),
+                    padding: EdgeInsets.symmetric(
+                        horizontal: Const.siblingMargin(x: 4),
+                        vertical: Const.siblingMargin(x: 3.5)),
+                    child: Column(
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              'Jumlah',
                               style: TextStyle(
                                   color: Styles.secondaryColor,
                                   fontFamily: 'Roboto',
                                   fontSize: 12,
                                   fontWeight: FontWeight.w400,
-                                  letterSpacing: 1)),
-                          DropdownButton(
-                            elevation: 10,
-                            value: controller.selectedValue.value,
-                            onChanged: (String? value) =>
-                                controller.selectedValue.value = value,
-                            items: controller.items
-                                .map((e) =>
-                                    DropdownMenuItem(value: e, child: Text(e)))
-                                .toList(),
-                            style: TextStyle(
-                                fontFamily: 'Roboto',
-                                fontSize: 12,
-                                fontWeight: FontWeight.w400,
-                                color: Colors.black,
-                                letterSpacing: 1),
-                            isDense: true,
-                            hint: Text('Pilih...'),
-                            underline: SizedBox(),
-                            icon: Icon(Icons.expand_more),
-                          )
-                        ],
+                                  letterSpacing: 1),
+                            ),
+                            DropdownButton(
+                              elevation: 10,
+                              value: controller.selectedValue.value,
+                              onChanged: (String? value) =>
+                                  controller.selectedValue.value = value,
+                              items: controller.items
+                                  .map((e) => DropdownMenuItem(
+                                      value: e, child: Text(e)))
+                                  .toList(),
+                              style: const TextStyle(
+                                  fontFamily: 'Roboto',
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w400,
+                                  color: Colors.black,
+                                  letterSpacing: 1),
+                              isDense: true,
+                              hint: const Text('Pilih...'),
+                              underline: const SizedBox(),
+                              icon: const Icon(Icons.expand_more),
+                            )
+                          ],
+                        ),
+                        const Gap(20),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text('Periode',
+                                style: TextStyle(
+                                    color: Styles.secondaryColor,
+                                    fontFamily: 'Roboto',
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w400,
+                                    letterSpacing: 1)),
+                            DropdownButton(
+                              elevation: 10,
+                              value: controller.selectedValue.value,
+                              onChanged: (String? value) =>
+                                  controller.selectedValue.value = value,
+                              items: controller.items
+                                  .map((e) => DropdownMenuItem(
+                                      value: e, child: Text(e)))
+                                  .toList(),
+                              style: const TextStyle(
+                                  fontFamily: 'Roboto',
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w400,
+                                  color: Colors.black,
+                                  letterSpacing: 1),
+                              isDense: true,
+                              hint: const Text('Pilih...'),
+                              underline: const SizedBox(),
+                              icon: const Icon(Icons.expand_more),
+                            )
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
+                  const Gap(30),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: const [
+                      AbsentSummary(
+                        title: 'Jumlah Izin',
+                      ),
+                      AbsentSummary(
+                        title: 'Tanpa Keterangan',
                       )
                     ],
                   ),
-                ),
-                Gap(30),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    AbsentSummary(
-                      title: 'Jumlah Izin',
-                    ),
-                    AbsentSummary(
-                      title: 'Tanpa Keterangan',
-                    )
-                  ],
-                ),
-                Gap(30),
-                HistoryCard()
-              ],
+                  const Gap(30),
+                  HistoryCard()
+                ],
+              ),
             ),
           ),
           bottomNavigationBar: BottomNavigationBar(
