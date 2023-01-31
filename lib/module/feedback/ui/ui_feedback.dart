@@ -24,72 +24,77 @@ class UIFeedback extends GetView<CFeedback> {
           onPressed: () => Get.toNamed(Routes.profile),
         ),
       ),
-      body: Stack(
-        children: [
-          Column(
-            children: [
-              Row(
-                children: [
-                  Container(
-                    height: 90.0,
-                    width: MediaQuery.of(context).size.width,
-                    decoration: const BoxDecoration(
-                      color: Color(0xFF61A2BE),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: const [
-                        Text(
-                          'Feedback',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 20,
-                              fontFamily: 'Roboto',
-                              fontWeight: FontWeight.w600,
-                              letterSpacing: 2),
-                        )
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-              Padding(
-                padding: const EdgeInsets.all(25),
-                child: Column(
-                  children: const [
-                    TextField(
-                      decoration: InputDecoration(
-                          border: UnderlineInputBorder(),
-                          labelText: 'Nama',
-                          hintText: 'Masukkan nama anda'),
-                    ),
-                    TextField(
-                      decoration: InputDecoration(
-                          border: UnderlineInputBorder(),
-                          labelText: 'Email',
-                          hintText: 'Masukkan email anda'),
-                    ),
-                    TextField(
-                      maxLines: 4,
-                      keyboardType: TextInputType.multiline,
-                      decoration: InputDecoration(
-                          border: UnderlineInputBorder(),
-                          labelText: 'Your Feedback',
-                          hintText: 'Masukkan feedback anda'),
+      body: SingleChildScrollView(
+        controller: ScrollController(),
+        child: Stack(
+          children: [
+            Column(
+              children: [
+                Row(
+                  children: [
+                    Container(
+                      height: 90.0,
+                      width: MediaQuery.of(context).size.width,
+                      decoration: const BoxDecoration(
+                        color: Color(0xFF61A2BE),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: const [
+                          Text(
+                            'Feedback',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 20,
+                                fontFamily: 'Roboto',
+                                fontWeight: FontWeight.w600,
+                                letterSpacing: 2),
+                          )
+                        ],
+                      ),
                     ),
                   ],
                 ),
-              ),
-              const Gap(80),
-              InkWell(
-                child: const WButtonFeedback(),
-                onTap: () {
-                  Get.toNamed(Routes.getProfileRoute());
-                },
-              )
-            ],
-          )
-        ],
+                Padding(
+                  padding: const EdgeInsets.all(25),
+                  child: Column(
+                    children: const [
+                      TextField(
+                        decoration: InputDecoration(
+                            border: UnderlineInputBorder(),
+                            labelText: 'Nama',
+                            hintText: 'Masukkan nama anda'),
+                      ),
+                      TextField(
+                        decoration: InputDecoration(
+                            border: UnderlineInputBorder(),
+                            labelText: 'Email',
+                            hintText: 'Masukkan email anda'),
+                      ),
+                      TextField(
+                        maxLines: 4,
+                        keyboardType: TextInputType.multiline,
+                        decoration: InputDecoration(
+                            border: UnderlineInputBorder(),
+                            labelText: 'Your Feedback',
+                            hintText: 'Masukkan feedback anda'),
+                      ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 20),
+                  child: InkWell(
+                    child: const WButtonFeedback(),
+                    onTap: () {
+                      Get.toNamed(Routes.getProfileRoute());
+                    },
+                  ),
+                )
+              ],
+            )
+          ],
+        ),
       ),
     );
   }

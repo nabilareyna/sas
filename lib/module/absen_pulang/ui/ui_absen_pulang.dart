@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:sas/module/absen_pulang/controller/c_absen_pulang.dart';
+import 'package:sas/module/absen_pulang/widget/w_card_absen_pulang.dart';
 import 'package:sas/routes/routes.dart';
 import 'package:sas/utils/AppThemes.dart';
 import 'package:sas/utils/const.dart';

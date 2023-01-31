@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:sas/utils/AppLayout.dart';
 import 'package:sas/utils/AppThemes.dart';
 
-class WButtonFeedback extends StatelessWidget {
-  const WButtonFeedback({Key? key}) : super(key: key);
+class WButtonFormIzin extends StatelessWidget {
+  const WButtonFormIzin({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
