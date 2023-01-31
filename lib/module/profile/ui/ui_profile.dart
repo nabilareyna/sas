@@ -61,7 +61,11 @@ class UIProfile extends GetView<CHistory> {
                   ),
                   const Text(
                     'Fajar Ainur Roziqin',
-                    style: TextStyle(color: Colors.white, fontFamily: 'Inter', fontWeight: FontWeight.w700, fontSize: 16),
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontFamily: 'Inter',
+                        fontWeight: FontWeight.w700,
+                        fontSize: 16),
                   ),
                 ],
               ),
@@ -92,7 +96,11 @@ class UIProfile extends GetView<CHistory> {
                         Expanded(
                           child: Text(
                             'Ubah Profil',
-                            style: TextStyle(color: Color(0xFF777777), fontFamily: 'Roboto', fontWeight: FontWeight.w400, fontSize: 16),
+                            style: TextStyle(
+                                color: Color(0xFF777777),
+                                fontFamily: 'Roboto',
+                                fontWeight: FontWeight.w400,
+                                fontSize: 16),
                           ),
                         )
                       ],
@@ -115,7 +123,11 @@ class UIProfile extends GetView<CHistory> {
                       Expanded(
                         child: Text(
                           'Tentang',
-                          style: TextStyle(color: Color(0xFF777777), fontFamily: 'Roboto', fontWeight: FontWeight.w600, fontSize: 15),
+                          style: TextStyle(
+                              color: Color(0xFF777777),
+                              fontFamily: 'Roboto',
+                              fontWeight: FontWeight.w600,
+                              fontSize: 15),
                         ),
                       )
                     ],
@@ -125,93 +137,120 @@ class UIProfile extends GetView<CHistory> {
             ),
             Padding(
               padding: const EdgeInsets.only(top: 305),
-              child: SizedBox(
-                  child: Container(
-                color: Colors.white,
-                width: MediaQuery.of(context).size.width,
-                height: 50,
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 20),
-                  child: Row(
-                    children: const <Widget>[
-                      ImageIcon(
-                        AssetImage('assets/icons/lamp.png'),
-                        size: 25.0,
-                        color: Color(0xFF777777),
-                      ),
-                      SizedBox(
-                        width: 15.0,
-                      ),
-                      Expanded(
-                        child: Text(
-                          'Panduan SAS',
-                          style: TextStyle(color: Color(0xFF777777), fontFamily: 'Roboto', fontWeight: FontWeight.w400, fontSize: 16),
+              child: InkWell(
+                onTap: () {
+                  Get.toNamed(Routes.panduansas);
+                },
+                child: SizedBox(
+                    child: Container(
+                  color: Colors.white,
+                  width: MediaQuery.of(context).size.width,
+                  height: 50,
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 20),
+                    child: Row(
+                      children: const <Widget>[
+                        ImageIcon(
+                          AssetImage('assets/icons/lamp.png'),
+                          size: 25.0,
+                          color: Color(0xFF777777),
                         ),
-                      ),
-                    ],
+                        SizedBox(
+                          width: 15.0,
+                        ),
+                        Expanded(
+                          child: Text(
+                            'Panduan SAS',
+                            style: TextStyle(
+                                color: Color(0xFF777777),
+                                fontFamily: 'Roboto',
+                                fontWeight: FontWeight.w400,
+                                fontSize: 16),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-              )),
+                )),
+              ),
             ),
             Padding(
               padding: const EdgeInsets.only(top: 355),
-              child: SizedBox(
-                  child: Container(
-                color: Colors.white,
-                width: MediaQuery.of(context).size.width,
-                height: 50,
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 20),
-                  child: Row(
-                    children: const <Widget>[
-                      ImageIcon(
-                        AssetImage('assets/icons/privacy.png'),
-                        size: 25.0,
-                        color: Color(0xFF777777),
-                      ),
-                      SizedBox(
-                        width: 15.0,
-                      ),
-                      Expanded(
-                        child: Text(
-                          'Kebijakan Privasi',
-                          style: TextStyle(color: Color(0xFF777777), fontFamily: 'Roboto', fontWeight: FontWeight.w400, fontSize: 16),
+              child: InkWell(
+                onTap: () {
+                  Get.toNamed(Routes.privacypolicy);
+                },
+                child: SizedBox(
+                    child: Container(
+                  color: Colors.white,
+                  width: MediaQuery.of(context).size.width,
+                  height: 50,
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 20),
+                    child: Row(
+                      children: const <Widget>[
+                        ImageIcon(
+                          AssetImage('assets/icons/privacy.png'),
+                          size: 25.0,
+                          color: Color(0xFF777777),
                         ),
-                      ),
-                    ],
+                        SizedBox(
+                          width: 15.0,
+                        ),
+                        Expanded(
+                          child: Text(
+                            'Kebijakan Privasi',
+                            style: TextStyle(
+                                color: Color(0xFF777777),
+                                fontFamily: 'Roboto',
+                                fontWeight: FontWeight.w400,
+                                fontSize: 16),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-              )),
+                )),
+              ),
             ),
             Padding(
               padding: const EdgeInsets.only(top: 405),
-              child: SizedBox(
-                  child: Container(
-                color: Colors.white,
-                width: MediaQuery.of(context).size.width,
-                height: 50,
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 20),
-                  child: Row(
-                    children: const <Widget>[
-                      ImageIcon(
-                        AssetImage('assets/icons/chat.png'),
-                        size: 25.0,
-                        color: Color(0xFF777777),
-                      ),
-                      SizedBox(
-                        width: 15.0,
-                      ),
-                      Expanded(
-                        child: Text(
-                          'Feedback',
-                          style: TextStyle(color: Color(0xFF777777), fontFamily: 'Roboto', fontWeight: FontWeight.w400, fontSize: 16),
+              child: InkWell(
+                onTap: () {
+                  Get.toNamed(Routes.feedback);
+                },
+                child: SizedBox(
+                    child: Container(
+                  color: Colors.white,
+                  width: MediaQuery.of(context).size.width,
+                  height: 50,
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 20),
+                    child: Row(
+                      children: const <Widget>[
+                        ImageIcon(
+                          AssetImage('assets/icons/chat.png'),
+                          size: 25.0,
+                          color: Color(0xFF777777),
                         ),
-                      ),
-                    ],
+                        SizedBox(
+                          width: 15.0,
+                        ),
+                        Expanded(
+                          child: Text(
+                            'Feedback',
+                            style: TextStyle(
+                                color: Color(0xFF777777),
+                                fontFamily: 'Roboto',
+                                fontWeight: FontWeight.w400,
+                                fontSize: 16),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-              )),
+                )),
+              ),
             ),
             Padding(
               padding: const EdgeInsets.only(top: 455),
@@ -227,7 +266,11 @@ class UIProfile extends GetView<CHistory> {
                       Expanded(
                         child: Text(
                           'Lainnya',
-                          style: TextStyle(color: Color(0xFF777777), fontFamily: 'Roboto', fontWeight: FontWeight.w600, fontSize: 15),
+                          style: TextStyle(
+                              color: Color(0xFF777777),
+                              fontFamily: 'Roboto',
+                              fontWeight: FontWeight.w600,
+                              fontSize: 15),
                         ),
                       )
                     ],
@@ -257,7 +300,11 @@ class UIProfile extends GetView<CHistory> {
                       Expanded(
                         child: Text(
                           'Keluar',
-                          style: TextStyle(color: Color(0xFFD90000), fontFamily: 'Roboto', fontWeight: FontWeight.w400, fontSize: 16),
+                          style: TextStyle(
+                              color: Color(0xFFD90000),
+                              fontFamily: 'Roboto',
+                              fontWeight: FontWeight.w400,
+                              fontSize: 16),
                         ),
                       ),
                     ],
