@@ -63,9 +63,8 @@ class UIAbsenPulang extends GetView<CAbsenPulang> {
                 width: Get.width,
                 decoration: BoxDecoration(
                     color: Colors.white,
-                    borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(Const.parentMargin(x: 1.5)),
-                        topRight: Radius.circular(Const.parentMargin(x: 1.5)))),
+                    borderRadius:
+                        BorderRadius.only(topLeft: Radius.circular(Const.parentMargin(x: 1.5)), topRight: Radius.circular(Const.parentMargin(x: 1.5)))),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -106,6 +105,17 @@ class UIAbsenPulang extends GetView<CAbsenPulang> {
                       '0 - 172.77 m (566.84 ft)',
                       style: Styles.absenPageSubHeading,
                     )
+                  ],
+                ),
+              ),
+              Container(
+                color: Styles.primaryColor,
+                width: Get.width,
+                padding: EdgeInsets.symmetric(vertical: Const.parentMargin(x: 0.7)),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text('SUBMIT', style: TextStyle(fontFamily: 'Montserrat', fontSize: 16, fontWeight: FontWeight.w600, color: Colors.white, letterSpacing: 2))
                   ],
                 ),
               )
