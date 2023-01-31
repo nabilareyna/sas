@@ -1,8 +1,14 @@
 import 'package:get/get.dart';
+import 'package:sas/module/absen_datang/controller/c_absen_datang.dart';
+import 'package:sas/module/absen_datang/ui/ui_absen_datang.dart';
+import 'package:sas/module/absen_pulang/controller/c_absen_pulang.dart';
+import 'package:sas/module/absen_pulang/ui/ui_absen_pulang.dart';
 import 'package:sas/module/dashboard/controller/c_dashboard.dart';
 import 'package:sas/module/dashboard/ui/ui_dashboard.dart';
 import 'package:sas/module/feedback/controller/c_feedback.dart';
 import 'package:sas/module/feedback/ui/ui_feedback.dart';
+import 'package:sas/module/form_izin/controller/c_form_izin.dart';
+import 'package:sas/module/form_izin/ui/ui_form_izin.dart';
 import 'package:sas/module/history/controller/c_history.dart';
 import 'package:sas/module/history/ui/ui_history.dart';
 import 'package:sas/module/kebijakan_privasi/ui/ui_kebijakan_privasi.dart';
@@ -23,6 +29,9 @@ class Routes {
   static const String privacypolicy = "/privacypolicy";
   static const String editprofile = "/edit-profile";
   static const String panduansas = "/panduan-sas";
+  static const String absendatang = "/absen-datang";
+  static const String absenpulang = "/absen-pulang";
+  static const String pengajuanizin = "/pengajuan-izin";
 
   static String getLoginRoute() => login;
   static String getDashboardRoute() => dashboard;
@@ -32,6 +41,9 @@ class Routes {
   static String getEditProfileRoute() => editprofile;
   static String getPrivacyPolicyRoute() => privacypolicy;
   static String getPanduanSasRoute() => panduansas;
+  static String getAbsenDatangRoute() => absendatang;
+  static String getAbsenPulangRoute() => absenpulang;
+  static String getPengajuanIzinRoute() => pengajuanizin;
 
   static List<GetPage> routes = [
     GetPage(
@@ -76,6 +88,27 @@ class Routes {
         page: () => const UIUbahProfile(),
         binding: BindingsBuilder(() {
           Get.put(CUbahProfile());
+        }),
+        transition: Transition.fadeIn),
+    GetPage(
+        name: absendatang,
+        page: () => const UIAbsenDatang(),
+        binding: BindingsBuilder(() {
+          Get.put(CAbsenDatang());
+        }),
+        transition: Transition.fadeIn),
+    GetPage(
+        name: absenpulang,
+        page: () => const UIAbsenPulang(),
+        binding: BindingsBuilder(() {
+          Get.put(CAbsenPulang());
+        }),
+        transition: Transition.fadeIn),
+    GetPage(
+        name: pengajuanizin,
+        page: () => const UIFormIzin(),
+        binding: BindingsBuilder(() {
+          Get.put(CFormIzin());
         }),
         transition: Transition.fadeIn),
   ];

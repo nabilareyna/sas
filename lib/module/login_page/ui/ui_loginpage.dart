@@ -93,7 +93,7 @@ class UILoginPage extends GetView<CLoginPage> {
                     InkWell(
                       child: const WButtonLogin(),
                       onTap: () {
-                        Get.toNamed(Routes.getDashboardRoute());
+                        Get.toNamed(Routes.dashboard);
                       },
                     )
                   ],

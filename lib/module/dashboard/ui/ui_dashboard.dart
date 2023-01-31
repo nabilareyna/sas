@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:sas/module/dashboard/controller/c_dashboard.dart';
 import 'package:sas/module/dashboard/controller/c_page_view.dart';
+import 'package:sas/routes/routes.dart';
 import 'package:sas/utils/AppLayout.dart';
 import 'package:sas/utils/AppThemes.dart';
 
@@ -85,53 +86,98 @@ class UIDashboard extends GetView<CDashboard> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          Column(
-                            children: [
-                              Container(
-                                width: 63,
-                                height: 58,
-                                decoration: const BoxDecoration(
-                                  color: Color(0xFF1CC16B),
-                                  borderRadius: BorderRadius.all(
-                                    Radius.circular(5.0),
-                                  ),
-                                ),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: const [
-                                    ImageIcon(
-                                      AssetImage('../assets/icons/enter.png'),
-                                      color: Colors.white,
-                                      size: 40,
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(top: 9),
-                                child: Column(
-                                  children: const [
-                                    Text(
-                                      'Absen Datang',
-                                      style: TextStyle(
-                                          fontFamily: 'Roboto',
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.w500),
-                                    )
-                                  ],
-                                ),
-                              )
-                            ],
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(right: 10),
+                          InkWell(
+                            onTap: () {
+                              Get.toNamed(Routes.absendatang);
+                            },
                             child: Column(
                               children: [
                                 Container(
                                   width: 63,
                                   height: 58,
                                   decoration: const BoxDecoration(
-                                    color: Color(0xFFE85C5C),
+                                    color: Color(0xFF1CC16B),
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(5.0),
+                                    ),
+                                  ),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: const [
+                                      ImageIcon(
+                                        AssetImage('../assets/icons/enter.png'),
+                                        color: Colors.white,
+                                        size: 40,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 9),
+                                  child: Column(
+                                    children: const [
+                                      Text(
+                                        'Absen Datang',
+                                        style: TextStyle(fontFamily: 'Roboto', fontSize: 12, fontWeight: FontWeight.w500),
+                                      )
+                                    ],
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                          InkWell(
+                            onTap: () {
+                              Get.toNamed(Routes.absenpulang);
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.only(right: 10),
+                              child: Column(
+                                children: [
+                                  Container(
+                                    width: 63,
+                                    height: 58,
+                                    decoration: const BoxDecoration(
+                                      color: Color(0xFFE85C5C),
+                                      borderRadius: BorderRadius.all(
+                                        Radius.circular(5.0),
+                                      ),
+                                    ),
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: const [
+                                        Padding(
+                                          padding: EdgeInsets.only(right: 6),
+                                          child: ImageIcon(
+                                            AssetImage('../assets/icons/logout.png'),
+                                            color: Colors.white,
+                                            size: 40,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 9),
+                                    child: Column(
+                                      children: const [Text('Absen Pulang', style: TextStyle(fontFamily: 'Roboto', fontSize: 12, fontWeight: FontWeight.w500))],
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                          ),
+                          InkWell(
+                            onTap: () {
+                              Get.toNamed(Routes.pengajuanizin);
+                            },
+                            child: Column(
+                              children: [
+                                Container(
+                                  width: 63,
+                                  height: 58,
+                                  decoration: const BoxDecoration(
+                                    color: Color(0xFF327EF0),
                                     borderRadius: BorderRadius.all(
                                       Radius.circular(5.0),
                                     ),
@@ -140,8 +186,9 @@ class UIDashboard extends GetView<CDashboard> {
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: const [
                                       Padding(
-                                        padding: EdgeInsets.only(right: 6),
+                                        padding: EdgeInsets.only(right: 1),
                                         child: ImageIcon(
+                                          AssetImage('../assets/icons/clip.png'),
                                           AssetImage(
                                               '../assets/icons/logout.png'),
                                           color: Colors.white,

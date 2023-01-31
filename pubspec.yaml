@@ -39,6 +39,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   gap: ^2.0.0
   get: ^4.6.5
+  unique_identifier: ^0.3.0
 
 dev_dependencies:
   flutter_test:
