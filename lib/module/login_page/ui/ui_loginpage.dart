@@ -48,7 +48,6 @@ class UILoginPage extends GetView<CLoginPage> {
                               )
                             ]),
                         width: size.width,
-                        height: 190,
                         padding: EdgeInsets.symmetric(
                             vertical: 8, horizontal: Const.siblingMargin(x: 4)),
                         margin: const EdgeInsets.symmetric(vertical: 50),
