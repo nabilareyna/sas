@@ -107,6 +107,7 @@ class UIAbsenDatang extends GetView<CAbsenDatang> {
                       '0 - 172.77 m (566.84 ft)',
                       style: Styles.absenPageSubHeading,
                     )
+                    
                   ],
                 ),
               ),
