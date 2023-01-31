@@ -3,6 +3,7 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_map/flutter_map.dart';
+import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:latlong2/latlong.dart';
@@ -66,9 +67,42 @@ class UIAbsenDatang extends GetView<CAbsenDatang> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('Tanggal dan Jam'),
                     Text(
-                      DateFormat("EEEE, d MMMM yyyy").format(DateTime.now()),
+                      'Tanggal dan Jam',
+                      style: Styles.absenPageHeading,
+                    ),
+                    Gap(4),
+                    Row(
+                      children: [
+                        Text(
+                          DateFormat("d-M-yyyy" + ", ").format(DateTime.now()),
+                          style: Styles.absenPageSubHeading,
+                        ),
+                        Text(
+                          DateFormat.Hm().format(DateTime.now()),
+                          style: Styles.absenPageSubHeading,
+                        )
+                      ],
+                    ),
+                    Gap(6),
+                    Text(
+                      'Lokasi',
+                      style: Styles.absenPageHeading,
+                    ),
+                    Gap(4),
+                    Text(
+                      'SMKN 4 Malang',
+                      style: Styles.absenPageSubHeading,
+                    ),
+                    Gap(6),
+                    Text(
+                      'Radius',
+                      style: Styles.absenPageHeading,
+                    ),
+                    Gap(4),
+                    Text(
+                      '0 - 172.77 m (566.84 ft)',
+                      style: Styles.absenPageSubHeading,
                     )
                   ],
                 ),
