@@ -36,7 +36,8 @@ class UILoginPage extends GetView<CLoginPage> {
                       decoration: BoxDecoration(
                           border: Border.all(color: Styles.secondaryColor),
                           color: Colors.white,
-                          borderRadius: BorderRadius.all(Radius.circular(10)),
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(10)),
                           boxShadow: [
                             BoxShadow(
                               color: Styles.secondaryColor.withOpacity(0.50),
@@ -79,7 +80,7 @@ class UILoginPage extends GetView<CLoginPage> {
                     ),
                     const Gap(65),
                     InkWell(
-                      child: WButtonLogin(),
+                      child: const WButtonLogin(),
                       onTap: () {
                         Get.toNamed(Routes.dashboard);
                       },
