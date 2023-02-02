@@ -34,7 +34,7 @@ class UIAbsenPulang extends GetView<CAbsenPulang> {
       body: Stack(
         children: [
           FlutterMap(
-            options: MapOptions(center: LatLng(49.5, -0.09), zoom: 10.0),
+            options: MapOptions(center: LatLng(-7.9889465, 112.6278706), zoom: 16.50, maxZoom: 19.0),
             children: [
               TileLayer(
                 urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
@@ -46,7 +46,7 @@ class UIAbsenPulang extends GetView<CAbsenPulang> {
                   Marker(
                       width: 100.0,
                       height: 100.0,
-                      point: LatLng(49.5, -0.09),
+                      point: LatLng(-7.9889465, 112.6278706),
                       builder: (ctx) => Icon(
                             Icons.location_on,
                             color: Colors.red,

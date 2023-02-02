@@ -33,8 +33,7 @@ class UIDashboard extends GetView<CDashboard> {
                   ),
                 )),
             Padding(
-              padding:
-                  const EdgeInsets.only(right: 15.0, left: 15.0, top: 80.0),
+              padding: const EdgeInsets.only(right: 15.0, left: 15.0, top: 80.0),
               child: SizedBox(
                 height: 227.0,
                 width: double.infinity,
@@ -58,8 +57,7 @@ class UIDashboard extends GetView<CDashboard> {
                       Padding(
                         padding: const EdgeInsets.only(top: 24),
                         child: Text(
-                          DateFormat("EEEE, d MMMM yyyy")
-                              .format(DateTime.now()),
+                          DateFormat("EEEE, d MMMM yyyy").format(DateTime.now()),
                           textAlign: TextAlign.center,
                           style: const TextStyle(
                             fontSize: 12,
@@ -104,8 +102,7 @@ class UIDashboard extends GetView<CDashboard> {
                                       ),
                                     ),
                                     child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
+                                      mainAxisAlignment: MainAxisAlignment.center,
                                       children: const [
                                         ImageIcon(
                                           AssetImage('assets/icons/enter.png'),
@@ -121,10 +118,7 @@ class UIDashboard extends GetView<CDashboard> {
                                       children: const [
                                         Text(
                                           'Absen Datang',
-                                          style: TextStyle(
-                                              fontFamily: 'Roboto',
-                                              fontSize: 12,
-                                              fontWeight: FontWeight.w500),
+                                          style: TextStyle(fontFamily: 'Roboto', fontSize: 12, fontWeight: FontWeight.w500),
                                         )
                                       ],
                                     ),
@@ -150,14 +144,12 @@ class UIDashboard extends GetView<CDashboard> {
                                         ),
                                       ),
                                       child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
+                                        mainAxisAlignment: MainAxisAlignment.center,
                                         children: const [
                                           Padding(
                                             padding: EdgeInsets.only(right: 6),
                                             child: ImageIcon(
-                                              AssetImage(
-                                                  'assets/icons/logout.png'),
+                                              AssetImage('assets/icons/logout.png'),
                                               color: Colors.white,
                                               size: 40,
                                             ),
@@ -169,11 +161,7 @@ class UIDashboard extends GetView<CDashboard> {
                                       padding: const EdgeInsets.only(top: 9),
                                       child: Column(
                                         children: const [
-                                          Text('Absen Pulang',
-                                              style: TextStyle(
-                                                  fontFamily: 'Roboto',
-                                                  fontSize: 12,
-                                                  fontWeight: FontWeight.w500))
+                                          Text('Absen Pulang', style: TextStyle(fontFamily: 'Roboto', fontSize: 12, fontWeight: FontWeight.w500))
                                         ],
                                       ),
                                     )
@@ -197,8 +185,7 @@ class UIDashboard extends GetView<CDashboard> {
                                       ),
                                     ),
                                     child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
+                                      mainAxisAlignment: MainAxisAlignment.center,
                                       children: const [
                                         Padding(
                                           padding: EdgeInsets.only(right: 1),
@@ -214,13 +201,7 @@ class UIDashboard extends GetView<CDashboard> {
                                   Padding(
                                     padding: const EdgeInsets.only(top: 9),
                                     child: Column(
-                                      children: const [
-                                        Text('Izin',
-                                            style: TextStyle(
-                                                fontFamily: 'Roboto',
-                                                fontSize: 12,
-                                                fontWeight: FontWeight.w500))
-                                      ],
+                                      children: const [Text('Izin', style: TextStyle(fontFamily: 'Roboto', fontSize: 12, fontWeight: FontWeight.w500))],
                                     ),
                                   )
                                 ],
@@ -324,11 +305,10 @@ class UIDashboard extends GetView<CDashboard> {
                 height: 170,
                 decoration: const BoxDecoration(),
                 child: FlutterMap(
-                  options: MapOptions(center: LatLng(49.5, -0.09), zoom: 10.0),
+                  options: MapOptions(center: LatLng(-7.9889465, 112.6278706), zoom: 16.50, maxZoom: 19.0),
                   children: [
                     TileLayer(
-                      urlTemplate:
-                          'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+                      urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
                       userAgentPackageName: 'com.example.app',
                       subdomains: const ['a', 'b', 'c'],
                     ),
@@ -337,7 +317,7 @@ class UIDashboard extends GetView<CDashboard> {
                         Marker(
                             width: 100.0,
                             height: 100.0,
-                            point: LatLng(49.5, -0.09),
+                            point: LatLng(-7.9889465, 112.6278706),
                             builder: (ctx) => const Icon(
                                   Icons.location_on,
                                   color: Colors.red,
