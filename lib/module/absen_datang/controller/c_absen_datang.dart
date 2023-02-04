@@ -4,10 +4,12 @@ import 'package:get/get.dart';
 
 import 'package:geolocator/geolocator.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:sas/model/location.dart';
 
 class CAbsenDatang extends GetxController {
   late double latitude = -7.9889465;
   late double longitude = 112.6278706;
+  final loc = Location().obs;
 
   void getCurrentPosition() async {
     bool serviceEnabled;
@@ -32,8 +34,10 @@ class CAbsenDatang extends GetxController {
       Position currentPosition = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.best);
       print("Logitude: " + currentPosition.longitude.toString());
       print("Latitude: " + currentPosition.latitude.toString());
-      latitude = currentPosition.latitude;
-      longitude = currentPosition.longitude;
+      loc.update((val) {
+        val!.latitude = currentPosition.latitude;
+        val.longitude = currentPosition.longitude;
+      });
     }
   }
 }
