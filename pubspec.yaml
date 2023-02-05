@@ -83,6 +83,7 @@ flutter:
     - assets/icons/person.png
     - assets/icons/photo.png
     - assets/icons/datepicker.png
+    - assets/icons/upload.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
