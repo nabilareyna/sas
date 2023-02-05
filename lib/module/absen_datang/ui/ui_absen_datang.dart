@@ -37,6 +37,7 @@ class UIAbsenDatang extends GetView<CAbsenDatang> {
         body: Stack(
           children: [
             FlutterMap(
+              mapController: controller.mapController,
               options: MapOptions(
                 center: LatLng(controller.loc.value.latitude, controller.loc.value.longitude),
                 zoom: 16.50,

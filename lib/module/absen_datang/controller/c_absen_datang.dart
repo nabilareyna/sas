@@ -1,5 +1,5 @@
-import 'dart:html';
-
+import 'package:flutter/material.dart';
+import 'package:flutter_map/flutter_map.dart';
 import 'package:get/get.dart';
 
 import 'package:geolocator/geolocator.dart';
@@ -7,11 +7,12 @@ import 'package:latlong2/latlong.dart';
 import 'package:sas/model/location.dart';
 
 class CAbsenDatang extends GetxController {
-  late double latitude = -7.9889465;
-  late double longitude = 112.6278706;
+  // late double latitude;
+  // late double longitude;
   final loc = Location().obs;
+  final mapController = MapController();
 
-  void getCurrentPosition() async {
+  Future<void> getCurrentPosition() async {
     bool serviceEnabled;
     LocationPermission permission = await Geolocator.checkPermission();
     serviceEnabled = await Geolocator.isLocationServiceEnabled();
@@ -35,8 +36,9 @@ class CAbsenDatang extends GetxController {
       print("Logitude: " + currentPosition.longitude.toString());
       print("Latitude: " + currentPosition.latitude.toString());
       loc.update((val) {
-        val!.latitude = currentPosition.latitude;
-        val.longitude = currentPosition.longitude;
+        loc.value.latitude = currentPosition.latitude;
+        loc.value.longitude = currentPosition.longitude;
+        mapController.move(LatLng(loc.value.latitude, loc.value.longitude), mapController.zoom);
       });
     }
   }
