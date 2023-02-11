@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/container.dart';
@@ -8,6 +10,7 @@ import 'package:sas/module/form_izin/controller/c_form_izin.dart';
 import 'package:sas/module/form_izin/widget/w_button_form_izin.dart';
 import 'package:sas/module/form_izin/widget/w_datepicker_mulai.dart';
 import 'package:sas/module/form_izin/widget/w_datepicker_selesai.dart';
+import 'package:sas/module/form_izin/widget/w_imagepicker.dart';
 import 'package:sas/routes/routes.dart';
 import 'package:sas/utils/AppThemes.dart';
 
@@ -103,36 +106,38 @@ class UIFormIzin extends GetView<CFormIzin> {
           ),
           Padding(
             padding: const EdgeInsets.only(left: 15, right: 15, top: 195),
-            child: Container(
-              width: MediaQuery.of(context).size.width,
-              height: 40,
-              decoration: const BoxDecoration(
-                color: Color(0xFFE7EFF1),
-                borderRadius: BorderRadius.all(
-                  Radius.circular(5.0),
+            child: WImagePicker(
+                // child: Container(
+                //   width: MediaQuery.of(context).size.width,
+                //   height: 40,
+                //   decoration: const BoxDecoration(
+                //     color: Color(0xFFE7EFF1),
+                //     borderRadius: BorderRadius.all(
+                //       Radius.circular(5.0),
+                //     ),
+                //   ),
+                //   child: Padding(
+                //     padding: const EdgeInsets.only(left: 10, right: 15),
+                //     child: Row(
+                //       children: const [
+                //         ImageIcon(
+                //           AssetImage('../assets/icons/upload.png'),
+                //         ),
+                //         Gap(10),
+                //         Text(
+                //           'Upload Surat Izin',
+                //           style: TextStyle(
+                //             color: Color(0xFFA3A3A3),
+                //             fontSize: 12,
+                //             fontFamily: 'Roboto',
+                //             fontWeight: FontWeight.w400,
+                //           ),
+                //         )
+                //       ],
+                //     ),
+                //   ),
+                // ),
                 ),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.only(left: 10, right: 15),
-                child: Row(
-                  children: const [
-                    ImageIcon(
-                      AssetImage('../assets/icons/upload.png'),
-                    ),
-                    Gap(10),
-                    Text(
-                      'Upload Surat Izin',
-                      style: TextStyle(
-                        color: Color(0xFFA3A3A3),
-                        fontSize: 12,
-                        fontFamily: 'Roboto',
-                        fontWeight: FontWeight.w400,
-                      ),
-                    )
-                  ],
-                ),
-              ),
-            ),
           ),
           Padding(
             padding: const EdgeInsets.only(top: 390),

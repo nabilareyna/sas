@@ -61,8 +61,6 @@ class _WDatePickerMulaiState extends State<WDatePickerMulai> {
                                     _date.text = DateFormat('EEEE, d MMMM yyyy')
                                         .format(pickedDate);
                                   });
-                                } else {
-                                  print("Dimohon untuk memilih");
                                 }
                               },
                             ),
