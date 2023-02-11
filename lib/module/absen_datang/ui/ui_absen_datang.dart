@@ -36,7 +36,7 @@ class UIAbsenDatang extends GetView<CAbsenDatang> {
       body: Stack(
         children: [
           FlutterMap(
-            options: MapOptions(center: LatLng(49.5, -0.09), zoom: 10.0),
+            options: MapOptions(center: LatLng(controller.latitude, controller.longitude), zoom: 16.50, maxZoom: 19.0),
             children: [
               TileLayer(
                 urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
@@ -48,7 +48,7 @@ class UIAbsenDatang extends GetView<CAbsenDatang> {
                   Marker(
                       width: 100.0,
                       height: 100.0,
-                      point: LatLng(49.5, -0.09),
+                      point: LatLng(controller.latitude, controller.longitude),
                       builder: (ctx) => Icon(
                             Icons.location_on,
                             color: Colors.red,
@@ -107,19 +107,22 @@ class UIAbsenDatang extends GetView<CAbsenDatang> {
                       '0 - 172.77 m (566.84 ft)',
                       style: Styles.absenPageSubHeading,
                     )
-                    
                   ],
                 ),
               ),
-              Container(
-                color: Styles.primaryColor,
-                width: Get.width,
-                padding: EdgeInsets.symmetric(vertical: Const.parentMargin(x: 0.7)),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text('SUBMIT', style: TextStyle(fontFamily: 'Montserrat', fontSize: 16, fontWeight: FontWeight.w600, color: Colors.white, letterSpacing: 2))
-                  ],
+              InkWell(
+                onTap: () => controller.getCurrentPosition(),
+                child: Container(
+                  color: Styles.primaryColor,
+                  width: Get.width,
+                  padding: EdgeInsets.symmetric(vertical: Const.parentMargin(x: 0.7)),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text('SUBMIT',
+                          style: TextStyle(fontFamily: 'Montserrat', fontSize: 16, fontWeight: FontWeight.w600, color: Colors.white, letterSpacing: 2))
+                    ],
+                  ),
                 ),
               )
             ],

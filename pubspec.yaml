@@ -42,6 +42,7 @@ dependencies:
   unique_identifier: ^0.3.0
   flutter_map: ^3.1.0
   latlong2: ^0.8.1
+  geolocator: ^9.0.2
 
 dev_dependencies:
   flutter_test:
@@ -82,6 +83,7 @@ flutter:
     - assets/icons/person.png
     - assets/icons/photo.png
     - assets/icons/datepicker.png
+    - assets/icons/upload.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
