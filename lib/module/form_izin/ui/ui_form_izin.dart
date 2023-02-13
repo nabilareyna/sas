@@ -35,11 +35,7 @@ class UIFormIzin extends GetView<CFormIzin> {
             padding: EdgeInsets.only(top: 25, left: 15, right: 15, bottom: 5),
             child: Text(
               'Pilih Jenis Izin :',
-              style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 12,
-                  fontFamily: 'Roboto',
-                  fontWeight: FontWeight.w400),
+              style: TextStyle(color: Colors.black, fontSize: 12, fontFamily: 'Roboto', fontWeight: FontWeight.w400),
             ),
           ),
           Padding(
@@ -63,18 +59,9 @@ class UIFormIzin extends GetView<CFormIzin> {
                       value: controller.selectedValue.value,
                       isDense: true,
                       isExpanded: true,
-                      onChanged: (String? value) =>
-                          controller.selectedValue.value = value,
-                      items: controller.items
-                          .map(
-                              (e) => DropdownMenuItem(value: e, child: Text(e)))
-                          .toList(),
-                      style: const TextStyle(
-                          fontFamily: 'Roboto',
-                          fontSize: 12,
-                          fontWeight: FontWeight.w400,
-                          color: Colors.black,
-                          letterSpacing: 1),
+                      onChanged: (String? value) => controller.selectedValue.value = value,
+                      items: controller.items.map((e) => DropdownMenuItem(value: e, child: Text(e))).toList(),
+                      style: const TextStyle(fontFamily: 'Roboto', fontSize: 12, fontWeight: FontWeight.w400, color: Colors.black, letterSpacing: 1),
                       dropdownColor: const Color(0xFFE7EFF1),
                       hint: const Text(
                         'Pilih...',
@@ -117,7 +104,7 @@ class UIFormIzin extends GetView<CFormIzin> {
                 child: Row(
                   children: const [
                     ImageIcon(
-                      AssetImage('../assets/icons/upload.png'),
+                      AssetImage('assets/icons/upload.png'),
                     ),
                     Gap(10),
                     Text(

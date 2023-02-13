@@ -35,10 +35,16 @@ class UIAbsenPulang extends GetView<CAbsenPulang> {
         children: [
           FlutterMap(
             options: MapOptions(center: LatLng(-7.9889465, 112.6278706), zoom: 16.50, maxZoom: 19.0),
+            nonRotatedChildren: [
+              AttributionWidget.defaultWidget(
+                source: '© OpenStreetMap contributors',
+                onSourceTapped: () {},
+              ),
+            ],
             children: [
               TileLayer(
                 urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-                userAgentPackageName: 'com.example.app',
+                userAgentPackageName: 'com.sas.app',
                 subdomains: ['a', 'b', 'c'],
               ),
               MarkerLayer(

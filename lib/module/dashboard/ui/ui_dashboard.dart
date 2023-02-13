@@ -305,11 +305,17 @@ class UIDashboard extends GetView<CDashboard> {
                 height: 170,
                 decoration: const BoxDecoration(),
                 child: FlutterMap(
-                  options: MapOptions(center: LatLng(-7.9889465, 112.6278706), zoom: 16.50, maxZoom: 19.0),
+                  options: MapOptions(center: LatLng(-7.9889465, 112.6278706), zoom: 17.50, maxZoom: 19.0),
+                  nonRotatedChildren: [
+                    AttributionWidget.defaultWidget(
+                      source: '© OpenStreetMap contributors',
+                      onSourceTapped: () {},
+                    ),
+                  ],
                   children: [
                     TileLayer(
                       urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-                      userAgentPackageName: 'com.example.app',
+                      userAgentPackageName: 'com.sas.app',
                       subdomains: const ['a', 'b', 'c'],
                     ),
                     MarkerLayer(
@@ -322,6 +328,17 @@ class UIDashboard extends GetView<CDashboard> {
                                   Icons.location_on,
                                   color: Colors.red,
                                 ))
+                      ],
+                    ),
+                    CircleLayer(
+                      circles: [
+                        CircleMarker(
+                          point: LatLng(-7.9889465, 112.6278706),
+                          radius: 35,
+                          borderColor: const Color(0xFFB71C1C),
+                          color: Colors.redAccent.withOpacity(0.2),
+                          borderStrokeWidth: 1,
+                        )
                       ],
                     )
                   ],

@@ -43,10 +43,16 @@ class UIAbsenDatang extends GetView<CAbsenDatang> {
                 zoom: 16.50,
                 maxZoom: 19.0,
               ),
+              nonRotatedChildren: [
+                AttributionWidget.defaultWidget(
+                  source: '© OpenStreetMap contributors',
+                  onSourceTapped: () {},
+                ),
+              ],
               children: [
                 TileLayer(
                   urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-                  userAgentPackageName: 'com.example.app',
+                  userAgentPackageName: 'com.sas.app',
                   subdomains: ['a', 'b', 'c'],
                 ),
                 MarkerLayer(
@@ -58,7 +64,18 @@ class UIAbsenDatang extends GetView<CAbsenDatang> {
                         builder: (ctx) => Icon(
                               Icons.location_on,
                               color: Colors.red,
-                            ))
+                            )),
+                  ],
+                ),
+                CircleLayer(
+                  circles: [
+                    CircleMarker(
+                        point: LatLng(-7.9898333, 112.62731),
+                        radius: 35,
+                        borderColor: const Color(0xFFB71C1C),
+                        color: Colors.redAccent.withOpacity(0.2),
+                        borderStrokeWidth: 1,
+                        useRadiusInMeter: true)
                   ],
                 ),
               ],
