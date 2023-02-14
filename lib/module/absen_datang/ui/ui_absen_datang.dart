@@ -112,7 +112,7 @@ class UIAbsenDatang extends GetView<CAbsenDatang> {
                       ),
                       Gap(6),
                       Text(
-                        '${controller.loc.value.latitude}',
+                        'Lokasi',
                         style: Styles.absenPageHeading,
                       ),
                       Gap(4),
@@ -127,7 +127,7 @@ class UIAbsenDatang extends GetView<CAbsenDatang> {
                       ),
                       Gap(4),
                       Text(
-                        '0 - 172.77 m (566.84 ft)',
+                        '${controller.loc.value.distance}',
                         style: Styles.absenPageSubHeading,
                       )
                     ],

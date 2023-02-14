@@ -40,6 +40,15 @@ class CAbsenDatang extends GetxController {
         loc.value.longitude = currentPosition.longitude;
         mapController.move(LatLng(loc.value.latitude, loc.value.longitude), mapController.zoom);
       });
+      getDistanceRadius();
     }
+  }
+
+  Future<void> getDistanceRadius() async {
+    double distanceInMeters = Geolocator.distanceBetween(-7.9889465, 112.62731, loc.value.latitude, loc.value.longitude);
+    loc.update((val) {
+      loc.value.distance = distanceInMeters;
+    });
+    print(distanceInMeters);
   }
 }
