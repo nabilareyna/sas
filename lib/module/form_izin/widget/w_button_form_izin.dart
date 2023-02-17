@@ -9,28 +9,24 @@ class WButtonFormIzin extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = AppLayout.getSize(context);
     return Padding(
-      padding: const EdgeInsets.only(left: 15, right: 15),
+      padding: const EdgeInsets.only(left: 15, right: 15, top: 180),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          Padding(
-            padding: const EdgeInsets.only(bottom: 115),
-            child: Container(
-              height: 40,
-              width: size.width,
-              decoration: BoxDecoration(
-                  color: Styles.primaryColor,
-                  borderRadius: BorderRadius.circular(5)),
-              child: const Center(
-                child: Text(
-                  'Kirim',
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 16,
-                      fontFamily: 'Montserrat',
-                      fontWeight: FontWeight.w600,
-                      letterSpacing: 2),
-                ),
+          Container(
+            height: 40,
+            width: size.width,
+            decoration: BoxDecoration(
+                color: Styles.primaryColor,
+                borderRadius: BorderRadius.circular(10)),
+            child: const Center(
+              child: Text(
+                'Kirim',
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 16,
+                    fontFamily: 'Montserrat',
+                    fontWeight: FontWeight.w600,
+                    letterSpacing: 2),
               ),
             ),
           ),

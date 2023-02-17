@@ -58,20 +58,23 @@ class UIFeedback extends GetView<CFeedback> {
                 Padding(
                   padding: const EdgeInsets.all(25),
                   child: Column(
-                    children: const [
+                    children: [
                       TextField(
+                        controller: controller.nisControllerFeedBack,
                         decoration: InputDecoration(
                             border: UnderlineInputBorder(),
                             labelText: 'Nama',
                             hintText: 'Masukkan nama anda'),
                       ),
                       TextField(
+                        controller: controller.emailControllerFeedback,
                         decoration: InputDecoration(
                             border: UnderlineInputBorder(),
                             labelText: 'Email',
                             hintText: 'Masukkan email anda'),
                       ),
                       TextField(
+                        controller: controller.feedbackController,
                         maxLines: 4,
                         keyboardType: TextInputType.multiline,
                         decoration: InputDecoration(
@@ -87,7 +90,11 @@ class UIFeedback extends GetView<CFeedback> {
                   child: InkWell(
                     child: const WButtonFeedback(),
                     onTap: () {
-                      Get.toNamed(Routes.getProfileRoute());
+                      // Get.toNamed(Routes.getProfileRoute());
+                      controller.insertFeedBack(
+                          controller.nisControllerFeedBack.text,
+                          controller.emailControllerFeedback.text,
+                          controller.feedbackController.text);
                     },
                   ),
                 )

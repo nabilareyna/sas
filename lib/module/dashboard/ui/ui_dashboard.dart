@@ -323,7 +323,7 @@ class UIDashboard extends GetView<CDashboard> {
                         Marker(
                             width: 100.0,
                             height: 100.0,
-                            point: LatLng(-7.9889465, 112.6278706),
+                            point: LatLng(49.5, -0.09),
                             builder: (ctx) => const Icon(
                                   Icons.location_on,
                                   color: Colors.red,
