@@ -257,7 +257,7 @@ class UIDashboard extends GetView<CDashboard> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
+                    children: const [
                       Padding(
                         padding: EdgeInsets.only(top: 0, bottom: 11),
                         child: Text(
@@ -271,8 +271,7 @@ class UIDashboard extends GetView<CDashboard> {
                         ),
                       ),
                       Text(
-                        'Jam masuk  06.00-07.00  WIB',
-                        // "${controller.datedate.toString()}",
+                        'Jam masuk 05.30 - 07.00 WIB',
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontSize: 10,
@@ -325,10 +324,7 @@ class UIDashboard extends GetView<CDashboard> {
                 height: 170,
                 decoration: const BoxDecoration(),
                 child: FlutterMap(
-                  options: MapOptions(
-                      center: LatLng(-7.9889465, 112.6278706),
-                      zoom: 16.50,
-                      maxZoom: 19.0),
+                  options: MapOptions(center: LatLng(49.5, -0.09), zoom: 10.0),
                   children: [
                     TileLayer(
                       urlTemplate:
@@ -341,7 +337,7 @@ class UIDashboard extends GetView<CDashboard> {
                         Marker(
                             width: 100.0,
                             height: 100.0,
-                            point: LatLng(-7.9889465, 112.6278706),
+                            point: LatLng(49.5, -0.09),
                             builder: (ctx) => const Icon(
                                   Icons.location_on,
                                   color: Colors.red,

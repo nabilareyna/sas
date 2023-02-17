@@ -11,10 +11,11 @@ import 'package:sas/routes/routes.dart';
 class CLoginPage extends GetxController {
   late Rx<TabController> tabController;
 
-  RxBool setlog = false.obs;
+  // RxBool setlog = false.obs;
   String _nama = '';
   String _pass = '';
-  String _identifier = 'Unknown';
+  RxString _identifier = 'Unknown'.obs;
+  String _imei = 'Unk';
   RxString deviceId = ''.obs;
 
   TextEditingController namaController = TextEditingController();
@@ -25,35 +26,49 @@ class CLoginPage extends GetxController {
 
     try {
       identifier = (await UniqueIdentifier.serial)!;
+      print(identifier);
     } on PlatformException {
       identifier = 'failed';
     }
     if (!isClosed) return;
-    _identifier = identifier;
+    _imei = identifier;
   }
 
-  Future<void> setLogin() async {
+  Future<void> setLogin(String _nama, String _pass) async {
+    String uri = "http://127.0.0.1:8000/api/siswas/" + _nama;
     try {
-      String uri = "http://192.168.90.110/sas_api/api/login";
-
-      var res = await http.post(Uri.parse(uri), body: {"username": _nama, "password": _pass});
-      var response = jsonDecode(res.body);
-
-      if (response["respon"] == true) {
-        if (response["responPass"] == false) {
-          print('Password salah');
-        } else if (!(response['imei'] == _identifier)) {
-          print('Perangkat tidak sesuai dengan Akun');
-        } else {
-          print('Selamat datang ' + _nama);
-          Get.toNamed(Routes.dashboard);
+      var res = await http.get(Uri.parse(uri));
+      final response = jsonDecode(res.body);
+      var tes = jsonDecode(res.body)['data'];
+      if (response["success"] == true) {
+        if (!(response["data"][0]["PASSWORD"] == _pass)) {
+          print('password salah');
         }
+        // else if (!(response["data"][0]["IMEI"] == imei ee)) {
+        //   print('perangkat tidak sesuai');
+        // }
+        else {
+          Get.toNamed(Routes.dashboard);
+          print('selamat datang');
+          // Get.toNamed(Routes.dashboard);
+        }
+        // print(tes[0]['PASSWORD']);
       } else {
-        print('Username tidak ditemukan');
-        print('salah');
+        print('Tidak ditemukan');
       }
     } catch (e) {
-      print(e);
+      print('turu');
     }
   }
+}
+
+void _showToast(BuildContext context, String _pass) {
+  final scaffold = ScaffoldMessenger.of(context);
+  scaffold.showSnackBar(
+    SnackBar(
+      content: Text(_pass),
+      // action: SnackBarAction(
+      //     label: 'UNDO', onPressed: scaffold.hideCurrentSnackBar),
+    ),
+  );
 }

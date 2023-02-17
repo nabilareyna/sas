@@ -105,15 +105,12 @@ class UIPanduanSAS extends StatelessWidget {
                                             '• Pastikan anda berada di jangkauan wilayah SMKN 4 Malang'))
                                   ],
                                 ),
-                                Padding(
-                                  padding: const EdgeInsets.only(bottom: 20),
-                                  child: Row(
-                                    children: const [
-                                      Expanded(
-                                          child: Text(
-                                              '• Kemudian tekan tombol kirim dan akan muncul notifikasi bahwa absensi berhasil !'))
-                                    ],
-                                  ),
+                                Row(
+                                  children: const [
+                                    Expanded(
+                                        child: Text(
+                                            '• Kemudian tekan tombol kirim dan akan muncul notifikasi bahwa absensi berhasil !'))
+                                  ],
                                 ),
                               ],
                             ),
@@ -181,15 +178,12 @@ class UIPanduanSAS extends StatelessWidget {
                                     Expanded(child: Text('• Upload surat izin'))
                                   ],
                                 ),
-                                Padding(
-                                  padding: const EdgeInsets.only(bottom: 20),
-                                  child: Row(
-                                    children: const [
-                                      Expanded(
-                                          child: Text(
-                                              '• Kemudian tekan tombol kirim'))
-                                    ],
-                                  ),
+                                Row(
+                                  children: const [
+                                    Expanded(
+                                        child: Text(
+                                            '• Kemudian tekan tombol kirim'))
+                                  ],
                                 ),
                               ],
                             ),

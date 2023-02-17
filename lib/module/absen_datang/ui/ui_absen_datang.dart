@@ -36,7 +36,7 @@ class UIAbsenDatang extends GetView<CAbsenDatang> {
       body: Stack(
         children: [
           FlutterMap(
-            options: MapOptions(center: LatLng(controller.latitude, controller.longitude), zoom: 16.50, maxZoom: 19.0),
+            options: MapOptions(center: LatLng(49.5, -0.09), zoom: 10.0),
             children: [
               TileLayer(
                 urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
@@ -48,7 +48,7 @@ class UIAbsenDatang extends GetView<CAbsenDatang> {
                   Marker(
                       width: 100.0,
                       height: 100.0,
-                      point: LatLng(controller.latitude, controller.longitude),
+                      point: LatLng(49.5, -0.09),
                       builder: (ctx) => Icon(
                             Icons.location_on,
                             color: Colors.red,
@@ -65,8 +65,9 @@ class UIAbsenDatang extends GetView<CAbsenDatang> {
                 width: Get.width,
                 decoration: BoxDecoration(
                     color: Colors.white,
-                    borderRadius:
-                        BorderRadius.only(topLeft: Radius.circular(Const.parentMargin(x: 1.5)), topRight: Radius.circular(Const.parentMargin(x: 1.5)))),
+                    borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(Const.parentMargin(x: 1.5)),
+                        topRight: Radius.circular(Const.parentMargin(x: 1.5)))),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -78,13 +79,9 @@ class UIAbsenDatang extends GetView<CAbsenDatang> {
                     Row(
                       children: [
                         Text(
-                          DateFormat("d-M-yyyy" + ", ").format(DateTime.now()),
+                          DateFormat("y-MM-d H:m:s").format(controller.date),
                           style: Styles.absenPageSubHeading,
                         ),
-                        Text(
-                          DateFormat.Hm().format(DateTime.now()),
-                          style: Styles.absenPageSubHeading,
-                        )
                       ],
                     ),
                     Gap(6),
@@ -111,19 +108,27 @@ class UIAbsenDatang extends GetView<CAbsenDatang> {
                 ),
               ),
               InkWell(
-                onTap: () => controller.getCurrentPosition(),
                 child: Container(
                   color: Styles.primaryColor,
                   width: Get.width,
-                  padding: EdgeInsets.symmetric(vertical: Const.parentMargin(x: 0.7)),
+                  padding: EdgeInsets.symmetric(
+                      vertical: Const.parentMargin(x: 0.7)),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text('SUBMIT',
-                          style: TextStyle(fontFamily: 'Montserrat', fontSize: 16, fontWeight: FontWeight.w600, color: Colors.white, letterSpacing: 2))
+                          style: TextStyle(
+                              fontFamily: 'Montserrat',
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.white,
+                              letterSpacing: 2))
                     ],
                   ),
                 ),
+                onTap: () {
+                  controller.insertHadir();
+                },
               )
             ],
           ),

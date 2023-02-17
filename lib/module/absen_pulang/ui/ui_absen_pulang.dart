@@ -34,7 +34,7 @@ class UIAbsenPulang extends GetView<CAbsenPulang> {
       body: Stack(
         children: [
           FlutterMap(
-            options: MapOptions(center: LatLng(-7.9889465, 112.6278706), zoom: 16.50, maxZoom: 19.0),
+            options: MapOptions(center: LatLng(49.5, -0.09), zoom: 10.0),
             children: [
               TileLayer(
                 urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
@@ -46,7 +46,7 @@ class UIAbsenPulang extends GetView<CAbsenPulang> {
                   Marker(
                       width: 100.0,
                       height: 100.0,
-                      point: LatLng(-7.9889465, 112.6278706),
+                      point: LatLng(49.5, -0.09),
                       builder: (ctx) => Icon(
                             Icons.location_on,
                             color: Colors.red,
@@ -63,8 +63,9 @@ class UIAbsenPulang extends GetView<CAbsenPulang> {
                 width: Get.width,
                 decoration: BoxDecoration(
                     color: Colors.white,
-                    borderRadius:
-                        BorderRadius.only(topLeft: Radius.circular(Const.parentMargin(x: 1.5)), topRight: Radius.circular(Const.parentMargin(x: 1.5)))),
+                    borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(Const.parentMargin(x: 1.5)),
+                        topRight: Radius.circular(Const.parentMargin(x: 1.5)))),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -76,13 +77,10 @@ class UIAbsenPulang extends GetView<CAbsenPulang> {
                     Row(
                       children: [
                         Text(
-                          DateFormat("d-M-yyyy" + ", ").format(DateTime.now()),
+                          DateFormat("y-MM-d H:m:s")
+                              .format(controller.datePulang),
                           style: Styles.absenPageSubHeading,
                         ),
-                        Text(
-                          DateFormat.Hm().format(DateTime.now()),
-                          style: Styles.absenPageSubHeading,
-                        )
                       ],
                     ),
                     Gap(6),
@@ -108,16 +106,28 @@ class UIAbsenPulang extends GetView<CAbsenPulang> {
                   ],
                 ),
               ),
-              Container(
-                color: Styles.primaryColor,
-                width: Get.width,
-                padding: EdgeInsets.symmetric(vertical: Const.parentMargin(x: 0.7)),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text('SUBMIT', style: TextStyle(fontFamily: 'Montserrat', fontSize: 16, fontWeight: FontWeight.w600, color: Colors.white, letterSpacing: 2))
-                  ],
+              InkWell(
+                child: Container(
+                  color: Styles.primaryColor,
+                  width: Get.width,
+                  padding: EdgeInsets.symmetric(
+                      vertical: Const.parentMargin(x: 0.7)),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text('SUBMIT',
+                          style: TextStyle(
+                              fontFamily: 'Montserrat',
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.white,
+                              letterSpacing: 2))
+                    ],
+                  ),
                 ),
+                onTap: () {
+                  controller.insertPulang();
+                },
               )
             ],
           ),
