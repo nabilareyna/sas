@@ -71,7 +71,7 @@ class UIAbsenDatang extends GetView<CAbsenDatang> {
                   circles: [
                     CircleMarker(
                         point: LatLng(-7.9898333, 112.62731),
-                        radius: 35,
+                        radius: 25,
                         borderColor: const Color(0xFFB71C1C),
                         color: Colors.redAccent.withOpacity(0.2),
                         borderStrokeWidth: 1,

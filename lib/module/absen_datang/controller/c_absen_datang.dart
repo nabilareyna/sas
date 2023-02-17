@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'dart:convert';
 import 'dart:async';
@@ -8,7 +7,6 @@ import 'package:latlong2/latlong.dart';
 import 'package:sas/model/location.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
-import 'package:sas/module/absen_pulang/widget/w_card_absen_pulang.dart';
 import 'package:sas/routes/routes.dart';
 
 class CAbsenDatang extends GetxController {
@@ -43,6 +41,7 @@ class CAbsenDatang extends GetxController {
           loc.value.longitude = currentPosition.longitude;
           mapController.move(LatLng(loc.value.latitude, loc.value.longitude), mapController.zoom);
         });
+        getDistanceRadius();
       }
     }
   }
