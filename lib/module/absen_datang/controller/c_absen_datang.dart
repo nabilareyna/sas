@@ -14,11 +14,11 @@ class CAbsenDatang extends GetxController {
     try {
       String uri = "http://127.0.0.1:8000/api/kehadirans/";
       var res = await http.post(Uri.parse(uri), body: {
-        'NIS': '065',
+        'NIS': '212',
         'WAKTU': DateFormat("y-MM-d H:m:s").format(date),
         'LOKASI': 'lokasi',
-        'STATUS': 'h',
-        'ID_KETERANGAN': 'null'
+        'STATUS': 'H',
+        // 'ID_KETERANGAN': 'null'
       });
       var response = jsonDecode(res.body);
       if (response["success"] == true) {

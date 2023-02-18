@@ -57,7 +57,7 @@ class CLoginPage extends GetxController {
         print('Tidak ditemukan');
       }
     } catch (e) {
-      print('turu');
+      print(e);
     }
   }
 }

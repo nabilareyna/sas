@@ -1,10 +1,18 @@
+import 'dart:convert';
+import 'dart:async';
+
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:http/http.dart' as http;
+import 'package:sas/routes/routes.dart';
 import 'package:get/get.dart';
 
 class CHistory extends GetxController {
   Rxn<String> selectedValue = Rxn<String>();
 
   RxList<String> items = <String>['Laporan Semester', 'Laporan Bulanan'].obs;
-
+  bool loadingHistori = true;
+  List histori = [];
   // void onSelected(String value) {
   //   selectedValue = value;
 
@@ -13,6 +21,22 @@ class CHistory extends GetxController {
   //   print(selectedValue);
   //   changeItems(selectedValue);
   // }
+
+  Future<void> getHistori() async {
+    String uri = "http://127.0.0.1:8000/api/histori/";
+    try {
+      var res = await http.get(Uri.parse(uri));
+      final response = jsonDecode(res.body);
+      var tes = jsonDecode(res.body)['data'];
+      if (response["success"] == true) {
+        loadingHistori = false;
+      } else {
+        print('Tidak ditemukan');
+      }
+    } catch (e) {
+      print('turu');
+    }
+  }
 }
 
 changeItems(String? selectedItems) {
