@@ -24,7 +24,7 @@ class CHistory extends GetxController {
   @override
   void onInit() {
     // TODO: implement onInit
-    loadingHistori = false.obs;
+    // loadingHistori = false.obs;
     super.onInit();
     getHistori();
   }
@@ -38,7 +38,7 @@ class CHistory extends GetxController {
       if (response["success"] == true) {
         // loadingHistori(!loadingHistori.isFalse);
         // loadingHistori = false.obs;
-        loadingHistori.value = false;
+        loadingHistori = false.obs;
         histori = tes;
         print(loadingHistori);
         print(histori);
