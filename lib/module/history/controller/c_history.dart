@@ -11,7 +11,7 @@ class CHistory extends GetxController {
   Rxn<String> selectedValue = Rxn<String>();
 
   RxList<String> items = <String>['Laporan Semester', 'Laporan Bulanan'].obs;
-  bool loadingHistori = true;
+  RxBool loadingHistori = false.obs;
   List histori = [];
   // void onSelected(String value) {
   //   selectedValue = value;
@@ -21,20 +21,32 @@ class CHistory extends GetxController {
   //   print(selectedValue);
   //   changeItems(selectedValue);
   // }
+  @override
+  void onInit() {
+    // TODO: implement onInit
+    super.onInit();
+    getHistori();
+  }
 
   Future<void> getHistori() async {
     String uri = "http://127.0.0.1:8000/api/histori/";
+    var res = await http.get(Uri.parse(uri));
+    final response = jsonDecode(res.body);
+    var tes = jsonDecode(res.body)['data']['data'];
     try {
-      var res = await http.get(Uri.parse(uri));
-      final response = jsonDecode(res.body);
-      var tes = jsonDecode(res.body)['data'];
       if (response["success"] == true) {
-        loadingHistori = false;
+        // loadingHistori(!loadingHistori.isFalse);
+        // loadingHistori = false.obs;
+        loadingHistori.value = false;
+        histori = tes;
+        print(loadingHistori);
+        print(histori);
       } else {
         print('Tidak ditemukan');
       }
     } catch (e) {
-      print('turu');
+      print(e);
+      print(tes);
     }
   }
 }

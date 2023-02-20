@@ -8,10 +8,10 @@ import 'package:sas/utils/AppThemes.dart';
 import 'package:sas/utils/const.dart';
 
 class HistoryCard extends StatelessWidget {
-  String waktuHistori, statusHistori, lokasiHIstori;
+  // String waktuHistori, statusHistori, lokasiHIstori;
 
-  HistoryCard(this.waktuHistori, this.statusHistori, this.lokasiHIstori);
-  // const HistoryCard({Key? key}) : super(key: key);
+  // HistoryCard(this.waktuHistori, this.statusHistori, this.lokasiHIstori);
+  const HistoryCard({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

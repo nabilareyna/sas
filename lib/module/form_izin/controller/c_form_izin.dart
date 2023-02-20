@@ -22,15 +22,8 @@ class CFormIzin extends GetxController {
   // }
   Future<void> insertIzin() async {
     try {
-      String uri = "http://127.0.0.1:8000/api/kehadirans/";
-      var res = await http.post(Uri.parse(uri), body: {
-        'NIS': '212',
-        'WAKTU': DateFormat("y-MM-d H:m:s").format(dateizin),
-        'LOKASI': 'lokasi',
-        // 'STATUS': CFormIzin().selectedValue,
-        'STATUS': 'I',
-        'FOTO_SURAT': ''
-      });
+      String uri = "http://127.0.0.1:8000/api/histori/";
+      var res = await http.get(Uri.parse(uri));
       var response = jsonDecode(res.body);
       if (response["success"] == true) {
         print('amann');
@@ -54,6 +47,4 @@ changeItems(String? selectedItems) {
     default:
       print('changed to 1');
   }
-
-  
 }

@@ -137,21 +137,23 @@ class UIHistory extends GetView<CHistory> {
               Gap(30),
               // HistoryCard()
               Container(
-                child: controller.loadingHistori
+                child: controller.loadingHistori.isTrue
                     ? CircularProgressIndicator()
                     : Padding(
                         padding: EdgeInsets.all(5.0),
                         child: SingleChildScrollView(
                           scrollDirection: Axis.vertical,
                           child: ListView.builder(
+                              scrollDirection: Axis.vertical,
+                              shrinkWrap: true,
                               itemCount: controller.histori.length,
                               itemBuilder: (context, index) {
-                                // return HistoryCard();
-                                return HistoryCard(
-                                    controller.histori[index]['data']['WAKTU'],
-                                    controller.histori[index]['data']['STATUS'],
-                                    controller.histori[index]['data']
-                                        ['LOKASI']);
+                                return HistoryCard();
+                                // return HistoryCard(
+                                //     controller.histori[index]['data']['WAKTU'],
+                                //     controller.histori[index]['data']['STATUS'],
+                                //     controller.histori[index]['data']
+                                //         ['LOKASI']);
                               }),
                         )),
               )
