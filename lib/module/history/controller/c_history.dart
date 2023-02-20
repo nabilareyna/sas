@@ -11,7 +11,7 @@ class CHistory extends GetxController {
   Rxn<String> selectedValue = Rxn<String>();
 
   RxList<String> items = <String>['Laporan Semester', 'Laporan Bulanan'].obs;
-  RxBool loadingHistori = false.obs;
+  RxBool loadingHistori = true.obs;
   List histori = [];
   // void onSelected(String value) {
   //   selectedValue = value;
@@ -24,6 +24,7 @@ class CHistory extends GetxController {
   @override
   void onInit() {
     // TODO: implement onInit
+    loadingHistori = false.obs;
     super.onInit();
     getHistori();
   }
