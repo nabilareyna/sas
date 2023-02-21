@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter_map/flutter_map.dart';
+// import 'package:flutter_map/flutter_map.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -33,28 +33,28 @@ class UIAbsenPulang extends GetView<CAbsenPulang> {
       ),
       body: Stack(
         children: [
-          FlutterMap(
-            options: MapOptions(center: LatLng(49.5, -0.09), zoom: 10.0),
-            children: [
-              TileLayer(
-                urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-                userAgentPackageName: 'com.example.app',
-                subdomains: ['a', 'b', 'c'],
-              ),
-              MarkerLayer(
-                markers: [
-                  Marker(
-                      width: 100.0,
-                      height: 100.0,
-                      point: LatLng(49.5, -0.09),
-                      builder: (ctx) => Icon(
-                            Icons.location_on,
-                            color: Colors.red,
-                          ))
-                ],
-              )
-            ],
-          ),
+          // FlutterMap(
+          //   options: MapOptions(center: LatLng(49.5, -0.09), zoom: 10.0),
+          //   children: [
+          //     TileLayer(
+          //       urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+          //       userAgentPackageName: 'com.example.app',
+          //       subdomains: ['a', 'b', 'c'],
+          //     ),
+          //     MarkerLayer(
+          //       markers: [
+          //         Marker(
+          //             width: 100.0,
+          //             height: 100.0,
+          //             point: LatLng(49.5, -0.09),
+          //             builder: (ctx) => Icon(
+          //                   Icons.location_on,
+          //                   color: Colors.red,
+          //                 ))
+          //       ],
+          //     )
+          //   ],
+          // ),
           Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [

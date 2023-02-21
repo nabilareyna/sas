@@ -11,11 +11,13 @@ class WButtonLogin extends StatelessWidget {
     return Container(
       height: 60,
       width: size.width,
-      decoration: BoxDecoration(color: Styles.primaryColor, borderRadius: BorderRadius.circular(10)),
+      decoration: BoxDecoration(
+          color: Styles.primaryColor, borderRadius: BorderRadius.circular(10)),
       child: const Center(
         child: Text(
           'LOGIN',
-          style: TextStyle(color: Colors.white, fontSize: 25, fontFamily: 'Montserrat'),
+          style: TextStyle(
+              color: Colors.white, fontSize: 25, fontFamily: 'Montserrat'),
         ),
       ),
     );

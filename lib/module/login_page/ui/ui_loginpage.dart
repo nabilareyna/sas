@@ -62,7 +62,7 @@ class UILoginPage extends GetView<CLoginPage> {
                                 padding: EdgeInsets.symmetric(
                                     vertical: Const.siblingMargin(x: 2)),
                                 child: TextField(
-                                  // controller: controller.namaController,
+                                  controller: controller.namaController,
                                   decoration: InputDecoration(
                                     border: OutlineInputBorder(
                                         borderRadius:
@@ -79,7 +79,7 @@ class UILoginPage extends GetView<CLoginPage> {
                                 padding:
                                     const EdgeInsets.only(top: 8, bottom: 8),
                                 child: TextField(
-                                  // controller: controller.passController,
+                                  controller: controller.passController,
                                   obscureText: true,
                                   decoration: InputDecoration(
                                       border: OutlineInputBorder(
@@ -94,7 +94,11 @@ class UILoginPage extends GetView<CLoginPage> {
                       InkWell(
                         child: const WButtonLogin(),
                         onTap: () {
-                          Get.toNamed(Routes.dashboard);
+                          controller.initUniqueIdentifierState();
+                          controller.setLogin(controller.namaController.text,
+                              controller.passController.text);
+                          // setSta
+                          // Get.toNamed(Routes.dashboard);
                         },
                       )
                     ],

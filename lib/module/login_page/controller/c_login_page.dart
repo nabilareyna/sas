@@ -11,10 +11,10 @@ import 'package:sas/routes/routes.dart';
 class CLoginPage extends GetxController {
   late Rx<TabController> tabController;
 
-  RxBool setlog = false.obs;
+  // RxBool setlog = false.obs;
   String _nama = '';
   String _pass = '';
-  String _identifier = 'Unknown';
+  RxString _identifier = 'Unknown'.obs;
   RxString deviceId = ''.obs;
 
   TextEditingController namaController = TextEditingController();
@@ -29,31 +29,41 @@ class CLoginPage extends GetxController {
       identifier = 'failed';
     }
     if (!isClosed) return;
-    _identifier = identifier;
+    _identifier = identifier.obs;
   }
 
-  Future<void> setLogin() async {
+  Future<void> setLogin(namaInputan, passInputan) async {
     try {
-      String uri = "http://192.168.90.110/sas_api/api/login";
-
-      var res = await http.post(Uri.parse(uri), body: {"username": _nama, "password": _pass});
+      String uri = "http://127.0.0.1:8000/api/siswas/" + namaInputan;
+      var res = await http.get(Uri.parse(uri));
       var response = jsonDecode(res.body);
 
-      if (response["respon"] == true) {
-        if (response["responPass"] == false) {
-          print('Password salah');
-        } else if (!(response['imei'] == _identifier)) {
-          print('Perangkat tidak sesuai dengan Akun');
+      if (response["success"] == true) {
+        if (!(response["data"]["PASSWORD"] == passInputan)) {
+          print('password salah');
+        } else if (!(response["data"]["IMEI"] == _identifier)) {
+          print('perangkat tidak sesuai');
         } else {
-          print('Selamat datang ' + _nama);
+          print('selamat datang');
           Get.toNamed(Routes.dashboard);
         }
       } else {
-        print('Username tidak ditemukan');
-        print('salah');
+        print('Tidak ditemukan');
       }
     } catch (e) {
       print(e);
     }
   }
+
+}
+
+void _showToast(BuildContext context, String _pass) {
+  final scaffold = ScaffoldMessenger.of(context);
+  scaffold.showSnackBar(
+    SnackBar(
+      content: Text(_pass),
+      // action: SnackBarAction(
+      //     label: 'UNDO', onPressed: scaffold.hideCurrentSnackBar),
+    ),
+  );
 }

@@ -40,7 +40,7 @@ dependencies:
   gap: ^2.0.0
   get: ^4.6.5
   unique_identifier: ^0.3.0
-  flutter_map: ^3.1.0
+  # flutter_map: ^3.1.0
   latlong2: ^0.8.1
 
 dev_dependencies:

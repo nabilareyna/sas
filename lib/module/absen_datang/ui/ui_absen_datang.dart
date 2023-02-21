@@ -4,7 +4,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter_map/flutter_map.dart';
+// import 'package:flutter_map/flutter_map.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -35,28 +35,28 @@ class UIAbsenDatang extends GetView<CAbsenDatang> {
       ),
       body: Stack(
         children: [
-          FlutterMap(
-            options: MapOptions(center: LatLng(49.5, -0.09), zoom: 10.0),
-            children: [
-              TileLayer(
-                urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-                userAgentPackageName: 'com.example.app',
-                subdomains: ['a', 'b', 'c'],
-              ),
-              MarkerLayer(
-                markers: [
-                  Marker(
-                      width: 100.0,
-                      height: 100.0,
-                      point: LatLng(49.5, -0.09),
-                      builder: (ctx) => Icon(
-                            Icons.location_on,
-                            color: Colors.red,
-                          ))
-                ],
-              ),
-            ],
-          ),
+          // FlutterMap(
+          //   options: MapOptions(center: LatLng(49.5, -0.09), zoom: 10.0),
+          //   children: [
+          //     TileLayer(
+          //       urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+          //       userAgentPackageName: 'com.example.app',
+          //       subdomains: ['a', 'b', 'c'],
+          //     ),
+          //     MarkerLayer(
+          //       markers: [
+          //         Marker(
+          //             width: 100.0,
+          //             height: 100.0,
+          //             point: LatLng(49.5, -0.09),
+          //             builder: (ctx) => Icon(
+          //                   Icons.location_on,
+          //                   color: Colors.red,
+          //                 ))
+          //       ],
+          //     ),
+          //   ],
+          // ),
           Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
@@ -65,8 +65,9 @@ class UIAbsenDatang extends GetView<CAbsenDatang> {
                 width: Get.width,
                 decoration: BoxDecoration(
                     color: Colors.white,
-                    borderRadius:
-                        BorderRadius.only(topLeft: Radius.circular(Const.parentMargin(x: 1.5)), topRight: Radius.circular(Const.parentMargin(x: 1.5)))),
+                    borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(Const.parentMargin(x: 1.5)),
+                        topRight: Radius.circular(Const.parentMargin(x: 1.5)))),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -107,18 +108,24 @@ class UIAbsenDatang extends GetView<CAbsenDatang> {
                       '0 - 172.77 m (566.84 ft)',
                       style: Styles.absenPageSubHeading,
                     )
-                    
                   ],
                 ),
               ),
               Container(
                 color: Styles.primaryColor,
                 width: Get.width,
-                padding: EdgeInsets.symmetric(vertical: Const.parentMargin(x: 0.7)),
+                padding:
+                    EdgeInsets.symmetric(vertical: Const.parentMargin(x: 0.7)),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text('SUBMIT', style: TextStyle(fontFamily: 'Montserrat', fontSize: 16, fontWeight: FontWeight.w600, color: Colors.white, letterSpacing: 2))
+                    Text('SUBMIT',
+                        style: TextStyle(
+                            fontFamily: 'Montserrat',
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.white,
+                            letterSpacing: 2))
                   ],
                 ),
               )

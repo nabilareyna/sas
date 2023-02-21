@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_map/flutter_map.dart';
+// import 'package:flutter_map/flutter_map.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:latlong2/latlong.dart';
@@ -323,29 +323,29 @@ class UIDashboard extends GetView<CDashboard> {
                 width: MediaQuery.of(context).size.width,
                 height: 170,
                 decoration: const BoxDecoration(),
-                child: FlutterMap(
-                  options: MapOptions(center: LatLng(49.5, -0.09), zoom: 10.0),
-                  children: [
-                    TileLayer(
-                      urlTemplate:
-                          'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-                      userAgentPackageName: 'com.example.app',
-                      subdomains: const ['a', 'b', 'c'],
-                    ),
-                    MarkerLayer(
-                      markers: [
-                        Marker(
-                            width: 100.0,
-                            height: 100.0,
-                            point: LatLng(49.5, -0.09),
-                            builder: (ctx) => const Icon(
-                                  Icons.location_on,
-                                  color: Colors.red,
-                                ))
-                      ],
-                    )
-                  ],
-                ),
+                // child: FlutterMap(
+                //   options: MapOptions(center: LatLng(49.5, -0.09), zoom: 10.0),
+                //   children: [
+                //     TileLayer(
+                //       urlTemplate:
+                //           'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+                //       userAgentPackageName: 'com.example.app',
+                //       subdomains: const ['a', 'b', 'c'],
+                //     ),
+                //     MarkerLayer(
+                //       markers: [
+                //         Marker(
+                //             width: 100.0,
+                //             height: 100.0,
+                //             point: LatLng(49.5, -0.09),
+                //             builder: (ctx) => const Icon(
+                //                   Icons.location_on,
+                //                   color: Colors.red,
+                //                 ))
+                //       ],
+                //     )
+                //   ],
+                // ),
               ),
             ),
           ],
