@@ -55,7 +55,7 @@ class UIHistory extends GetView<CHistory> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            'Jumlah',
+                            'Bulan',
                             style: TextStyle(
                                 color: Styles.secondaryColor,
                                 fontFamily: 'Roboto',
@@ -65,10 +65,19 @@ class UIHistory extends GetView<CHistory> {
                           ),
                           DropdownButton(
                             elevation: 10,
-                            value: controller.selectedValue.value,
-                            onChanged: (String? value) =>
-                                controller.selectedValue.value = value,
-                            items: controller.items
+                            // onTap: (() {
+                            //   print(controller.nilaiBulans);
+                            // }),
+                            value: controller
+                                .bulans[controller.nilaiBulans.hashCode],
+                            onChanged: (String? value) {
+                              controller.nilaiBulans =
+                                  controller.bulans.indexOf(value ?? "").obs;
+                              print(controller.nilaiBulans);
+                              controller.getJmlHistori();
+                              controller.getHistori();
+                            },
+                            items: controller.bulans
                                 .map((e) =>
                                     DropdownMenuItem(value: e, child: Text(e)))
                                 .toList(),
@@ -89,7 +98,7 @@ class UIHistory extends GetView<CHistory> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text('Periode',
+                          Text('Status',
                               style: TextStyle(
                                   color: Styles.secondaryColor,
                                   fontFamily: 'Roboto',
@@ -98,10 +107,18 @@ class UIHistory extends GetView<CHistory> {
                                   letterSpacing: 1)),
                           DropdownButton(
                             elevation: 10,
-                            value: controller.selectedValue.value,
-                            onChanged: (String? value) =>
-                                controller.selectedValue.value = value,
-                            items: controller.items
+                            // value: controller.selectedValueStatus.value,
+                            // onChanged: (String? value) =>
+                            //     controller.selectedValueStatus.value = value,
+                            value: controller
+                                .status[controller.nilaiStatus.hashCode],
+                            onChanged: (String? value) {
+                              controller.nilaiStatus =
+                                  controller.status.indexOf(value ?? "").obs;
+                              print(controller.nilaiStatus.hashCode);
+                              controller.getHistori();
+                            },
+                            items: controller.status
                                 .map((e) =>
                                     DropdownMenuItem(value: e, child: Text(e)))
                                 .toList(),
@@ -128,10 +145,13 @@ class UIHistory extends GetView<CHistory> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       AbsentSummary(
-                        title: 'Jumlah Izin',
+                        title: 'Jumlah Hadir',
+                        jumlah: int.parse(controller.jmlhadir.toString()),
                       ),
                       AbsentSummary(
-                        title: 'Tanpa Keterangan',
+                        title: 'Jumlah Izin & Sakit',
+                        // jumlah: int.parse(controller.jmlIzin.toString()),
+                        jumlah: 9,
                       )
                     ],
                   ),
@@ -147,7 +167,19 @@ class UIHistory extends GetView<CHistory> {
                               shrinkWrap: true,
                               itemCount: controller.histori.length,
                               itemBuilder: (context, index) {
-                                return HistoryCard();
+                                DateTime jsonWaktu = DateTime.parse(
+                                    controller.histori[index]['WAKTU'] +
+                                        '.000');
+                                int noBulan = int.parse(controller
+                                    .histori[index]['WAKTU']
+                                    .substring(5, 7));
+                                return HistoryCard(
+                                  controller.histori[index]['STATUS'],
+                                  controller.histori[index]['LOKASI'],
+                                  jsonWaktu,
+                                  controller.bulans[noBulan],
+                                  // controller.bulans[]
+                                );
                               }),
                         ),
                 )

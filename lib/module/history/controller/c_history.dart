@@ -10,59 +10,106 @@ import 'package:get/get.dart';
 class CHistory extends GetxController {
   late Rx<TabController> tabController;
 
-  Rxn<String> selectedValue = Rxn<String>();
+  Rxn<String> selectedValueBulan = Rxn<String>();
+  Rxn<String> selectedValueStatus = Rxn<String>();
+  RxInt nilaiBulans = 0.obs;
+  RxInt nilaiStatus = 0.obs;
+  RxInt jmlhadir = 0.obs;
+  RxInt jmlIzin = 0.obs;
+  String jmlH = '';
+  int jmlI = 0;
 
-  RxList<String> items = <String>['Laporan Semester', 'Laporan Bulanan'].obs;
+  List<String> bulans = [
+    'Pilih..',
+    'Januari',
+    'Februari',
+    'Maret',
+    'April',
+    'Mei',
+    'Juni',
+    'Juli',
+    'Agustus',
+    'September',
+    'Oktober',
+    'November',
+    'Desember'
+  ].obs;
+  RxList<String> status =
+      <String>['Pilih..', 'Hadir & Pulang', 'Sakit & Izin'].obs;
   RxBool loadingHistori = true.obs;
   List histori = [];
-  // void onSelected(String value) {
-  //   selectedValue = value;
 
-  //   update();
+  void onSelectBulan(String value) {}
+  void onSelectSat(String value) {}
 
-  //   print(selectedValue);
-  //   changeItems(selectedValue);
-  // }
   @override
   void onInit() {
     // TODO: implement onInit
-    // loadingHistori = false.obs;
     super.onInit();
+    getJmlHistori();
     getHistori();
   }
 
   Future<void> getHistori() async {
+    loadingHistori = true.obs;
+
     String uri = "http://127.0.0.1:8000/api/histori/";
-    var res = await http.get(Uri.parse(uri));
+    var res = await http.post(Uri.parse(uri), body: {
+      'NIS': '212',
+      'STATUS': nilaiStatus.hashCode.toString(),
+      'BULAN': nilaiBulans.hashCode.toString()
+    });
     final response = jsonDecode(res.body);
-    var tes = jsonDecode(res.body)['data']['data'];
+    var data = jsonDecode(res.body)['data'];
     try {
       if (response["success"] == true) {
-        // loadingHistori(!loadingHistori.isFalse);
-        // loadingHistori = false.obs;
         loadingHistori = false.obs;
-        histori = tes;
-        print(loadingHistori);
-        print(histori);
+        histori = data;
+        // print(nilaiStatus);
+        // print(histori);
       } else {
         print('Tidak ditemukan');
       }
     } catch (e) {
       print(e);
-      print(tes);
+    }
+  }
+
+  Future<void> getJmlHistori() async {
+    loadingHistori = true.obs;
+
+    String uri = "http://127.0.0.1:8000/api/jmlhistori/";
+    var res = await http.post(Uri.parse(uri), body: {
+      'NIS': '212',
+      'STATUS': nilaiStatus.hashCode.toString(),
+      'BULAN': nilaiBulans.hashCode.toString()
+    });
+    final response = jsonDecode(res.body);
+    var data = jsonDecode(res.body)['data'];
+    try {
+      if (response["success"] == true) {
+        jmlIzin = data['jmlIzin'].obs;
+        jmlH = data['jmlHadir'];
+        // jmlhadir = int.parse(data[0]['jmlHadir'].toString()).obs;
+        print(jmlH);
+      } else {
+        print('Tidak ditemukan');
+      }
+    } catch (e) {
+      print(e);
     }
   }
 }
 
-changeItems(String? selectedItems) {
-  switch (selectedItems) {
-    case 'Laporan Semester':
-      print('changed to 1');
-      break;
-    case 'Laporan Bulanan':
-      print('changed to 2');
-      break;
-    default:
-      print('changed to 1');
-  }
-}
+// changeItems(String? selectedItems) {
+//   switch (selectedItems) {
+//     case 'Laporan Semester':
+//       print('changed to 1');
+//       break;
+//     case 'Laporan Bulanan':
+//       print('changed to 2');
+//       break;
+//     default:
+//       print('changed to 1');
+//   }
+// }
