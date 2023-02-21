@@ -8,6 +8,8 @@ import 'package:sas/routes/routes.dart';
 import 'package:get/get.dart';
 
 class CHistory extends GetxController {
+  late Rx<TabController> tabController;
+
   Rxn<String> selectedValue = Rxn<String>();
 
   RxList<String> items = <String>['Laporan Semester', 'Laporan Bulanan'].obs;
