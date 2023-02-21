@@ -95,8 +95,7 @@ class UILoginPage extends GetView<CLoginPage> {
                         child: const WButtonLogin(),
                         onTap: () {
                           controller.initUniqueIdentifierState();
-                          controller.setLogin(controller.namaController.text,
-                              controller.passController.text);
+                          // controller.setLogin('065', 'SIP');
                           // setSta
                           // Get.toNamed(Routes.dashboard);
                         },
