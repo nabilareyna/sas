@@ -4,8 +4,10 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:sas/component/widget/toast_widget.dart';
 import 'package:sas/model/login/login_request.dart';
 import 'package:sas/model/login/login_response.dart';
+import 'package:sas/module/auth/core/authentication_manager.dart';
 import 'package:unique_identifier/unique_identifier.dart';
 import 'package:http/http.dart' as http;
 import 'package:sas/routes/routes.dart';
@@ -14,6 +16,7 @@ class CLoginPage extends GetxController {
   late Rx<TabController> tabController;
 
   // RxBool setlog = false.obs;
+
   String nama = '';
   // comment salah satu apinya
   //if using android emulator
@@ -41,6 +44,18 @@ class CLoginPage extends GetxController {
     _imei = identifier;
   }
 
+  // Future<void> setLogin(String nama, String pass) async {
+  //   final response = await loginService.fetchLogin(LoginRequestModel(nama: nama, pass: pass));
+
+  //   if (response != null) {
+  //     /// Set isLogin to true
+  //     authManager.login(response.token);
+  //   } else {
+  //     /// Show user a dialog about the error response
+  //     ToastWidget.showToast(type: ToastWidgetType.ERROR, message: 'user not found');
+  //   }
+  // }
+
   Future<LoginResponseModel?> setLogin(String nama, String pass) async {
     String uri = loginUrl + nama;
     try {
@@ -56,26 +71,17 @@ class CLoginPage extends GetxController {
         //   print('perangkat tidak sesuai');
         // }
         else {
-          // LoginResponseModel.fromJson(response.body);
           Get.toNamed(Routes.dashboard);
           print('selamat datang');
         }
       } else {
+        ToastWidget.showToast(type: ToastWidgetType.ERROR, message: 'User Not Found');
         print('Tidak ditemukan');
       }
     } catch (e) {
+      ToastWidget.showToast(type: ToastWidgetType.ERROR, message: '${e}');
       print('turu ${e}');
+      return null;
     }
   }
-}
-
-void _showToast(BuildContext context, String _pass) {
-  final scaffold = ScaffoldMessenger.of(context);
-  scaffold.showSnackBar(
-    SnackBar(
-      content: Text(_pass),
-      // action: SnackBarAction(
-      //     label: 'UNDO', onPressed: scaffold.hideCurrentSnackBar),
-    ),
-  );
 }
