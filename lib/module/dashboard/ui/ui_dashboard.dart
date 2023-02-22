@@ -305,7 +305,7 @@ class UIDashboard extends GetView<CDashboard> {
                 height: 170,
                 decoration: const BoxDecoration(),
                 child: FlutterMap(
-                  options: MapOptions(center: LatLng(-7.9889465, 112.6278706), zoom: 17.50, maxZoom: 19.0),
+                  options: MapOptions(center: LatLng(-7.9898333, 112.62731), zoom: 17.50, maxZoom: 19.0),
                   nonRotatedChildren: [
                     AttributionWidget.defaultWidget(
                       source: '© OpenStreetMap contributors',
@@ -333,7 +333,7 @@ class UIDashboard extends GetView<CDashboard> {
                     CircleLayer(
                       circles: [
                         CircleMarker(
-                          point: LatLng(-7.9889465, 112.6278706),
+                          point: LatLng(-7.9898333, 112.62731),
                           radius: 35,
                           borderColor: const Color(0xFFB71C1C),
                           color: Colors.redAccent.withOpacity(0.2),

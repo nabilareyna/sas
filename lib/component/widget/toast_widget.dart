@@ -7,13 +7,9 @@ import 'package:sas/utils/AppThemes.dart';
 import 'package:sas/utils/const.dart';
 
 enum ToastWidgetType {
-  SUCCESS(backgroundColor: Color(0xFFF1F8E9), borderColor: Color(0xFF2E7D32)),
-  WARNING(backgroundColor: Color(0xFFFFECB3), borderColor: Colors.amber),
-  ERROR(backgroundColor: Color(0xFFFFCDD2), borderColor: Colors.red);
-
-  final Color backgroundColor;
-  final Color borderColor;
-  const ToastWidgetType({required this.backgroundColor, required this.borderColor});
+  SUCCESS,
+  WARNING,
+  ERROR,
 }
 
 class ToastWidget {
@@ -32,10 +28,18 @@ class ToastWidget {
           ),
         ],
       ),
-      backgroundColor: type.backgroundColor,
+      backgroundColor: type == ToastWidgetType.SUCCESS
+          ? const Color(0xFFF1F8E9)
+          : type == ToastWidgetType.WARNING
+              ? const Color(0xFFFFECB3)
+              : const Color(0xFFFFCDD2),
       isDismissible: true,
       borderWidth: 1,
-      borderColor: type.borderColor,
+      borderColor: type == ToastWidgetType.SUCCESS
+          ? Color(0xFF2E7D32)
+          : type == ToastWidgetType.WARNING
+              ? Colors.amber
+              : Colors.red,
       dismissDirection: DismissDirection.horizontal,
       borderRadius: Const.siblingMargin(),
       margin: EdgeInsets.symmetric(horizontal: Const.parentMargin(), vertical: Const.parentMargin()),

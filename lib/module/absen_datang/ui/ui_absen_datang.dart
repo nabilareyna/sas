@@ -39,7 +39,7 @@ class UIAbsenDatang extends GetView<CAbsenDatang> {
             FlutterMap(
               mapController: controller.mapController,
               options: MapOptions(
-                center: LatLng(-7.9898, 112.6273),
+                center: LatLng(controller.loc.value.latitude, controller.loc.value.longitude),
                 zoom: 16.50,
                 maxZoom: 19.0,
               ),
@@ -60,7 +60,7 @@ class UIAbsenDatang extends GetView<CAbsenDatang> {
                     Marker(
                         width: 100.0,
                         height: 100.0,
-                        point: LatLng(-7.9898, 112.6273),
+                        point: LatLng(controller.loc.value.latitude, controller.loc.value.longitude),
                         builder: (ctx) => Icon(
                               Icons.location_on,
                               color: Colors.red,
@@ -134,7 +134,7 @@ class UIAbsenDatang extends GetView<CAbsenDatang> {
                   ),
                 ),
                 InkWell(
-                  onTap: () => controller.insertHadir(),
+                  onTap: () => controller.getCurrentPosition(),
                   child: Container(
                     color: Styles.primaryColor,
                     width: Get.width,

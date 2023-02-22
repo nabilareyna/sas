@@ -6,7 +6,7 @@ import 'package:sas/module/auth/login_page/ui/ui_loginpage.dart';
 import 'package:sas/module/dashboard/ui/ui_dashboard.dart';
 
 class UIOnBoarding extends StatelessWidget {
-  const UIOnBoarding({super.key});
+  const UIOnBoarding({key});
 
   @override
   Widget build(BuildContext context) {

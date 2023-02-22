@@ -30,40 +30,48 @@ class CAbsenDatang extends GetxController {
       if (permission == LocationPermission.denied) {
         return Future.error('Location permissions are denied');
       }
+    }
 
-      if (permission == LocationPermission.deniedForever) {
-        return Future.error('Location permissions are permanently denied, we cannot request permissions.');
-      }
+    if (permission == LocationPermission.deniedForever) {
+      return Future.error('Location permissions are permanently denied, we cannot request permissions.');
+    }
 
-      if (permission == LocationPermission.always || permission == LocationPermission.whileInUse) {
-        Position currentPosition = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.best);
-        print("Logitude: " + currentPosition.longitude.toString());
-        print("Latitude: " + currentPosition.latitude.toString());
-        loc.update((val) {
-          loc.value.latitude = currentPosition.latitude;
-          loc.value.longitude = currentPosition.longitude;
-          mapController.move(LatLng(loc.value.latitude, loc.value.longitude), mapController.zoom);
-        });
+    if (permission == LocationPermission.always || permission == LocationPermission.whileInUse) {
+      Position currentPosition = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.best);
+      print("Logitude: " + currentPosition.longitude.toString());
+      print("Latitude: " + currentPosition.latitude.toString());
+      loc.update((val) {
+        loc.value.latitude = currentPosition.latitude;
+        loc.value.longitude = currentPosition.longitude;
+        mapController.move(LatLng(loc.value.latitude, loc.value.longitude), mapController.zoom);
         getDistanceRadius();
-      }
+      });
     }
   }
 
   Future<void> insertHadir() async {
     try {
       String uri = "http://10.0.2.2:8000/api/kehadirans/";
-      var res = await http.post(Uri.parse(uri),
-          body: {'NIS': '065', 'WAKTU': DateFormat("y-MM-d H:m:s").format(date), 'LOKASI': '-7.9898, 112.6273', 'STATUS': 'h', 'ID_KETERANGAN': 'null'});
+      var res = await http.post(Uri.parse(uri), body: {
+        'NIS': '065',
+        'WAKTU': DateFormat("y-MM-d H:m:s").format(date),
+        'LOKASI': '${loc.value.latitude}, ${loc.value.longitude}',
+        'STATUS': 'h',
+        'ID_KETERANGAN': 'null'
+      });
       var response = jsonDecode(res.body);
       if (response["success"] == true) {
         print('terkirim ${response}');
-        // Get.defaultDialog(
-        //     backgroundColor: Colors.white,
-        //     buttonColor: Colors.white,
-        //     title: 'Success!',
-        //     middleText: 'Presensi anda berhasil terkirim! Lihat Histori untuk lebih lengkapnya.',
-        //     radius: 30);
-        // WCardAbsenPulang();
+        Get.defaultDialog(
+            backgroundColor: Colors.white,
+            buttonColor: Colors.white,
+            title: 'Success!',
+            middleText: 'Presensi anda berhasil terkirim! Lihat Histori untuk lebih lengkapnya.',
+            textConfirm: 'OK',
+            onConfirm: () {
+              Get.toNamed(Routes.dashboard);
+            },
+            radius: 15);
       } else {
         print('false ${e}');
       }

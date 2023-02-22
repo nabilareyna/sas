@@ -7,7 +7,7 @@ import 'package:sas/module/auth/onBoarding/ui_onboard.dart';
 class UISplashScreen extends StatelessWidget {
   final AuthenticationManager authManager = Get.put(AuthenticationManager());
 
-  UISplashScreen({super.key});
+  UISplashScreen({key});
 
   Future<void> initializeSettings() async {
     authManager.checkLoginStatus();
