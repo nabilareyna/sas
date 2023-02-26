@@ -7,7 +7,8 @@ import 'package:sas/routes/routes.dart';
 import 'package:sas/utils/AppThemes.dart';
 
 class UIFeedback extends GetView<CFeedback> {
-  const UIFeedback({Key? key}) : super(key: key);
+  final _formKey = GlobalKey<FormState>();
+  UIFeedback({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -27,6 +28,7 @@ class UIFeedback extends GetView<CFeedback> {
       body: SingleChildScrollView(
         controller: ScrollController(),
         child: Stack(
+          // key: _fromkey,
           children: [
             Column(
               children: [
@@ -59,45 +61,65 @@ class UIFeedback extends GetView<CFeedback> {
                   padding: const EdgeInsets.all(25),
                   child: Column(
                     children: [
-                      TextField(
+                      TextFormField(
                         controller: controller.nisControllerFeedBack,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                             border: UnderlineInputBorder(),
                             labelText: 'Nama',
                             hintText: 'Masukkan nama anda'),
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return 'Note Title is Required!';
+                          }
+                          return null;
+                        },
                       ),
-                      TextField(
+                      TextFormField(
                         controller: controller.emailControllerFeedback,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                             border: UnderlineInputBorder(),
                             labelText: 'Email',
                             hintText: 'Masukkan email anda'),
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return 'Note Title is Required!';
+                          }
+                          return null;
+                        },
                       ),
-                      TextField(
+                      TextFormField(
                         controller: controller.feedbackController,
                         maxLines: 4,
                         keyboardType: TextInputType.multiline,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                             border: UnderlineInputBorder(),
                             labelText: 'Your Feedback',
                             hintText: 'Masukkan feedback anda'),
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return 'Note Title is Required!';
+                          }
+                          return null;
+                        },
                       ),
                     ],
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 20),
-                  child: InkWell(
-                    child: const WButtonFeedback(),
-                    onTap: () {
-                      // Get.toNamed(Routes.getProfileRoute());
-                      controller.insertFeedBack(
-                          controller.nisControllerFeedBack.text,
-                          controller.emailControllerFeedback.text,
-                          controller.feedbackController.text);
-                    },
-                  ),
-                )
+                const Gap(210),
+                InkWell(
+                  child: const WButtonFeedback(),
+                  onTap: () {
+                    // Get.toNamed(Routes.getProfileRoute());
+                    if (_formKey.currentState!.validate()) {
+//send data to database with this method
+                    }
+
+                    controller.insertFeedBack(
+                        controller.nisControllerFeedBack.text,
+                        controller.emailControllerFeedback.text,
+                        controller.feedbackController.text);
+                  },
+                ),
               ],
             )
           ],

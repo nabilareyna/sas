@@ -6,14 +6,12 @@ import 'package:http/http.dart' as http;
 import 'package:sas/routes/routes.dart';
 import 'package:intl/intl.dart';
 
-class CFormIzin extends GetxController {
+class CIzinPulang extends GetxController {
   DateTime dateizin = DateTime.now();
   Rxn<String> selectedValue = Rxn<String>();
   RxInt jmlIzin = 1.obs;
 
-  List<String> ketIzin = ['Sakit', 'Izin'];
-  List<String> iniIzin = ['S', 'I'];
-  RxInt noKetIzin = 0.obs;
+  RxList<String> items = <String>['Sakit', 'Izin'].obs;
   TextEditingController tanggalIzin = TextEditingController();
   TextEditingController keterangan = TextEditingController();
   Map<String, String> hari = {
@@ -55,25 +53,25 @@ class CFormIzin extends GetxController {
     // int.parse(DateFormat('M').format(dateizin)) - 1);
   }
 
-  Future<void> insertIzin(String textKeterangan) async {
+  Future<void> insertIzinPulang(String textKeterangan) async {
     try {
       String uri = "http://127.0.0.1:8000/api/kehadirans/";
-      var res = await http.post(Uri.parse(uri), body: {
+      var resb = await http.post(Uri.parse(uri), body: {
         'NIS': '212999',
         'WAKTU': DateFormat("y-MM-d H:m:s").format(dateizin),
         'LOKASI': 'lokasi',
         'KETERANGAN': textKeterangan,
-        'STATUS': iniIzin[noKetIzin.hashCode],
-        'JUMLAH_HARI': jmlIzin.toString()
+        'STATUS': 'IP',
         // 'FOTO_SURAT': ,
       });
-      var response = jsonDecode(res.body);
-      if (response["success"] == true) {
+      var body = jsonDecode(resb.body);
+      if (body["success"] == true) {
         print('amann');
+        Get.toNamed(Routes.dashboard);
       } else {
-        print('ga');
+        print('duplikat');
       }
-      // print(response);
+      // print(body);
     } catch (e) {
       print(e);
     }

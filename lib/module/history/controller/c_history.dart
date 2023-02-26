@@ -10,8 +10,8 @@ import 'package:get/get.dart';
 class CHistory extends GetxController {
   late Rx<TabController> tabController;
 
-  Rxn<String> selectedValueBulan = Rxn<String>();
-  Rxn<String> selectedValueStatus = Rxn<String>();
+  // Rxn<String> selectedValueBulan = Rxn<String>();
+  // Rxn<String> selectedValueStatus = Rxn<String>();
   RxInt nilaiBulans = 0.obs;
   RxInt nilaiStatus = 0.obs;
   RxInt jmlhadir = 0.obs;

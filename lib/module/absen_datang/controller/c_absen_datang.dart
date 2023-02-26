@@ -23,10 +23,10 @@ class CAbsenDatang extends GetxController {
       var response = jsonDecode(res.body);
       if (response["success"] == true) {
         print('terkirim');
-        // WCardAbsenPulang();
         Get.toNamed(Routes.dashboard);
       } else {
-        print('false');
+        //  jika data sudah ada
+        print(response);
       }
     } catch (e) {
       print(e);

@@ -95,7 +95,7 @@ class UIProfile extends GetView<CHistory> {
                         ),
                         Expanded(
                           child: Text(
-                            'Ubah Profil',
+                            'Detail Profil',
                             style: TextStyle(
                                 color: Color(0xFF777777),
                                 fontFamily: 'Roboto',

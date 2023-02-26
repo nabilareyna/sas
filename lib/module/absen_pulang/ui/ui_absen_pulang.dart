@@ -8,6 +8,9 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:sas/module/absen_pulang/controller/c_absen_pulang.dart';
+import 'package:sas/module/izin_pulang/controller/c_izin_pulang.dart';
+import 'package:sas/module/izin_pulang/ui/ui_izin_pulang.dart';
+import 'package:sas/module/absen_pulang/widget/w_button_izinpulang.dart';
 import 'package:sas/module/absen_pulang/widget/w_card_absen_pulang.dart';
 import 'package:sas/routes/routes.dart';
 import 'package:sas/utils/AppThemes.dart';
@@ -39,7 +42,7 @@ class UIAbsenPulang extends GetView<CAbsenPulang> {
               TileLayer(
                 urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
                 userAgentPackageName: 'com.example.app',
-                subdomains: ['a', 'b', 'c'],
+                subdomains: const ['a', 'b', 'c'],
               ),
               MarkerLayer(
                 markers: [
@@ -47,7 +50,7 @@ class UIAbsenPulang extends GetView<CAbsenPulang> {
                       width: 100.0,
                       height: 100.0,
                       point: LatLng(49.5, -0.09),
-                      builder: (ctx) => Icon(
+                      builder: (ctx) => const Icon(
                             Icons.location_on,
                             color: Colors.red,
                           ))
@@ -73,7 +76,7 @@ class UIAbsenPulang extends GetView<CAbsenPulang> {
                       'Tanggal dan Jam',
                       style: Styles.absenPageHeading,
                     ),
-                    Gap(4),
+                    const Gap(4),
                     Row(
                       children: [
                         Text(
@@ -83,39 +86,45 @@ class UIAbsenPulang extends GetView<CAbsenPulang> {
                         ),
                       ],
                     ),
-                    Gap(6),
+                    const Gap(6),
                     Text(
                       'Lokasi',
                       style: Styles.absenPageHeading,
                     ),
-                    Gap(4),
+                    const Gap(4),
                     Text(
                       'SMKN 4 Malang',
                       style: Styles.absenPageSubHeading,
                     ),
-                    Gap(6),
+                    const Gap(6),
                     Text(
                       'Radius',
                       style: Styles.absenPageHeading,
                     ),
-                    Gap(4),
+                    const Gap(4),
                     Text(
                       '0 - 172.77 m (566.84 ft)',
                       style: Styles.absenPageSubHeading,
-                    )
+                    ),
+                    const Gap(6),
                   ],
                 ),
               ),
               InkWell(
                 child: Container(
-                  color: Styles.primaryColor,
+                  color: DateFormat.H().format(DateTime.now()).hashCode < 15
+                      ? Styles.yellowColor
+                      : Styles.primaryColor,
                   width: Get.width,
                   padding: EdgeInsets.symmetric(
                       vertical: Const.parentMargin(x: 0.7)),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text('SUBMIT',
+                      Text(
+                          DateFormat.H().format(DateTime.now()).hashCode < 15
+                              ? "Izin Pulang"
+                              : "Submit",
                           style: TextStyle(
                               fontFamily: 'Montserrat',
                               fontSize: 16,
@@ -126,7 +135,11 @@ class UIAbsenPulang extends GetView<CAbsenPulang> {
                   ),
                 ),
                 onTap: () {
-                  controller.insertPulang();
+                  // if()
+                  // Get.toNamed(Routes.izinpulang);
+                  DateFormat.H().format(DateTime.now()).hashCode < 15
+                      ? Get.toNamed(Routes.izinpulang)
+                      : controller.insertPulang();
                 },
               )
             ],

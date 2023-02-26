@@ -19,6 +19,8 @@ import 'package:sas/module/profile/controller/c_profile.dart';
 import 'package:sas/module/profile/ui/ui_profile.dart';
 import 'package:sas/module/ubah_profile/controller/c_ubah_profile.dart';
 import 'package:sas/module/ubah_profile/ui/ui_ubah_profile.dart';
+import 'package:sas/module/izin_pulang/controller/c_izin_pulang.dart';
+import 'package:sas/module/izin_pulang/ui/ui_izin_pulang.dart';
 
 class Routes {
   static const String login = "/";
@@ -32,6 +34,7 @@ class Routes {
   static const String absendatang = "/absen-datang";
   static const String absenpulang = "/absen-pulang";
   static const String pengajuanizin = "/pengajuan-izin";
+  static const String izinpulang = "/izin-pulang";
 
   static String getLoginRoute() => login;
   static String getDashboardRoute() => dashboard;
@@ -44,6 +47,7 @@ class Routes {
   static String getAbsenDatangRoute() => absendatang;
   static String getAbsenPulangRoute() => absenpulang;
   static String getPengajuanIzinRoute() => pengajuanizin;
+  static String getIzinPulangRoute() => izinpulang;
 
   static List<GetPage> routes = [
     GetPage(
@@ -76,13 +80,19 @@ class Routes {
         transition: Transition.fadeIn),
     GetPage(
         name: feedback,
-        page: () => const UIFeedback(),
+        page: () => UIFeedback(),
         binding: BindingsBuilder(() {
           Get.put(CFeedback());
         }),
         transition: Transition.fadeIn),
-    GetPage(name: panduansas, page: () => const UIPanduanSAS(), transition: Transition.fadeIn),
-    GetPage(name: privacypolicy, page: () => const UIKebijakanPrivasi(), transition: Transition.fadeIn),
+    GetPage(
+        name: panduansas,
+        page: () => const UIPanduanSAS(),
+        transition: Transition.fadeIn),
+    GetPage(
+        name: privacypolicy,
+        page: () => const UIKebijakanPrivasi(),
+        transition: Transition.fadeIn),
     GetPage(
         name: editprofile,
         page: () => const UIUbahProfile(),
@@ -106,9 +116,16 @@ class Routes {
         transition: Transition.fadeIn),
     GetPage(
         name: pengajuanizin,
-        page: () => const UIFormIzin(),
+        page: () => UIFormIzin(),
         binding: BindingsBuilder(() {
           Get.put(CFormIzin());
+        }),
+        transition: Transition.fadeIn),
+    GetPage(
+        name: izinpulang,
+        page: () => UIIzinPulang(),
+        binding: BindingsBuilder(() {
+          Get.put(CIzinPulang());
         }),
         transition: Transition.fadeIn),
   ];

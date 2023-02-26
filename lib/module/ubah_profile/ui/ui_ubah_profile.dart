@@ -252,15 +252,6 @@ class UIUbahProfile extends GetView<CUbahProfile> {
               endIndent: 20,
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(top: 450),
-            child: InkWell(
-              child: const WButtonUbahProfile(),
-              onTap: () {
-                Get.toNamed(Routes.getProfileRoute());
-              },
-            ),
-          )
         ],
       ),
     );

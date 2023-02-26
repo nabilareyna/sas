@@ -9,7 +9,7 @@ class WButtonFeedback extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = AppLayout.getSize(context);
     return Padding(
-      padding: const EdgeInsets.only(left: 15, right: 15, top: 180),
+      padding: const EdgeInsets.only(left: 15, right: 15),
       child: Column(
         children: [
           Container(

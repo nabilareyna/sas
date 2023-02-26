@@ -43,7 +43,7 @@ class UIHistory extends GetView<CHistory> {
                 Container(
                   decoration: BoxDecoration(
                     border: Border.all(color: Styles.secondaryGreyColor),
-                    borderRadius: BorderRadius.all(Radius.circular(5)),
+                    borderRadius: const BorderRadius.all(Radius.circular(5)),
                     color: Colors.white,
                   ),
                   padding: EdgeInsets.symmetric(
@@ -81,20 +81,20 @@ class UIHistory extends GetView<CHistory> {
                                 .map((e) =>
                                     DropdownMenuItem(value: e, child: Text(e)))
                                 .toList(),
-                            style: TextStyle(
+                            style: const TextStyle(
                                 fontFamily: 'Roboto',
                                 fontSize: 12,
                                 fontWeight: FontWeight.w400,
                                 color: Colors.black,
                                 letterSpacing: 1),
                             isDense: true,
-                            hint: Text('Pilih...'),
-                            underline: SizedBox(),
-                            icon: Icon(Icons.expand_more),
+                            hint: const Text('Pilih...'),
+                            underline: const SizedBox(),
+                            icon: const Icon(Icons.expand_more),
                           )
                         ],
                       ),
-                      Gap(20),
+                      const Gap(20),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -122,23 +122,23 @@ class UIHistory extends GetView<CHistory> {
                                 .map((e) =>
                                     DropdownMenuItem(value: e, child: Text(e)))
                                 .toList(),
-                            style: TextStyle(
+                            style: const TextStyle(
                                 fontFamily: 'Roboto',
                                 fontSize: 12,
                                 fontWeight: FontWeight.w400,
                                 color: Colors.black,
                                 letterSpacing: 1),
                             isDense: true,
-                            hint: Text('Pilih...'),
-                            underline: SizedBox(),
-                            icon: Icon(Icons.expand_more),
+                            hint: const Text('Pilih...'),
+                            underline: const SizedBox(),
+                            icon: const Icon(Icons.expand_more),
                           )
                         ],
                       )
                     ],
                   ),
                 ),
-                Gap(30),
+                const Gap(30),
                 SizedBox(
                   width: Get.width,
                   child: Row(
@@ -148,7 +148,7 @@ class UIHistory extends GetView<CHistory> {
                         title: 'Jumlah Hadir',
                         jumlah: int.parse(controller.jmlhadir.toString()),
                       ),
-                      AbsentSummary(
+                      const AbsentSummary(
                         title: 'Jumlah Izin & Sakit',
                         // jumlah: int.parse(controller.jmlIzin.toString()),
                         jumlah: 9,
@@ -156,12 +156,12 @@ class UIHistory extends GetView<CHistory> {
                     ],
                   ),
                 ),
-                Gap(30),
+                const Gap(30),
                 Container(
                   child: controller.loadingHistori.isTrue
-                      ? CircularProgressIndicator()
+                      ? const CircularProgressIndicator()
                       : Padding(
-                          padding: EdgeInsets.all(5.0),
+                          padding: const EdgeInsets.all(5.0),
                           child: ListView.builder(
                               scrollDirection: Axis.vertical,
                               shrinkWrap: true,
