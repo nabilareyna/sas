@@ -304,47 +304,51 @@ class UIDashboard extends GetView<CDashboard> {
                 width: MediaQuery.of(context).size.width,
                 height: 170,
                 decoration: const BoxDecoration(),
-                child: FlutterMap(
-                  options: MapOptions(center: LatLng(-7.9898333, 112.62731), zoom: 17.50, maxZoom: 19.0),
-                  nonRotatedChildren: [
-                    AttributionWidget.defaultWidget(
-                      source: '© OpenStreetMap contributors',
-                      onSourceTapped: () {},
-                    ),
-                  ],
-                  children: [
-                    TileLayer(
-                      urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-                      userAgentPackageName: 'com.sas.app',
-                      subdomains: const ['a', 'b', 'c'],
-                    ),
-                    MarkerLayer(
-                      markers: [
-                        Marker(
-                            width: 100.0,
-                            height: 100.0,
-                            point: LatLng(49.5, -0.09),
-                            builder: (ctx) => const Icon(
-                                  Icons.location_on,
-                                  color: Colors.red,
-                                ))
-                      ],
-                    ),
-                    CircleLayer(
-                      circles: [
-                        CircleMarker(
-                          point: LatLng(-7.9898333, 112.62731),
-                          radius: 35,
-                          borderColor: const Color(0xFFB71C1C),
-                          color: Colors.redAccent.withOpacity(0.2),
-                          borderStrokeWidth: 1,
-                        )
-                      ],
-                    )
-                  ],
+                child: Obx(
+                  () => FlutterMap(
+                    mapController: controller.mapController,
+                    options: MapOptions(center: LatLng(controller.loc.value.latitude, controller.loc.value.longitude), zoom: 17.50, maxZoom: 19.0),
+                    nonRotatedChildren: [
+                      AttributionWidget.defaultWidget(
+                        source: '© OpenStreetMap contributors',
+                        onSourceTapped: () {},
+                      ),
+                    ],
+                    children: [
+                      TileLayer(
+                        urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+                        userAgentPackageName: 'com.sas.app',
+                        subdomains: const ['a', 'b', 'c'],
+                      ),
+                      MarkerLayer(
+                        markers: [
+                          Marker(
+                              width: 100.0,
+                              height: 100.0,
+                              point: LatLng(controller.loc.value.latitude, controller.loc.value.longitude),
+                              builder: (ctx) => const Icon(
+                                    Icons.location_on,
+                                    color: Colors.red,
+                                  ))
+                        ],
+                      ),
+                      CircleLayer(
+                        circles: [
+                          CircleMarker(
+                            point: LatLng(-7.9898333, 112.62731),
+                            radius: 35,
+                            borderColor: const Color(0xFFB71C1C),
+                            color: Colors.redAccent.withOpacity(0.2),
+                            borderStrokeWidth: 1,
+                          )
+                        ],
+                      )
+                    ],
+                  ),
                 ),
               ),
             ),
+            Text('${controller.store.read('latitude')}')
           ],
         );
       },

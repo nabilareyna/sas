@@ -6,6 +6,7 @@ class Styles {
   static Color primaryColor = primary;
   static Color greenColor = const Color(0XFFF5FC07C);
   static Color secondaryGreenColor = Color(0XFFF85C8A5);
+  static Color yellowColor = const Color(0XFFF0AA03);
   static Color redColor = const Color(0XFFFD90000);
   static Color secondaryColor = const Color(0xFFF777777);
   static Color secondaryGreyColor = const Color(0xFFFDBDBDB);

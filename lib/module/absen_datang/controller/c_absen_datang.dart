@@ -2,10 +2,12 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
+import 'package:flutter_map/src/map/flutter_map_state.dart';
 import 'dart:convert';
 import 'dart:async';
 import 'package:get/get.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:sas/model/location.dart';
 import 'package:http/http.dart' as http;
@@ -13,11 +15,14 @@ import 'package:intl/intl.dart';
 import 'package:sas/routes/routes.dart';
 
 class CAbsenDatang extends GetxController {
+  final store = GetStorage();
+  double recentLat = 0;
+  double recentLong = 0;
   final loc = Location().obs;
   final mapController = MapController();
   DateTime date = DateTime.now();
 
-  Future<void> getCurrentPosition() async {
+  Future<void> getLivePosition() async {
     bool serviceEnabled;
     LocationPermission permission = await Geolocator.checkPermission();
     serviceEnabled = await Geolocator.isLocationServiceEnabled();
@@ -50,6 +55,7 @@ class CAbsenDatang extends GetxController {
   }
 
   Future<void> insertHadir() async {
+    getLivePosition();
     try {
       String uri = "http://10.0.2.2:8000/api/kehadirans/";
       var res = await http.post(Uri.parse(uri), body: {
@@ -86,5 +92,26 @@ class CAbsenDatang extends GetxController {
       loc.value.distance = distanceInMeters;
     });
     print(distanceInMeters);
+  }
+
+  double readRecentStoreLat() {
+    recentLat = store.read('latitude');
+    return recentLat;
+  }
+
+  double readRecentStoreLong() {
+    recentLong = store.read('longitude');
+    return recentLong;
+  }
+
+  Future<void> moveToCurrentPosition() async {
+    mapController.move(LatLng(recentLat, recentLong), mapController.zoom);
+  }
+
+  @override
+  void onInit() async {
+    readRecentStoreLat();
+    readRecentStoreLong();
+    super.onInit();
   }
 }
