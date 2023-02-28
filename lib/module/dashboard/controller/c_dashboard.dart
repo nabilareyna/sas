@@ -8,6 +8,7 @@ import 'package:sas/model/location.dart';
 class CDashboard extends GetxController {
   final store = GetStorage();
   final loc = Location().obs;
+  bool isOnArea = false;
   final mapController = MapController();
 
   Future<void> getCurrentPosition() async {
@@ -33,7 +34,6 @@ class CDashboard extends GetxController {
       Position currentPosition = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.best);
       setStore(currentPosition.latitude, currentPosition.longitude);
       onSchoolArea(currentPosition.latitude, currentPosition.longitude);
-      print(onSchoolArea(currentPosition.latitude, currentPosition.longitude));
       loc.update((val) {
         loc.value.latitude = currentPosition.latitude;
         loc.value.longitude = currentPosition.longitude;
@@ -42,9 +42,13 @@ class CDashboard extends GetxController {
     }
   }
 
-  static Future<bool> onSchoolArea(double lat, double long) async {
+  Future<bool> onSchoolArea(double lat, double long) async {
     double distance = Geolocator.distanceBetween(-7.9889465, 112.62731, lat, long);
-    return (distance <= 100) ? true : false;
+    if (distance <= 100) {
+      isOnArea = true;
+    }
+    print(isOnArea);
+    return isOnArea;
   }
 
   void setStore(double lat, double long) {

@@ -278,23 +278,48 @@ class UIDashboard extends GetView<CDashboard> {
               padding: const EdgeInsets.only(right: 15, left: 15, top: 430),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
-                  ImageIcon(
-                    AssetImage('assets/icons/greencircle.png'),
-                    size: 13.0,
-                    color: Color(0xFF1CC16B),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(left: 10),
-                    child: Text(
-                      'Anda berada dalam jangkauan lokasi titik absensi',
-                      style: TextStyle(
-                        fontSize: 10,
-                        fontWeight: FontWeight.w400,
-                        fontFamily: 'Roboto',
-                      ),
-                    ),
-                  ),
+                children: [
+                  controller.isOnArea == true
+                      ? Row(
+                          children: const [
+                            ImageIcon(
+                              AssetImage('assets/icons/greencircle.png'),
+                              size: 13.0,
+                              color: Color(0xFF1CC16B),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(left: 10),
+                              child: Text(
+                                'Anda berada dalam jangkauan lokasi titik absensi',
+                                style: TextStyle(
+                                  fontSize: 10,
+                                  fontWeight: FontWeight.w400,
+                                  fontFamily: 'Roboto',
+                                ),
+                              ),
+                            ),
+                          ],
+                        )
+                      : Row(
+                          children: const [
+                            ImageIcon(
+                              AssetImage('assets/icons/redcircle.png'),
+                              size: 13.0,
+                              color: Color(0xFF1CC16B),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(left: 10),
+                              child: Text(
+                                'Anda berada di luar jangkauan lokasi titik absensi',
+                                style: TextStyle(
+                                  fontSize: 10,
+                                  fontWeight: FontWeight.w400,
+                                  fontFamily: 'Roboto',
+                                ),
+                              ),
+                            ),
+                          ],
+                        )
                 ],
               ),
             ),
