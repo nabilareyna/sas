@@ -11,6 +11,8 @@ import 'package:sas/module/form_izin/controller/c_form_izin.dart';
 import 'package:sas/module/form_izin/ui/ui_form_izin.dart';
 import 'package:sas/module/history/controller/c_history.dart';
 import 'package:sas/module/history/ui/ui_history.dart';
+import 'package:sas/module/izin_pulang/controller/c_izin_pulang.dart';
+import 'package:sas/module/izin_pulang/ui/ui_izin_pulang.dart';
 import 'package:sas/module/kebijakan_privasi/ui/ui_kebijakan_privasi.dart';
 import 'package:sas/module/auth/login_page/controller/c_login_page.dart';
 import 'package:sas/module/auth/login_page/ui/ui_loginpage.dart';
@@ -32,6 +34,7 @@ class Routes {
   static const String absendatang = "/absen-datang";
   static const String absenpulang = "/absen-pulang";
   static const String pengajuanizin = "/pengajuan-izin";
+  static const String izinpulang = "/izin-pulang";
 
   static String getLoginRoute() => login;
   static String getDashboardRoute() => dashboard;
@@ -44,6 +47,7 @@ class Routes {
   static String getAbsenDatangRoute() => absendatang;
   static String getAbsenPulangRoute() => absenpulang;
   static String getPengajuanIzinRoute() => pengajuanizin;
+  static String getIzinPulangRoute() => izinpulang;
 
   static List<GetPage> routes = [
     GetPage(
@@ -76,7 +80,7 @@ class Routes {
         transition: Transition.fadeIn),
     GetPage(
         name: feedback,
-        page: () => const UIFeedback(),
+        page: () => UIFeedback(),
         binding: BindingsBuilder(() {
           Get.put(CFeedback());
         }),
@@ -106,9 +110,16 @@ class Routes {
         transition: Transition.fadeIn),
     GetPage(
         name: pengajuanizin,
-        page: () => const UIFormIzin(),
+        page: () => UIFormIzin(),
         binding: BindingsBuilder(() {
           Get.put(CFormIzin());
+        }),
+        transition: Transition.fadeIn),
+    GetPage(
+        name: izinpulang,
+        page: () => UIIzinPulang(),
+        binding: BindingsBuilder(() {
+          Get.put(CIzinPulang());
         }),
         transition: Transition.fadeIn),
   ];

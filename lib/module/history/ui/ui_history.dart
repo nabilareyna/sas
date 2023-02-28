@@ -39,7 +39,7 @@ class UIHistory extends GetView<CHistory> {
               Container(
                 decoration: BoxDecoration(
                   border: Border.all(color: Styles.secondaryGreyColor),
-                  borderRadius: BorderRadius.all(Radius.circular(5)),
+                  borderRadius: const BorderRadius.all(Radius.circular(5)),
                   color: Colors.white,
                 ),
                 padding: EdgeInsets.symmetric(horizontal: Const.siblingMargin(x: 4), vertical: Const.siblingMargin(x: 3.5)),
@@ -49,61 +49,107 @@ class UIHistory extends GetView<CHistory> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          'Jumlah',
+                          'Bulan',
                           style: TextStyle(color: Styles.secondaryColor, fontFamily: 'Roboto', fontSize: 12, fontWeight: FontWeight.w400, letterSpacing: 1),
                         ),
                         DropdownButton(
                           elevation: 10,
-                          value: controller.selectedValue.value,
-                          onChanged: (String? value) => controller.selectedValue.value = value,
-                          items: controller.items.map((e) => DropdownMenuItem(value: e, child: Text(e))).toList(),
-                          style: TextStyle(fontFamily: 'Roboto', fontSize: 12, fontWeight: FontWeight.w400, color: Colors.black, letterSpacing: 1),
+                          // onTap: (() {
+                          //   print(controller.nilaiBulans);
+                          // }),
+                          value: controller.bulans[controller.nilaiBulans.hashCode],
+                          onChanged: (String? value) {
+                            controller.nilaiBulans = controller.bulans.indexOf(value ?? "").obs;
+                            print(controller.nilaiBulans);
+                            controller.getJmlHistori();
+                            controller.getHistori();
+                          },
+                          items: controller.bulans.map((e) => DropdownMenuItem(value: e, child: Text(e))).toList(),
+                          style: const TextStyle(fontFamily: 'Roboto', fontSize: 12, fontWeight: FontWeight.w400, color: Colors.black, letterSpacing: 1),
                           isDense: true,
-                          hint: Text('Pilih...'),
-                          underline: SizedBox(),
-                          icon: Icon(Icons.expand_more),
+                          hint: const Text('Pilih...'),
+                          underline: const SizedBox(),
+                          icon: const Icon(Icons.expand_more),
                         )
                       ],
                     ),
-                    Gap(20),
+                    const Gap(20),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text('Periode',
+                        Text('Status',
                             style: TextStyle(color: Styles.secondaryColor, fontFamily: 'Roboto', fontSize: 12, fontWeight: FontWeight.w400, letterSpacing: 1)),
                         DropdownButton(
                           elevation: 10,
-                          value: controller.selectedValue.value,
-                          onChanged: (String? value) => controller.selectedValue.value = value,
-                          items: controller.items.map((e) => DropdownMenuItem(value: e, child: Text(e))).toList(),
-                          style: TextStyle(fontFamily: 'Roboto', fontSize: 12, fontWeight: FontWeight.w400, color: Colors.black, letterSpacing: 1),
+                          // value: controller.selectedValueStatus.value,
+                          // onChanged: (String? value) =>
+                          //     controller.selectedValueStatus.value = value,
+                          value: controller.status[controller.nilaiStatus.hashCode],
+                          onChanged: (String? value) {
+                            controller.nilaiStatus = controller.status.indexOf(value ?? "").obs;
+                            print(controller.nilaiStatus.hashCode);
+                            controller.getHistori();
+                          },
+                          items: controller.status.map((e) => DropdownMenuItem(value: e, child: Text(e))).toList(),
+                          style: const TextStyle(fontFamily: 'Roboto', fontSize: 12, fontWeight: FontWeight.w400, color: Colors.black, letterSpacing: 1),
                           isDense: true,
-                          hint: Text('Pilih...'),
-                          underline: SizedBox(),
-                          icon: Icon(Icons.expand_more),
+                          hint: const Text('Pilih...'),
+                          underline: const SizedBox(),
+                          icon: const Icon(Icons.expand_more),
                         )
                       ],
                     )
                   ],
                 ),
               ),
-              Gap(30),
+              const Gap(30),
               SizedBox(
                 width: Get.width,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     AbsentSummary(
-                      title: 'Jumlah Izin',
+                      title: 'Jumlah Hadir',
+                      jumlah: controller.jmlHadir.value,
                     ),
                     AbsentSummary(
-                      title: 'Tanpa Keterangan',
+                      title: 'Jumlah Izin & Sakit',
+                      // jumlah: int.parse(controller.jmlIzin.toString()),
+                      jumlah: controller.jmlIzin.value,
                     )
                   ],
                 ),
               ),
-              Gap(30),
-              HistoryCard()
+              const Gap(30),
+              Container(
+                child: controller.loadingHistori.isTrue
+                    ? Column(
+                        children: const [
+                          CircularProgressIndicator(),
+                          Gap(15),
+                          Text(
+                            'Memuat history....',
+                            style: TextStyle(fontSize: 15, color: Colors.grey, fontWeight: FontWeight.w100),
+                          )
+                        ],
+                      )
+                    : Expanded(
+                        child: ListView.builder(
+                            scrollDirection: Axis.vertical,
+                            shrinkWrap: true,
+                            itemCount: controller.histori.length,
+                            itemBuilder: (context, index) {
+                              DateTime jsonWaktu = DateTime.parse(controller.histori[index]['WAKTU'] + '.000');
+                              int noBulan = int.parse(controller.histori[index]['WAKTU'].substring(5, 7));
+                              return HistoryCard(
+                                controller.histori[index]['STATUS'],
+                                controller.histori[index]['LOKASI'],
+                                jsonWaktu,
+                                controller.bulans[noBulan],
+                              );
+                            }),
+                      ),
+              )
             ],
           ),
         );

@@ -7,7 +7,8 @@ import 'package:sas/utils/const.dart';
 
 class AbsentSummary extends StatelessWidget {
   final String title;
-  const AbsentSummary({Key? key, this.title = ''}) : super(key: key);
+  final int jumlah;
+  const AbsentSummary({Key? key, this.title = '', this.jumlah = 0}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -33,10 +34,10 @@ class AbsentSummary extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Text('0', style: TextStyle(fontFamily: 'Inter', fontSize: 26, fontWeight: FontWeight.w700)),
+              Text(jumlah.toString(), style: TextStyle(fontFamily: 'Inter', fontSize: 26, fontWeight: FontWeight.w700)),
               Text(
                 title,
-                style: const TextStyle(fontFamily: 'Roboto', fontSize: 10, fontWeight: FontWeight.w400),
+                style: TextStyle(fontFamily: 'Roboto', fontSize: 10, fontWeight: FontWeight.w400),
                 softWrap: true,
               )
             ],

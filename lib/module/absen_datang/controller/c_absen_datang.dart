@@ -58,7 +58,7 @@ class CAbsenDatang extends GetxController {
   Future<void> insertHadir() async {
     getLivePosition();
     try {
-      String uri = "http://10.0.2.2:8000/api/kehadirans/";
+      String uri = "https://sasapi.000webhostapp.com/api/kehadirans/";
       var res = await http.post(Uri.parse(uri), body: {
         'NIS': '065',
         'WAKTU': DateFormat("y-MM-d H:m:s").format(date),

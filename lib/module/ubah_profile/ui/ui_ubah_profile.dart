@@ -71,15 +71,12 @@ class UIUbahProfile extends GetView<CUbahProfile> {
                       width: MediaQuery.of(context).size.width,
                       decoration: const BoxDecoration(
                         color: Colors.white,
-                        borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(25),
-                            topRight: Radius.circular(25)),
+                        borderRadius: BorderRadius.only(topLeft: Radius.circular(25), topRight: Radius.circular(25)),
                       ),
                       child: Column(
                         children: [
                           Padding(
-                            padding: const EdgeInsets.only(
-                                left: 16, bottom: 10, top: 14),
+                            padding: const EdgeInsets.only(left: 16, bottom: 10, top: 14),
                             child: Row(
                               children: const [
                                 Text(
@@ -123,142 +120,142 @@ class UIUbahProfile extends GetView<CUbahProfile> {
                   ],
                 ),
               ),
+              Divider(
+                color: Color(0xFFC7C7C7E5),
+                thickness: 10,
+              ),
             ],
           ),
-          const Padding(
-            padding: EdgeInsets.only(top: 220),
-            child: Divider(
-              color: Color(0xFFC7C7C7E5),
-              thickness: 10,
-            ),
-          ),
-          const Padding(
-            padding: EdgeInsets.only(top: 250, left: 16),
-            child: Text(
-              'Kelas',
-              style: TextStyle(
-                  fontSize: 12,
-                  fontFamily: 'Roboto',
-                  fontWeight: FontWeight.w200),
-            ),
-          ),
-          const Padding(
-            padding: EdgeInsets.only(top: 272, left: 30),
-            child: Text(
-              'XII',
-              style: TextStyle(
-                fontSize: 14,
-                fontFamily: 'Roboto',
-                fontWeight: FontWeight.w500,
-              ),
-            ),
-          ),
-          const Padding(
-            padding: EdgeInsets.only(top: 289),
-            child: Divider(
-              color: Color(0xFFC7C7C7),
-              thickness: 1,
-              indent: 16,
-              endIndent: 20,
-            ),
-          ),
-          const Padding(
-            padding: EdgeInsets.only(top: 316, left: 16),
-            child: Text(
-              'Jurusan',
-              style: TextStyle(
-                  fontSize: 12,
-                  fontFamily: 'Roboto',
-                  fontWeight: FontWeight.w200),
-            ),
-          ),
-          const Padding(
-            padding: EdgeInsets.only(top: 338, left: 30),
-            child: Text(
-              'Rekayasa Perangkat Lunak',
-              style: TextStyle(
-                fontSize: 14,
-                fontFamily: 'Roboto',
-                fontWeight: FontWeight.w500,
-              ),
-            ),
-          ),
-          const Padding(
-            padding: EdgeInsets.only(top: 355),
-            child: Divider(
-              color: Color(0xFFC7C7C7),
-              thickness: 1,
-              indent: 16,
-              endIndent: 20,
-            ),
-          ),
-          const Padding(
-            padding: EdgeInsets.only(top: 382, left: 16),
-            child: Text(
-              'Jenis Kelamin',
-              style: TextStyle(
-                  fontSize: 12,
-                  fontFamily: 'Roboto',
-                  fontWeight: FontWeight.w200),
-            ),
-          ),
-          const Padding(
-            padding: EdgeInsets.only(top: 404, left: 30),
-            child: Text(
-              'Laki - laki',
-              style: TextStyle(
-                fontSize: 14,
-                fontFamily: 'Roboto',
-                fontWeight: FontWeight.w500,
-              ),
-            ),
-          ),
-          const Padding(
-            padding: EdgeInsets.only(top: 421),
-            child: Divider(
-              color: Color(0xFFC7C7C7),
-              thickness: 1,
-              indent: 16,
-              endIndent: 20,
-            ),
-          ),
-          const Padding(
-            padding: EdgeInsets.only(top: 448, left: 16),
-            child: Text(
-              'Nomor Hp',
-              style: TextStyle(
-                  fontSize: 12,
-                  fontFamily: 'Roboto',
-                  fontWeight: FontWeight.w200),
-            ),
-          ),
-          const Padding(
-            padding: EdgeInsets.only(top: 470, left: 30),
-            child: Text(
-              '087743314458',
-              style: TextStyle(
-                fontSize: 14,
-                fontFamily: 'Roboto',
-                fontWeight: FontWeight.w500,
-              ),
-            ),
-          ),
-          const Padding(
-            padding: EdgeInsets.only(top: 487),
-            child: Divider(
-              color: Color(0xFFC7C7C7),
-              thickness: 1,
-              indent: 16,
-              endIndent: 20,
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 450),
-            child: InkWell(
-              child: const WButtonUbahProfile(),
-              onTap: () {
-                Get.toNamed(Routes.getProfileRoute());
-              },
+          SingleChildScrollView(
+            controller: ScrollController(),
+            child: Column(
+              children: const [
+                Gap(10),
+                Padding(
+                  padding: EdgeInsets.only(top: 250, left: 16),
+                  child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      'Kelas & Jurusan',
+                      style: TextStyle(fontSize: 12, fontFamily: 'Roboto', fontWeight: FontWeight.w200),
+                    ),
+                  ),
+                ),
+                Gap(10),
+                Padding(
+                  padding: EdgeInsets.only(left: 30, right: 30),
+                  child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      'XII Rekayasa Perangkat Lunak B',
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontFamily: 'Roboto',
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ),
+                ),
+                Divider(
+                  color: Color(0xFFC7C7C7),
+                  thickness: 1,
+                  indent: 16,
+                  endIndent: 20,
+                ),
+                Padding(
+                  padding: EdgeInsets.only(left: 16),
+                  child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      'No Hp',
+                      style: TextStyle(fontSize: 12, fontFamily: 'Roboto', fontWeight: FontWeight.w200),
+                    ),
+                  ),
+                ),
+                Gap(10),
+                Padding(
+                  padding: EdgeInsets.only(left: 30, right: 30),
+                  child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      '03747483274747',
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontFamily: 'Roboto',
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ),
+                ),
+                Divider(
+                  color: Color(0xFFC7C7C7),
+                  thickness: 1,
+                  indent: 16,
+                  endIndent: 20,
+                ),
+                Padding(
+                  padding: EdgeInsets.only(left: 16),
+                  child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      'Email',
+                      style: TextStyle(fontSize: 12, fontFamily: 'Roboto', fontWeight: FontWeight.w200),
+                    ),
+                  ),
+                ),
+                Gap(10),
+                Padding(
+                  padding: EdgeInsets.only(left: 30, right: 30),
+                  child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      'Smkn4@gmail.sh.id',
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontFamily: 'Roboto',
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ),
+                ),
+                Divider(
+                  color: Color(0xFFC7C7C7),
+                  thickness: 1,
+                  indent: 16,
+                  endIndent: 20,
+                ),
+                Padding(
+                  padding: EdgeInsets.only(left: 16),
+                  child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      'Password',
+                      style: TextStyle(fontSize: 12, fontFamily: 'Roboto', fontWeight: FontWeight.w200),
+                    ),
+                  ),
+                ),
+                Gap(10),
+                Padding(
+                  padding: EdgeInsets.only(left: 30, right: 30),
+                  child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      '12345678',
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontFamily: 'Roboto',
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ),
+                ),
+                Divider(
+                  color: Color(0xFFC7C7C7),
+                  thickness: 1,
+                  indent: 16,
+                  endIndent: 20,
+                ),
+              ],
             ),
           )
         ],

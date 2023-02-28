@@ -44,8 +44,15 @@ dependencies:
   flutter_map: ^3.1.0
   latlong2: ^0.8.1
   geolocator: ^9.0.2
-  image_picker: ^0.8.6+1
   get_storage: ^2.0.3
+  flutter_spinbox: ^0.12.0
+  flutter_launcher_icons: ^0.12.0
+
+flutter_icons:
+  image_path: "assets/images/sastul.png"
+  android: true
+  ios: true
+  remove_alpha_ios: true
 
 dev_dependencies:
   flutter_test:
@@ -71,24 +78,22 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/images/logosastul.png
-    - assets/images/LogoSas.png
     - assets/icons/pencil.png
     - assets/icons/lamp.png
     - assets/icons/privacy.png
     - assets/icons/chat.png
     - assets/icons/out.png
-    - assets/icons/personedit.png
     - assets/icons/greencircle.png
     - assets/icons/logout.png
     - assets/icons/enter.png
     - assets/icons/clip.png
     - assets/icons/notes.png
     - assets/icons/person.png
-    - assets/icons/photo.png
     - assets/icons/datepicker.png
     - assets/icons/upload.png
     - assets/icons/redcircle.png
+    - assets/images/sastul.png
+    - assets/images/logotulisan.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

@@ -38,19 +38,11 @@ class UIPanduanSAS extends StatelessWidget {
                     children: const [
                       Text(
                         'Panduan Aplikasi SAS',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 20,
-                            fontFamily: 'Roboto',
-                            fontWeight: FontWeight.w600),
+                        style: TextStyle(color: Colors.white, fontSize: 20, fontFamily: 'Roboto', fontWeight: FontWeight.w600),
                       ),
                       Text(
                         'Sistem Absensi Sekolah',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 20,
-                            fontFamily: 'Roboto',
-                            fontWeight: FontWeight.w600),
+                        style: TextStyle(color: Colors.white, fontSize: 20, fontFamily: 'Roboto', fontWeight: FontWeight.w600),
                       ),
                     ],
                   ),
@@ -76,12 +68,7 @@ class UIPanduanSAS extends StatelessWidget {
                             padding: EdgeInsets.only(left: 20),
                             child: Text(
                               'Panduan Absen',
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 16,
-                                  fontFamily: 'Roboto',
-                                  fontWeight: FontWeight.w600,
-                                  letterSpacing: 2),
+                              style: TextStyle(color: Colors.black, fontSize: 16, fontFamily: 'Roboto', fontWeight: FontWeight.w600, letterSpacing: 2),
                             ),
                           ),
                           subtitle: Padding(
@@ -91,26 +78,14 @@ class UIPanduanSAS extends StatelessWidget {
                                 Padding(
                                   padding: const EdgeInsets.only(top: 10),
                                   child: Row(
-                                    children: const [
-                                      Expanded(
-                                          child: Text(
-                                              '• Kunjungi halaman dashboard kemudian tekan tombol Absen'))
-                                    ],
+                                    children: const [Expanded(child: Text('• Kunjungi halaman dashboard kemudian tekan tombol Absen'))],
                                   ),
                                 ),
                                 Row(
-                                  children: const [
-                                    Expanded(
-                                        child: Text(
-                                            '• Pastikan anda berada di jangkauan wilayah SMKN 4 Malang'))
-                                  ],
+                                  children: const [Expanded(child: Text('• Pastikan anda berada di jangkauan wilayah SMKN 4 Malang'))],
                                 ),
                                 Row(
-                                  children: const [
-                                    Expanded(
-                                        child: Text(
-                                            '• Kemudian tekan tombol kirim dan akan muncul notifikasi bahwa absensi berhasil !'))
-                                  ],
+                                  children: const [Expanded(child: Text('• Kemudian tekan tombol kirim dan akan muncul notifikasi bahwa absensi berhasil !'))],
                                 ),
                               ],
                             ),
@@ -137,12 +112,7 @@ class UIPanduanSAS extends StatelessWidget {
                             padding: EdgeInsets.only(left: 20),
                             child: Text(
                               'Panduan Izin',
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 16,
-                                  fontFamily: 'Roboto',
-                                  fontWeight: FontWeight.w600,
-                                  letterSpacing: 2),
+                              style: TextStyle(color: Colors.black, fontSize: 16, fontFamily: 'Roboto', fontWeight: FontWeight.w600, letterSpacing: 2),
                             ),
                           ),
                           subtitle: Padding(
@@ -152,38 +122,20 @@ class UIPanduanSAS extends StatelessWidget {
                                 Padding(
                                   padding: const EdgeInsets.only(top: 10),
                                   child: Row(
-                                    children: const [
-                                      Expanded(
-                                          child: Text(
-                                              '• Kunjungi halaman dashboard kemudian tekan tombol Izin'))
-                                    ],
+                                    children: const [Expanded(child: Text('• Kunjungi halaman dashboard kemudian tekan tombol Izin'))],
                                   ),
                                 ),
                                 Row(
-                                  children: const [
-                                    Expanded(
-                                        child: Text(
-                                            '• Pilih jenis izin yang tersedia pada halaman pengajuan izin'))
-                                  ],
+                                  children: const [Expanded(child: Text('• Pilih jenis izin yang tersedia pada halaman pengajuan izin'))],
                                 ),
                                 Row(
-                                  children: const [
-                                    Expanded(
-                                        child: Text(
-                                            '• Pilih tanggal mulai dan tanggal selesai izin pada formulir'))
-                                  ],
+                                  children: const [Expanded(child: Text('• Pilih tanggal mulai dan tanggal selesai izin pada formulir'))],
                                 ),
                                 Row(
-                                  children: const [
-                                    Expanded(child: Text('• Upload surat izin'))
-                                  ],
+                                  children: const [Expanded(child: Text('• Upload surat izin'))],
                                 ),
                                 Row(
-                                  children: const [
-                                    Expanded(
-                                        child: Text(
-                                            '• Kemudian tekan tombol kirim'))
-                                  ],
+                                  children: const [Expanded(child: Text('• Kemudian tekan tombol kirim'))],
                                 ),
                               ],
                             ),

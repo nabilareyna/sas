@@ -28,7 +28,7 @@ class UIDashboard extends GetView<CDashboard> {
                 child: Padding(
                   padding: const EdgeInsets.only(top: 30),
                   child: Image.asset(
-                    'assets/images/logosastul.png',
+                    'assets/images/sastul.png',
                     alignment: Alignment.topCenter,
                   ),
                 )),

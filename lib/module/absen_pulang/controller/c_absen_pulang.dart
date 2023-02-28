@@ -21,12 +21,26 @@ class CAbsenPulang extends GetxController {
 
   Future<void> insertPulang() async {
     try {
-      String uri = "http://127.0.0.1:8000/api/kehadirans/";
-      var res = await http.post(Uri.parse(uri),
-          body: {'NIS': '065', 'WAKTU': DateFormat("y-MM-d H:m:s").format(datePulang), 'LOKASI': 'lokasi', 'STATUS': 'h', 'ID_KETERANGAN': 'null'});
+      String uri = "https://sasapi.000webhostapp.com/api/kehadirans/";
+      var res = await http.post(Uri.parse(uri), body: {
+        'NIS': '212',
+        'WAKTU': DateFormat("y-MM-d H:m:s").format(datePulang),
+        'LOKASI': 'lokasi',
+        'STATUS': 'P',
+      });
       var response = jsonDecode(res.body);
       if (response["success"] == true) {
         print('terkirim');
+        Get.defaultDialog(
+            backgroundColor: Colors.white,
+            buttonColor: Colors.white,
+            title: 'Success!',
+            middleText: 'Presensi anda berhasil terkirim! Lihat Histori untuk lebih lengkapnya.',
+            textConfirm: 'OK',
+            onConfirm: () {
+              Get.toNamed(Routes.dashboard);
+            },
+            radius: 15);
         Get.toNamed(Routes.dashboard);
       } else {
         print('false');

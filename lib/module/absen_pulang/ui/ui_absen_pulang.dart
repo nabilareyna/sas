@@ -131,19 +131,21 @@ class UIAbsenPulang extends GetView<CAbsenPulang> {
               ),
               InkWell(
                 child: Container(
-                  color: Styles.primaryColor,
+                  color: int.parse(DateFormat.H().format(DateTime.now())) >= 14 ? Styles.yellowColor : Styles.primaryColor,
                   width: Get.width,
                   padding: EdgeInsets.symmetric(vertical: Const.parentMargin(x: 0.7)),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text('SUBMIT',
+                      Text(int.parse(DateFormat.H().format(DateTime.now())) >= 14 ? "Izin Pulang" : "Submit",
                           style: TextStyle(fontFamily: 'Montserrat', fontSize: 16, fontWeight: FontWeight.w600, color: Colors.white, letterSpacing: 2))
                     ],
                   ),
                 ),
                 onTap: () {
-                  controller.insertPulang();
+                  // if()
+                  // Get.toNamed(Routes.izinpulang);
+                  int.parse(DateFormat.H().format(DateTime.now())) >= 14 ? Get.toNamed(Routes.izinpulang) : controller.insertPulang();
                 },
               )
             ],

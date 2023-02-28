@@ -2,13 +2,24 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:sas/module/history/controller/c_history.dart';
+
 import 'package:gap/gap.dart';
+import 'package:get/get.dart';
+
+import 'package:intl/intl.dart';
+import 'package:sas/routes/routes.dart';
+
 import 'package:sas/utils/AppLayout.dart';
 import 'package:sas/utils/AppThemes.dart';
 import 'package:sas/utils/const.dart';
 
 class HistoryCard extends StatelessWidget {
-  const HistoryCard({Key? key}) : super(key: key);
+  String status, lokasi, bulan;
+  DateTime waktu;
+  // bulan;
+  HistoryCard(this.status, this.lokasi, this.waktu, this.bulan);
+  // const HistoryCard({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +39,15 @@ class HistoryCard extends StatelessWidget {
             Container(
               padding: EdgeInsets.symmetric(vertical: Const.siblingMargin(x: 5), horizontal: Const.siblingMargin(x: 1.5)),
               decoration: BoxDecoration(
-                  color: Styles.greenColor,
+                  color:
+                      // status == 'H' && int.parse(waktu.substring(11, 13)) > 07.00
+                      status == 'H'
+                          ? Styles.yellowColor
+                          : status == 'P' || status == 'H'
+                              ? Styles.greenColor
+                              : status == 'I' || status == 'S'
+                                  ? Styles.primaryColor
+                                  : Styles.redColor,
                   borderRadius:
                       BorderRadius.only(topLeft: Radius.circular(Const.siblingMargin(x: 1.5)), bottomLeft: Radius.circular(Const.siblingMargin(x: 1.5)))),
             ),
@@ -36,10 +55,11 @@ class HistoryCard extends StatelessWidget {
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text('JAN',
+                Text(bulan,
                     style: TextStyle(fontFamily: 'Roboto', fontSize: 18, fontWeight: FontWeight.w400, letterSpacing: 0.3, color: Styles.secondaryColor)),
                 Gap(5),
-                Text('10', style: TextStyle(fontFamily: 'Roboto', fontSize: 14, fontWeight: FontWeight.w700, letterSpacing: 0.3, color: Colors.black))
+                Text(DateFormat('d').format(waktu),
+                    style: TextStyle(fontFamily: 'Roboto', fontSize: 14, fontWeight: FontWeight.w700, letterSpacing: 0.3, color: Colors.black))
               ],
             ),
             Gap(18),
@@ -47,10 +67,11 @@ class HistoryCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text('Selasa', style: TextStyle(fontFamily: 'Roboto', fontSize: 16, fontWeight: FontWeight.w700, letterSpacing: 0.3, color: Colors.black)),
+                Text(DateFormat('EEEE').format(waktu),
+                    style: TextStyle(fontFamily: 'Roboto', fontSize: 16, fontWeight: FontWeight.w700, letterSpacing: 0.3, color: Colors.black)),
                 Gap(3),
                 Text(
-                  '06.45 WIB',
+                  DateFormat.Hm().format(waktu) + ' WIB',
                   style: TextStyle(fontFamily: 'Roboto', fontSize: 12, fontWeight: FontWeight.w400, letterSpacing: 2, color: Colors.black),
                 ),
                 Gap(3),
@@ -60,7 +81,18 @@ class HistoryCard extends StatelessWidget {
                 ),
                 Gap(3),
                 Text(
-                  'Tepat Waktu',
+                  // status == 'H' && int.parse(waktu.substring(11, 13)) > 07.00
+                  status == 'H'
+                      ? 'Terlambat'
+                      : status == 'P'
+                          ? 'Absen pulang'
+                          : status == 'H'
+                              ? 'Absen datang'
+                              : status == 'I'
+                                  ? 'Izin'
+                                  : status == 'S'
+                                      ? 'Sakit'
+                                      : '',
                   style: TextStyle(fontFamily: 'Roboto', fontSize: 11, fontWeight: FontWeight.w500, color: Styles.greenColor),
                 ),
               ],
