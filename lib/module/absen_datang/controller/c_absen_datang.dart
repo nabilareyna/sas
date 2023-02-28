@@ -18,6 +18,7 @@ class CAbsenDatang extends GetxController {
   final store = GetStorage();
   double recentLat = 0;
   double recentLong = 0;
+  double recentDistanceInMeters = 0;
   final loc = Location().obs;
   final mapController = MapController();
   DateTime date = DateTime.now();
@@ -48,7 +49,7 @@ class CAbsenDatang extends GetxController {
       loc.update((val) {
         loc.value.latitude = currentPosition.latitude;
         loc.value.longitude = currentPosition.longitude;
-        mapController.move(LatLng(loc.value.latitude, loc.value.longitude), mapController.zoom);
+
         getDistanceRadius();
       });
     }
@@ -94,6 +95,11 @@ class CAbsenDatang extends GetxController {
     print(distanceInMeters);
   }
 
+  Future<double> getRecentDistanceRadius() async {
+    recentDistanceInMeters = Geolocator.distanceBetween(-7.9889465, 112.62731, recentLat, recentLong);
+    return recentDistanceInMeters;
+  }
+
   double readRecentStoreLat() {
     recentLat = store.read('latitude');
     return recentLat;
@@ -104,14 +110,11 @@ class CAbsenDatang extends GetxController {
     return recentLong;
   }
 
-  Future<void> moveToCurrentPosition() async {
-    mapController.move(LatLng(recentLat, recentLong), mapController.zoom);
-  }
-
   @override
   void onInit() async {
     readRecentStoreLat();
     readRecentStoreLong();
+    getRecentDistanceRadius();
     super.onInit();
   }
 }

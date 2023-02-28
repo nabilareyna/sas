@@ -20,9 +20,9 @@ class CLoginPage extends GetxController {
   String nama = '';
   // comment salah satu apinya
   //if using android emulator
-  final String loginUrl = 'http://10.0.2.2:8000/api/siswas/';
+  // final String loginUrl = 'http://10.0.2.2:8000/api/siswas/';
   //if using web browser
-  //final String loginUrl = 'http://127.0.0.1:8000/api/siswas/';
+  final String loginUrl = 'http://127.0.0.1:8000/api/siswas/';
   String pass = '';
   RxString identifier = 'Unknown'.obs;
   String _imei = 'Unk';

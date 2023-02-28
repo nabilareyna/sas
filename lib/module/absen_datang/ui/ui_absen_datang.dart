@@ -39,7 +39,9 @@ class UIAbsenDatang extends GetView<CAbsenDatang> {
             FlutterMap(
               mapController: controller.mapController,
               options: MapOptions(
-                center: LatLng(controller.store.read('latitude'), controller.store.read('longitude')),
+                center: controller.loc.value.latitude == 0
+                    ? LatLng(controller.recentLat, controller.recentLong)
+                    : LatLng(controller.loc.value.latitude, controller.loc.value.longitude),
                 zoom: 16.50,
                 maxZoom: 19.0,
               ),
@@ -60,15 +62,9 @@ class UIAbsenDatang extends GetView<CAbsenDatang> {
                     Marker(
                         width: 100.0,
                         height: 100.0,
-                        point: LatLng(controller.store.read('latitude'), controller.store.read('longitude')),
-                        builder: (ctx) => Icon(
-                              Icons.location_on,
-                              color: Colors.red,
-                            )),
-                    Marker(
-                        width: 100.0,
-                        height: 100.0,
-                        point: LatLng(-7.9898333, 112.62731),
+                        point: controller.loc.value.latitude == 0
+                            ? LatLng(controller.recentLat, controller.recentLong)
+                            : LatLng(controller.loc.value.latitude, controller.loc.value.longitude),
                         builder: (ctx) => Icon(
                               Icons.location_on,
                               color: Colors.red,
@@ -134,10 +130,15 @@ class UIAbsenDatang extends GetView<CAbsenDatang> {
                         style: Styles.absenPageHeading,
                       ),
                       Gap(4),
-                      Text(
-                        '${controller.loc.value.distance}',
-                        style: Styles.absenPageSubHeading,
-                      )
+                      controller.loc.value.distance == 0
+                          ? Text(
+                              '${controller.recentDistanceInMeters}',
+                              style: Styles.absenPageSubHeading,
+                            )
+                          : Text(
+                              '${controller.loc.value.distance}',
+                              style: Styles.absenPageSubHeading,
+                            )
                     ],
                   ),
                 ),

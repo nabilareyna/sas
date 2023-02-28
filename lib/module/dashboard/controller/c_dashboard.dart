@@ -31,10 +31,9 @@ class CDashboard extends GetxController {
 
     if (permission == LocationPermission.always || permission == LocationPermission.whileInUse) {
       Position currentPosition = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.best);
-      print("Logitude: " + currentPosition.longitude.toString());
-      print("Latitude: " + currentPosition.latitude.toString());
-      store.write('latitude', currentPosition.latitude);
-      store.write('longitude', currentPosition.latitude);
+      setStore(currentPosition.latitude, currentPosition.longitude);
+      onSchoolArea(currentPosition.latitude, currentPosition.longitude);
+      print(onSchoolArea(currentPosition.latitude, currentPosition.longitude));
       loc.update((val) {
         loc.value.latitude = currentPosition.latitude;
         loc.value.longitude = currentPosition.longitude;
@@ -43,9 +42,14 @@ class CDashboard extends GetxController {
     }
   }
 
-  void setStore() {
-    store.write('latitude', loc.value.latitude);
-    store.write('longitude', loc.value.longitude);
+  static Future<bool> onSchoolArea(double lat, double long) async {
+    double distance = Geolocator.distanceBetween(-7.9889465, 112.62731, lat, long);
+    return (distance <= 100) ? true : false;
+  }
+
+  void setStore(double lat, double long) {
+    store.write('latitude', lat);
+    store.write('longitude', long);
   }
 
   @override

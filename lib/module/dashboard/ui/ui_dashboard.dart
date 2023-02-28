@@ -342,13 +342,34 @@ class UIDashboard extends GetView<CDashboard> {
                             borderStrokeWidth: 1,
                           )
                         ],
-                      )
+                      ),
+                      CircleLayer(
+                        circles: [
+                          CircleMarker(
+                            point: LatLng(-7.989298, 112.627438),
+                            radius: 35,
+                            borderColor: const Color(0xFFB71C1C),
+                            color: Colors.redAccent.withOpacity(0.2),
+                            borderStrokeWidth: 1,
+                          )
+                        ],
+                      ),
+                      CircleLayer(
+                        circles: [
+                          CircleMarker(
+                            point: LatLng(-7.988676, 112.627666),
+                            radius: 35,
+                            borderColor: const Color(0xFFB71C1C),
+                            color: Colors.redAccent.withOpacity(0.2),
+                            borderStrokeWidth: 1,
+                          )
+                        ],
+                      ),
                     ],
                   ),
                 ),
               ),
             ),
-            Text('${controller.store.read('latitude')}')
           ],
         );
       },

@@ -34,7 +34,13 @@ class UIAbsenPulang extends GetView<CAbsenPulang> {
       body: Stack(
         children: [
           FlutterMap(
-            options: MapOptions(center: LatLng(-7.9889465, 112.6278706), zoom: 16.50, maxZoom: 19.0),
+            mapController: controller.mapController,
+            options: MapOptions(
+                center: controller.loc.value.latitude == 0
+                    ? LatLng(controller.recentLat, controller.recentLong)
+                    : LatLng(controller.loc.value.latitude, controller.loc.value.longitude),
+                zoom: 16.50,
+                maxZoom: 19.0),
             nonRotatedChildren: [
               AttributionWidget.defaultWidget(
                 source: '© OpenStreetMap contributors',
@@ -52,13 +58,26 @@ class UIAbsenPulang extends GetView<CAbsenPulang> {
                   Marker(
                       width: 100.0,
                       height: 100.0,
-                      point: LatLng(49.5, -0.09),
+                      point: controller.loc.value.latitude == 0
+                          ? LatLng(controller.recentLat, controller.recentLong)
+                          : LatLng(controller.loc.value.latitude, controller.loc.value.longitude),
                       builder: (ctx) => Icon(
                             Icons.location_on,
                             color: Colors.red,
                           ))
                 ],
-              )
+              ),
+              CircleLayer(
+                circles: [
+                  CircleMarker(
+                      point: LatLng(-7.9898333, 112.62731),
+                      radius: 25,
+                      borderColor: const Color(0xFFB71C1C),
+                      color: Colors.redAccent.withOpacity(0.2),
+                      borderStrokeWidth: 1,
+                      useRadiusInMeter: true)
+                ],
+              ),
             ],
           ),
           Column(
