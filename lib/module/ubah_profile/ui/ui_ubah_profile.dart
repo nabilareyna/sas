@@ -125,27 +125,27 @@ class UIUbahProfile extends GetView<CUbahProfile> {
               ),
             ],
           ),
-          const Padding(
+          Padding(
             padding: EdgeInsets.only(top: 220),
             child: Divider(
               color: Color(0xFFC7C7C7E5),
               thickness: 10,
             ),
           ),
-          const Padding(
+          Padding(
             padding: EdgeInsets.only(top: 250, left: 16),
             child: Text(
-              'Kelas',
+              'Kelas - Jurusan',
               style: TextStyle(
                   fontSize: 12,
                   fontFamily: 'Roboto',
                   fontWeight: FontWeight.w200),
             ),
           ),
-          const Padding(
+          Padding(
             padding: EdgeInsets.only(top: 272, left: 30),
             child: Text(
-              'XII',
+              'XII Rekayasa Perangkat Lunak B',
               style: TextStyle(
                 fontSize: 14,
                 fontFamily: 'Roboto',
@@ -153,7 +153,7 @@ class UIUbahProfile extends GetView<CUbahProfile> {
               ),
             ),
           ),
-          const Padding(
+          Padding(
             padding: EdgeInsets.only(top: 289),
             child: Divider(
               color: Color(0xFFC7C7C7),
@@ -162,68 +162,8 @@ class UIUbahProfile extends GetView<CUbahProfile> {
               endIndent: 20,
             ),
           ),
-          const Padding(
+          Padding(
             padding: EdgeInsets.only(top: 316, left: 16),
-            child: Text(
-              'Jurusan',
-              style: TextStyle(
-                  fontSize: 12,
-                  fontFamily: 'Roboto',
-                  fontWeight: FontWeight.w200),
-            ),
-          ),
-          const Padding(
-            padding: EdgeInsets.only(top: 338, left: 30),
-            child: Text(
-              'Rekayasa Perangkat Lunak',
-              style: TextStyle(
-                fontSize: 14,
-                fontFamily: 'Roboto',
-                fontWeight: FontWeight.w500,
-              ),
-            ),
-          ),
-          const Padding(
-            padding: EdgeInsets.only(top: 355),
-            child: Divider(
-              color: Color(0xFFC7C7C7),
-              thickness: 1,
-              indent: 16,
-              endIndent: 20,
-            ),
-          ),
-          const Padding(
-            padding: EdgeInsets.only(top: 382, left: 16),
-            child: Text(
-              'Jenis Kelamin',
-              style: TextStyle(
-                  fontSize: 12,
-                  fontFamily: 'Roboto',
-                  fontWeight: FontWeight.w200),
-            ),
-          ),
-          const Padding(
-            padding: EdgeInsets.only(top: 404, left: 30),
-            child: Text(
-              'Laki - laki',
-              style: TextStyle(
-                fontSize: 14,
-                fontFamily: 'Roboto',
-                fontWeight: FontWeight.w500,
-              ),
-            ),
-          ),
-          const Padding(
-            padding: EdgeInsets.only(top: 421),
-            child: Divider(
-              color: Color(0xFFC7C7C7),
-              thickness: 1,
-              indent: 16,
-              endIndent: 20,
-            ),
-          ),
-          const Padding(
-            padding: EdgeInsets.only(top: 448, left: 16),
             child: Text(
               'Nomor Hp',
               style: TextStyle(
@@ -232,8 +172,8 @@ class UIUbahProfile extends GetView<CUbahProfile> {
                   fontWeight: FontWeight.w200),
             ),
           ),
-          const Padding(
-            padding: EdgeInsets.only(top: 470, left: 30),
+          Padding(
+            padding: EdgeInsets.only(top: 338, left: 30),
             child: Text(
               '087743314458',
               style: TextStyle(
@@ -243,7 +183,67 @@ class UIUbahProfile extends GetView<CUbahProfile> {
               ),
             ),
           ),
-          const Padding(
+          Padding(
+            padding: EdgeInsets.only(top: 355),
+            child: Divider(
+              color: Color(0xFFC7C7C7),
+              thickness: 1,
+              indent: 16,
+              endIndent: 20,
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.only(top: 382, left: 16),
+            child: Text(
+              'Email',
+              style: TextStyle(
+                  fontSize: 12,
+                  fontFamily: 'Roboto',
+                  fontWeight: FontWeight.w200),
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.only(top: 404, left: 30),
+            child: Text(
+              '@gamil',
+              style: TextStyle(
+                fontSize: 14,
+                fontFamily: 'Roboto',
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.only(top: 421),
+            child: Divider(
+              color: Color(0xFFC7C7C7),
+              thickness: 1,
+              indent: 16,
+              endIndent: 20,
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.only(top: 448, left: 16),
+            child: Text(
+              'Kode Perangkat Akun',
+              style: TextStyle(
+                  fontSize: 12,
+                  fontFamily: 'Roboto',
+                  fontWeight: FontWeight.w200),
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.only(top: 470, left: 30),
+            child: Text(
+              'kwokowmdow',
+              style: TextStyle(
+                fontSize: 14,
+                fontFamily: 'Roboto',
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+          ),
+          Padding(
             padding: EdgeInsets.only(top: 487),
             child: Divider(
               color: Color(0xFFC7C7C7),

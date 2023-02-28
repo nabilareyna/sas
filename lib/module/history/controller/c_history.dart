@@ -10,14 +10,10 @@ import 'package:get/get.dart';
 class CHistory extends GetxController {
   late Rx<TabController> tabController;
 
-  // Rxn<String> selectedValueBulan = Rxn<String>();
-  // Rxn<String> selectedValueStatus = Rxn<String>();
   RxInt nilaiBulans = 0.obs;
   RxInt nilaiStatus = 0.obs;
-  RxInt jmlhadir = 0.obs;
+  RxInt jmlHadir = 0.obs;
   RxInt jmlIzin = 0.obs;
-  String jmlH = '';
-  int jmlI = 0;
 
   List<String> bulans = [
     'Pilih..',
@@ -39,9 +35,6 @@ class CHistory extends GetxController {
   RxBool loadingHistori = true.obs;
   List histori = [];
 
-  void onSelectBulan(String value) {}
-  void onSelectSat(String value) {}
-
   @override
   void onInit() {
     // TODO: implement onInit
@@ -55,7 +48,7 @@ class CHistory extends GetxController {
 
     String uri = "http://127.0.0.1:8000/api/histori/";
     var res = await http.post(Uri.parse(uri), body: {
-      'NIS': '212',
+      'NIS': '212999',
       'STATUS': nilaiStatus.hashCode.toString(),
       'BULAN': nilaiBulans.hashCode.toString()
     });
@@ -80,7 +73,7 @@ class CHistory extends GetxController {
 
     String uri = "http://127.0.0.1:8000/api/jmlhistori/";
     var res = await http.post(Uri.parse(uri), body: {
-      'NIS': '212',
+      'NIS': '212999',
       'STATUS': nilaiStatus.hashCode.toString(),
       'BULAN': nilaiBulans.hashCode.toString()
     });
@@ -88,10 +81,11 @@ class CHistory extends GetxController {
     var data = jsonDecode(res.body)['data'];
     try {
       if (response["success"] == true) {
-        jmlIzin = data['jmlIzin'].obs;
-        jmlH = data['jmlHadir'];
+        jmlIzin = data[0]['jmlIzin'].hashCode.obs;
+        jmlHadir = data[0]['jmlHadir'].hashCode.obs;
         // jmlhadir = int.parse(data[0]['jmlHadir'].toString()).obs;
-        print(jmlH);
+        print(jmlIzin);
+        print(jmlHadir);
       } else {
         print('Tidak ditemukan');
       }

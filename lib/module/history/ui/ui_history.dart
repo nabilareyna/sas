@@ -146,12 +146,12 @@ class UIHistory extends GetView<CHistory> {
                     children: [
                       AbsentSummary(
                         title: 'Jumlah Hadir',
-                        jumlah: int.parse(controller.jmlhadir.toString()),
+                        jumlah: controller.jmlHadir.value,
                       ),
-                      const AbsentSummary(
+                      AbsentSummary(
                         title: 'Jumlah Izin & Sakit',
                         // jumlah: int.parse(controller.jmlIzin.toString()),
-                        jumlah: 9,
+                        jumlah: controller.jmlIzin.value,
                       )
                     ],
                   ),
