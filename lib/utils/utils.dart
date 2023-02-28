@@ -1,11 +1,13 @@
+import 'package:geolocator/geolocator.dart';
+
 class Utils {
   static bool onTimeHadir(DateTime time) {
     final startTime = DateTime(
       DateTime.now().year,
       DateTime.now().month,
       DateTime.now().day,
-      6,
-      00,
+      5,
+      30,
     );
     final endTime = DateTime(
       DateTime.now().year,
@@ -35,5 +37,10 @@ class Utils {
     );
     if (time.isAfter(startTime) && time.isBefore(endTime)) return true;
     return false;
+  }
+
+  static Future<bool> onSchoolArea(lat, long) async {
+    double distanceInMeter = Geolocator.distanceBetween(-7.9889465, 112.62731, lat, long);
+    return (distanceInMeter <= 115) ? true : false;
   }
 }

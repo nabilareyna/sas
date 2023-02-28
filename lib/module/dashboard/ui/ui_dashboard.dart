@@ -274,60 +274,47 @@ class UIDashboard extends GetView<CDashboard> {
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(right: 15, left: 15, top: 430),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  controller.isOnArea == true
-                      ? Row(
-                          children: const [
-                            ImageIcon(
-                              AssetImage('assets/icons/greencircle.png'),
-                              size: 13.0,
-                              color: Color(0xFF1CC16B),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(left: 10),
-                              child: Text(
-                                'Anda berada dalam jangkauan lokasi titik absensi',
+            Obx(
+              () => Padding(
+                padding: const EdgeInsets.only(right: 15, left: 15, top: 430),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    controller.loc.value.isOnArea
+                        ? ImageIcon(
+                            AssetImage('assets/icons/greencircle.png'),
+                            size: 13.0,
+                            color: Color(0xFF1CC16B),
+                          )
+                        : ImageIcon(
+                            AssetImage('assets/icons/redcircle.png'),
+                            size: 13.0,
+                            color: Colors.red,
+                          ),
+                    Padding(
+                        padding: EdgeInsets.only(left: 10),
+                        child: controller.loc.value.isOnArea
+                            ? Text('Anda berada dalam jangkauan lokasi titik absensi',
                                 style: TextStyle(
                                   fontSize: 10,
                                   fontWeight: FontWeight.w400,
                                   fontFamily: 'Roboto',
-                                ),
-                              ),
-                            ),
-                          ],
-                        )
-                      : Row(
-                          children: const [
-                            ImageIcon(
-                              AssetImage('assets/icons/redcircle.png'),
-                              size: 13.0,
-                              color: Color(0xFF1CC16B),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(left: 10),
-                              child: Text(
-                                'Anda berada di luar jangkauan lokasi titik absensi',
+                                ))
+                            : Text('Anda berada di luar jangkauan lokasi titik absensi',
                                 style: TextStyle(
                                   fontSize: 10,
                                   fontWeight: FontWeight.w400,
                                   fontFamily: 'Roboto',
-                                ),
-                              ),
-                            ),
-                          ],
-                        )
-                ],
+                                ))),
+                  ],
+                ),
               ),
             ),
             Padding(
               padding: const EdgeInsets.only(top: 455),
               child: Container(
                 width: MediaQuery.of(context).size.width,
-                height: 170,
+                height: 300,
                 decoration: const BoxDecoration(),
                 child: Obx(
                   () => FlutterMap(
@@ -382,7 +369,7 @@ class UIDashboard extends GetView<CDashboard> {
                       CircleLayer(
                         circles: [
                           CircleMarker(
-                            point: LatLng(-7.988676, 112.627666),
+                            point: LatLng(-7.9888, 112.6276),
                             radius: 35,
                             borderColor: const Color(0xFFB71C1C),
                             color: Colors.redAccent.withOpacity(0.2),

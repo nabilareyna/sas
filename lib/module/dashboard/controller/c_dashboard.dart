@@ -4,11 +4,11 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:sas/model/location.dart';
+import 'package:sas/utils/utils.dart';
 
 class CDashboard extends GetxController {
   final store = GetStorage();
   final loc = Location().obs;
-  bool isOnArea = false;
   final mapController = MapController();
 
   Future<void> getCurrentPosition() async {
@@ -33,22 +33,13 @@ class CDashboard extends GetxController {
     if (permission == LocationPermission.always || permission == LocationPermission.whileInUse) {
       Position currentPosition = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.best);
       setStore(currentPosition.latitude, currentPosition.longitude);
-      onSchoolArea(currentPosition.latitude, currentPosition.longitude);
-      loc.update((val) {
+      loc.update((val) async {
         loc.value.latitude = currentPosition.latitude;
         loc.value.longitude = currentPosition.longitude;
+        loc.value.isOnArea = await Utils.onSchoolArea(currentPosition.latitude, currentPosition.longitude);
         mapController.move(LatLng(loc.value.latitude, loc.value.longitude), mapController.zoom);
       });
     }
-  }
-
-  Future<bool> onSchoolArea(double lat, double long) async {
-    double distance = Geolocator.distanceBetween(-7.9889465, 112.62731, lat, long);
-    if (distance <= 100) {
-      isOnArea = true;
-    }
-    print(isOnArea);
-    return isOnArea;
   }
 
   void setStore(double lat, double long) {
