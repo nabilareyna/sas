@@ -56,7 +56,7 @@ class CLoginPage extends GetxController {
       final response = jsonDecode(res.body);
       final message = jsonDecode(res.body)['message'];
       if (response["success"] == true) {
-        ToastWidget.showToast(type: ToastWidgetType.ERROR, message: message);
+        ToastWidget.showToast(type: ToastWidgetType.SUCCESS, message: message);
         Get.toNamed(Routes.dashboard);
       } else {
         ToastWidget.showToast(type: ToastWidgetType.ERROR, message: message);

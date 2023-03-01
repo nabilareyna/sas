@@ -37,7 +37,9 @@ class HistoryCard extends StatelessWidget {
         child: Row(
           children: [
             Container(
-              padding: EdgeInsets.symmetric(vertical: Const.siblingMargin(x: 5), horizontal: Const.siblingMargin(x: 1.5)),
+              padding: EdgeInsets.symmetric(
+                  vertical: Const.siblingMargin(x: 5),
+                  horizontal: Const.siblingMargin(x: 1.5)),
               decoration: BoxDecoration(
                   color:
                       // status == 'H' && int.parse(waktu.substring(11, 13)) > 07.00
@@ -48,18 +50,30 @@ class HistoryCard extends StatelessWidget {
                               : status == 'I' || status == 'S'
                                   ? Styles.primaryColor
                                   : Styles.redColor,
-                  borderRadius:
-                      BorderRadius.only(topLeft: Radius.circular(Const.siblingMargin(x: 1.5)), bottomLeft: Radius.circular(Const.siblingMargin(x: 1.5)))),
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(Const.siblingMargin(x: 1.5)),
+                      bottomLeft:
+                          Radius.circular(Const.siblingMargin(x: 1.5)))),
             ),
             Gap(25),
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(bulan,
-                    style: TextStyle(fontFamily: 'Roboto', fontSize: 18, fontWeight: FontWeight.w400, letterSpacing: 0.3, color: Styles.secondaryColor)),
+                    style: TextStyle(
+                        fontFamily: 'Roboto',
+                        fontSize: 18,
+                        fontWeight: FontWeight.w400,
+                        letterSpacing: 0.3,
+                        color: Styles.secondaryColor)),
                 Gap(5),
                 Text(DateFormat('d').format(waktu),
-                    style: TextStyle(fontFamily: 'Roboto', fontSize: 14, fontWeight: FontWeight.w700, letterSpacing: 0.3, color: Colors.black))
+                    style: TextStyle(
+                        fontFamily: 'Roboto',
+                        fontSize: 14,
+                        fontWeight: FontWeight.w700,
+                        letterSpacing: 0.3,
+                        color: Colors.black))
               ],
             ),
             Gap(18),
@@ -68,16 +82,30 @@ class HistoryCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(DateFormat('EEEE').format(waktu),
-                    style: TextStyle(fontFamily: 'Roboto', fontSize: 16, fontWeight: FontWeight.w700, letterSpacing: 0.3, color: Colors.black)),
+                    style: TextStyle(
+                        fontFamily: 'Roboto',
+                        fontSize: 16,
+                        fontWeight: FontWeight.w700,
+                        letterSpacing: 0.3,
+                        color: Colors.black)),
                 Gap(3),
                 Text(
                   DateFormat.Hm().format(waktu) + ' WIB',
-                  style: TextStyle(fontFamily: 'Roboto', fontSize: 12, fontWeight: FontWeight.w400, letterSpacing: 2, color: Colors.black),
+                  style: TextStyle(
+                      fontFamily: 'Roboto',
+                      fontSize: 12,
+                      fontWeight: FontWeight.w400,
+                      letterSpacing: 2,
+                      color: Colors.black),
                 ),
                 Gap(3),
                 Text(
                   'Dalam Kawasan Sekolah',
-                  style: TextStyle(fontFamily: 'Roboto', fontSize: 11, fontWeight: FontWeight.w400, color: Colors.black),
+                  style: TextStyle(
+                      fontFamily: 'Roboto',
+                      fontSize: 11,
+                      fontWeight: FontWeight.w400,
+                      color: Colors.black),
                 ),
                 Gap(3),
                 Text(
@@ -93,7 +121,11 @@ class HistoryCard extends StatelessWidget {
                                   : status == 'S'
                                       ? 'Sakit'
                                       : '',
-                  style: TextStyle(fontFamily: 'Roboto', fontSize: 11, fontWeight: FontWeight.w500, color: Styles.greenColor),
+                  style: TextStyle(
+                      fontFamily: 'Roboto',
+                      fontSize: 11,
+                      fontWeight: FontWeight.w500,
+                      color: Styles.greenColor),
                 ),
               ],
             )

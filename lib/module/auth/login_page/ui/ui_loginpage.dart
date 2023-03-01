@@ -27,7 +27,8 @@ class UILoginPage extends GetView<CLoginPage> {
                 padding: EdgeInsets.symmetric(horizontal: Const.parentMargin()),
                 child: Column(
                   children: [
-                    const Gap(80),
+                    // const Gap(80),
+                    SizedBox(height: MediaQuery.of(context).size.height * 0.15),
                     Center(
                       child: SizedBox(
                           width: size.width,
@@ -83,21 +84,23 @@ class UILoginPage extends GetView<CLoginPage> {
                             ),
                           ]),
                         ),
-                        const Gap(65),
+                        // const Gap(65),
+                        SizedBox(
+                            height: MediaQuery.of(context).size.height * 0.05),
                         InkWell(
                           child: const WButtonLogin(),
                           onTap: () {
-                            if (controller.namaController.text.isEmpty) {
-                              ToastWidget.showToast(
-                                  type: ToastWidgetType.ERROR,
-                                  message: 'Username tidak boleh kosong');
-                            } else if (controller.passController.text.isEmpty) {
-                              ToastWidget.showToast(
-                                  type: ToastWidgetType.ERROR,
-                                  message: 'Password tidak boleh kosong');
-                            } else {
+                            // if (controller.namaController.text.isEmpty) {
+                            //   ToastWidget.showToast(
+                            //       type: ToastWidgetType.ERROR,
+                            //       message: 'Username tidak boleh kosong');
+                            // } else if (controller.passController.text.isEmpty) {
+                            //   ToastWidget.showToast(
+                            //       type: ToastWidgetType.ERROR,
+                            //       message: 'Password tidak boleh kosong');
+                            // } else {
                             controller.setLogin(controller.namaController.text, controller.passController.text);
-                            }
+                            // }
                           },
                         )
                       ],
