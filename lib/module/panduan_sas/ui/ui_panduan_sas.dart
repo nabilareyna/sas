@@ -11,7 +11,7 @@ class UIPanduanSAS extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('Panduan', style: Styles.appBarTitle),
+        title: Text('Panduan SAS', style: Styles.appBarTitle),
         backgroundColor: Colors.white,
         leading: IconButton(
           icon: Icon(
@@ -84,8 +84,15 @@ class UIPanduanSAS extends StatelessWidget {
                                 Row(
                                   children: const [Expanded(child: Text('• Pastikan anda berada di jangkauan wilayah SMKN 4 Malang'))],
                                 ),
-                                Row(
-                                  children: const [Expanded(child: Text('• Kemudian tekan tombol kirim dan akan muncul notifikasi bahwa absensi berhasil !'))],
+                                Padding(
+                                  padding: const EdgeInsets.only(bottom: 20),
+                                  child: Row(
+                                    children: const [
+                                      Expanded(
+                                          child: Text(
+                                              '• Kemudian tekan tombol kirim dan akan muncul notifikasi bahwa absensi berhasil !'))
+                                    ],
+                                  ),
                                 ),
                               ],
                             ),
@@ -134,8 +141,15 @@ class UIPanduanSAS extends StatelessWidget {
                                 Row(
                                   children: const [Expanded(child: Text('• Upload surat izin'))],
                                 ),
-                                Row(
-                                  children: const [Expanded(child: Text('• Kemudian tekan tombol kirim'))],
+                                Padding(
+                                  padding: const EdgeInsets.only(bottom: 20),
+                                  child: Row(
+                                    children: const [
+                                      Expanded(
+                                          child: Text(
+                                              '• Kemudian tekan tombol kirim'))
+                                    ],
+                                  ),
                                 ),
                               ],
                             ),

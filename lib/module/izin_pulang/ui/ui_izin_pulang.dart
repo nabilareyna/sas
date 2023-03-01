@@ -30,7 +30,9 @@ class UIIzinPulang extends GetView<CIzinPulang> {
           onPressed: () => Get.toNamed(Routes.absenpulang),
         ),
       ),
-      body: Stack(
+        body: SingleChildScrollView(
+          controller: ScrollController(),
+          child: Stack(
         // key: _fromkey,
         children: [
           Column(
@@ -68,7 +70,7 @@ class UIIzinPulang extends GetView<CIzinPulang> {
                       children: [
                         Expanded(
                           child: Padding(
-                            padding: const EdgeInsets.only(bottom: 15),
+                                padding: const EdgeInsets.only(bottom: 8),
                             child: TextField(
                               controller: controller.tanggalIzin,
                               readOnly: true,
@@ -148,7 +150,10 @@ class UIIzinPulang extends GetView<CIzinPulang> {
                   ),
                 ),
               ),
-              const Gap(330),
+                  // const Gap(330),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.width * 1.04,
+                  ),
               InkWell(
                 child: const WButtonFormIzin(),
                 onTap: () {
@@ -166,6 +171,7 @@ class UIIzinPulang extends GetView<CIzinPulang> {
           )
         ],
       ),
+        )
     );
   }
 }

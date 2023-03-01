@@ -59,7 +59,7 @@ class CFormIzin extends GetxController {
     try {
       String uri = "https://sasapi.000webhostapp.com/api/kehadirans/";
       var res = await http.post(Uri.parse(uri), body: {
-        'NIS': '212999',
+        'NIS': '444',
         'WAKTU': DateFormat("y-MM-d H:m:s").format(dateizin),
         'LOKASI': 'lokasi',
         'KETERANGAN': textKeterangan,

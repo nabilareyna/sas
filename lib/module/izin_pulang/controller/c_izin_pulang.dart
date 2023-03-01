@@ -57,7 +57,7 @@ class CIzinPulang extends GetxController {
     try {
       String uri = "https://sasapi.000webhostapp.com/api/kehadirans/";
       var resb = await http.post(Uri.parse(uri), body: {
-        'NIS': '065',
+        'NIS': '555',
         'WAKTU': DateFormat("y-MM-d H:m:s").format(dateizin),
         'LOKASI': 'lokasi',
         'KETERANGAN': textKeterangan,

@@ -101,9 +101,13 @@ class UIAbsenPulang extends GetView<CAbsenPulang> {
                     Row(
                       children: [
                         Text(
-                          DateFormat("d-M-yyyy" + ", ").format(controller.datePulang),
+                          DateFormat("d-M-yyyy" + ", ").format(DateTime.now()),
                           style: Styles.absenPageSubHeading,
                         ),
+                        Text(
+                          DateFormat.Hm().format(DateTime.now()),
+                          style: Styles.absenPageSubHeading,
+                        )
                       ],
                     ),
                     Gap(6),
@@ -122,10 +126,15 @@ class UIAbsenPulang extends GetView<CAbsenPulang> {
                       style: Styles.absenPageHeading,
                     ),
                     Gap(4),
-                    Text(
-                      '0 - 172.77 m (566.84 ft)',
-                      style: Styles.absenPageSubHeading,
-                    )
+                    controller.loc.value.distance == 0
+                        ? Text(
+                            '${controller.recentDistanceInMeters}',
+                            style: Styles.absenPageSubHeading,
+                          )
+                        : Text(
+                            '${controller.loc.value.distance}',
+                            style: Styles.absenPageSubHeading,
+                          )
                   ],
                 ),
               ),
@@ -150,7 +159,7 @@ class UIAbsenPulang extends GetView<CAbsenPulang> {
                 onTap: () {
                   // if()
                   // Get.toNamed(Routes.izinpulang);
-                  int.parse(DateFormat.H().format(DateTime.now())) <= 14
+                  int.parse(DateFormat.H().format(DateTime.now())) <= 23
                       ? Get.toNamed(Routes.izinpulang)
                       : controller.insertPulang();
                 },

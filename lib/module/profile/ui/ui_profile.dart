@@ -21,7 +21,7 @@ class UIProfile extends GetView<CHistory> {
         return Stack(
           children: [
             Container(
-              height: MediaQuery.of(context).size.height * 0.35,
+              height: MediaQuery.of(context).size.height * 0.3,
               width: MediaQuery.of(context).size.width,
               decoration: const BoxDecoration(
                 color: Color(0xFF61A2BE),
@@ -77,7 +77,8 @@ class UIProfile extends GetView<CHistory> {
                     child: Container(
                   color: Colors.white,
                   width: MediaQuery.of(context).size.width,
-                  height: 50,
+                  // height: 50,
+                  height: MediaQuery.of(context).size.width * 0.14,
                   child: Padding(
                     padding: const EdgeInsets.only(left: 20),
                     child: Row(
@@ -108,7 +109,8 @@ class UIProfile extends GetView<CHistory> {
                   child: Container(
                 color: const Color.fromRGBO(196, 196, 196, 0.12),
                 width: MediaQuery.of(context).size.width,
-                height: 30,
+                // height: 30,
+                height: MediaQuery.of(context).size.width * 0.08,
                 child: Padding(
                   padding: const EdgeInsets.only(left: 20),
                   child: Row(
@@ -134,7 +136,7 @@ class UIProfile extends GetView<CHistory> {
                     child: Container(
                   color: Colors.white,
                   width: MediaQuery.of(context).size.width,
-                  height: 50,
+                  height: MediaQuery.of(context).size.width * 0.12,
                   child: Padding(
                     padding: const EdgeInsets.only(left: 20),
                     child: Row(
@@ -169,7 +171,7 @@ class UIProfile extends GetView<CHistory> {
                     child: Container(
                   color: Colors.white,
                   width: MediaQuery.of(context).size.width,
-                  height: 50,
+                  height: MediaQuery.of(context).size.width * 0.11,
                   child: Padding(
                     padding: const EdgeInsets.only(left: 20),
                     child: Row(
@@ -204,7 +206,7 @@ class UIProfile extends GetView<CHistory> {
                     child: Container(
                   color: Colors.white,
                   width: MediaQuery.of(context).size.width,
-                  height: 50,
+                  height: MediaQuery.of(context).size.width * 0.11,
                   child: Padding(
                     padding: const EdgeInsets.only(left: 20),
                     child: Row(
@@ -235,7 +237,7 @@ class UIProfile extends GetView<CHistory> {
                   child: Container(
                 color: const Color.fromRGBO(196, 196, 196, 0.12),
                 width: MediaQuery.of(context).size.width,
-                height: 30,
+                height: MediaQuery.of(context).size.width * 0.08,
                 child: Padding(
                   padding: const EdgeInsets.only(left: 20),
                   child: Row(
@@ -257,7 +259,7 @@ class UIProfile extends GetView<CHistory> {
                   child: Container(
                 color: Colors.white,
                 width: MediaQuery.of(context).size.width,
-                height: 50,
+                height: MediaQuery.of(context).size.width * 0.12,
                 child: Padding(
                   padding: const EdgeInsets.only(left: 20),
                   child: Row(

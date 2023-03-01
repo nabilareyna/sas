@@ -13,6 +13,7 @@ class AbsentSummary extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: MediaQuery.of(context).size.width * 0.4,
       padding: EdgeInsets.symmetric(vertical: Const.siblingMargin(x: 3), horizontal: Const.siblingMargin(x: 4)),
       decoration: BoxDecoration(
           border: Border.all(color: Styles.secondaryGreyColor),
@@ -23,8 +24,9 @@ class AbsentSummary extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
+            width: MediaQuery.of(context).size.width * 0.1,
             alignment: Alignment.center,
-            margin: EdgeInsets.all(Const.siblingMargin(x: 2)),
+            margin: EdgeInsets.all(Const.siblingMargin(x: 1)),
             child: Image.asset(
               'assets/icons/notes.png',
               fit: BoxFit.contain,
@@ -37,7 +39,10 @@ class AbsentSummary extends StatelessWidget {
               Text(jumlah.toString(), style: TextStyle(fontFamily: 'Inter', fontSize: 26, fontWeight: FontWeight.w700)),
               Text(
                 title,
-                style: TextStyle(fontFamily: 'Roboto', fontSize: 10, fontWeight: FontWeight.w400),
+                style: TextStyle(
+                    fontFamily: 'Roboto',
+                    fontSize: 10,
+                    fontWeight: FontWeight.w400),
                 softWrap: true,
               )
             ],
