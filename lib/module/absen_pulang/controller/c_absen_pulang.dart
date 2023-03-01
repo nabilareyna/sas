@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:async';
+import 'dart:math';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
@@ -7,48 +8,16 @@ import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
+import 'package:latlong2/latlong.dart';
+import 'package:sas/component/widget/toast_widget.dart';
 import 'package:sas/model/location.dart';
 import 'package:sas/routes/routes.dart';
 
 class CAbsenPulang extends GetxController {
   final store = GetStorage();
-  double recentLat = 0;
-  double recentLong = 0;
-  double recentDistanceInMeters = 0;
   final loc = Location().obs;
   final mapController = MapController();
   DateTime datePulang = DateTime.now();
-
-  Future<void> insertPulang() async {
-    try {
-      String uri = "https://sasapi.000webhostapp.com/api/kehadirans/";
-      var res = await http.post(Uri.parse(uri), body: {
-        'NIS': '212',
-        'WAKTU': DateFormat("y-MM-d H:m:s").format(datePulang),
-        'LOKASI': 'lokasi',
-        'STATUS': 'P',
-      });
-      var response = jsonDecode(res.body);
-      if (response["success"] == true) {
-        print('terkirim');
-        Get.defaultDialog(
-            backgroundColor: Colors.white,
-            buttonColor: Colors.white,
-            title: 'Success!',
-            middleText: 'Presensi anda berhasil terkirim! Lihat Histori untuk lebih lengkapnya.',
-            textConfirm: 'OK',
-            onConfirm: () {
-              Get.toNamed(Routes.dashboard);
-            },
-            radius: 15);
-        Get.toNamed(Routes.dashboard);
-      } else {
-        print('false');
-      }
-    } catch (e) {
-      print(e);
-    }
-  }
 
   Future<void> getLivePosition() async {
     bool serviceEnabled;
@@ -76,40 +45,54 @@ class CAbsenPulang extends GetxController {
       loc.update((val) {
         loc.value.latitude = currentPosition.latitude;
         loc.value.longitude = currentPosition.longitude;
-
-        getDistanceRadius();
+        mapController.move(LatLng(loc.value.latitude, loc.value.longitude), mapController.zoom);
       });
+      getDistanceRadius();
+    }
+  }
+
+  Future<void> insertPulang() async {
+    try {
+      String uri = "https://sasapi.000webhostapp.com/api/kehadirans/";
+      var res = await http.post(Uri.parse(uri), body: {
+        'NIS': '213',
+        'WAKTU': DateFormat("y-MM-d H:m:s").format(datePulang),
+        'LOKASI': '${loc.value.latitude}, ${loc.value.longitude}',
+        'STATUS': 'P',
+      });
+      var response = jsonDecode(res.body);
+      if (response["success"] == true) {
+        print('terkirim ${response}');
+        Get.defaultDialog(
+            backgroundColor: Colors.white,
+            buttonColor: Colors.white,
+            title: 'Success!',
+            middleText: 'Presensi anda berhasil terkirim! Lihat Histori untuk lebih lengkapnya.',
+            middleTextStyle: const TextStyle(fontFamily: 'Roboto', fontWeight: FontWeight.w600, fontSize: 14),
+            textConfirm: 'OK',
+            onConfirm: () {
+              Get.toNamed(Routes.dashboard);
+            },
+            radius: 15);
+      } else {
+        ToastWidget.showToast(type: ToastWidgetType.ERROR, message: 'Error ${e}');
+      }
+    } catch (e) {
+      ToastWidget.showToast(type: ToastWidgetType.ERROR, message: 'Periksa Jaringan Internet Anda. ${e}');
     }
   }
 
   Future<void> getDistanceRadius() async {
-    double distanceInMeters = Geolocator.distanceBetween(-7.9889465, 112.62731, loc.value.latitude, loc.value.longitude);
+    double distanceInMeters = Geolocator.distanceBetween(-7.9899, 112.6273, loc.value.latitude, loc.value.longitude);
     loc.update((val) {
       loc.value.distance = distanceInMeters;
     });
     print(distanceInMeters);
   }
 
-  Future<double> getRecentDistanceRadius() async {
-    recentDistanceInMeters = Geolocator.distanceBetween(-7.9889465, 112.62731, recentLat, recentLong);
-    return recentDistanceInMeters;
-  }
-
-  double readRecentStoreLat() {
-    recentLat = store.read('latitude');
-    return recentLat;
-  }
-
-  double readRecentStoreLong() {
-    recentLong = store.read('longitude');
-    return recentLong;
-  }
-
   @override
   void onInit() async {
-    readRecentStoreLat();
-    readRecentStoreLong();
-    getRecentDistanceRadius();
+    getLivePosition();
     super.onInit();
   }
 }

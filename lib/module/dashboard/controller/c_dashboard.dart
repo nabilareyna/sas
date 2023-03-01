@@ -32,7 +32,6 @@ class CDashboard extends GetxController {
 
     if (permission == LocationPermission.always || permission == LocationPermission.whileInUse) {
       Position currentPosition = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.best);
-      setStore(currentPosition.latitude, currentPosition.longitude);
       loc.update((val) async {
         loc.value.latitude = currentPosition.latitude;
         loc.value.longitude = currentPosition.longitude;
@@ -40,11 +39,6 @@ class CDashboard extends GetxController {
         mapController.move(LatLng(loc.value.latitude, loc.value.longitude), mapController.zoom);
       });
     }
-  }
-
-  void setStore(double lat, double long) {
-    store.write('latitude', lat);
-    store.write('longitude', long);
   }
 
   @override
