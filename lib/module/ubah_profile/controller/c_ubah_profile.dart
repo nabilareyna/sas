@@ -8,7 +8,7 @@ import 'package:sas/routes/routes.dart';
 import 'package:get/get.dart';
 
 class CUbahProfile extends GetxController {
-  RxString nis = '21237'.obs;
+  RxString nis = '212621537065'.obs;
   RxString nama = ''.obs;
   RxString kelasJurusan = ''.obs;
   RxString noHp = ''.obs;

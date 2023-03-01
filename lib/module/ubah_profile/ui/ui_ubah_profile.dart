@@ -101,10 +101,10 @@ class UIUbahProfile extends GetView<CUbahProfile> {
                                   Radius.circular(10),
                                 ),
                               ),
-                              child: const Padding(
+                              child: Padding(
                                 padding: EdgeInsets.all(13.0),
                                 child: Text(
-                                  'Fajar Ainur Roziqin',
+                                  controller.nama.toString(),
                                   style: TextStyle(
                                     fontSize: 14,
                                     fontFamily: 'Roboto',

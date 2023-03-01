@@ -5,11 +5,12 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 import 'package:sas/component/widget/scaffold_widget.dart';
+import 'package:sas/module/profile/controller/c_profile.dart';
 import 'package:sas/module/dashboard/controller/c_page_view.dart';
 import 'package:sas/module/history/controller/c_history.dart';
 import 'package:sas/routes/routes.dart';
 
-class UIProfile extends GetView<CHistory> {
+class UIProfile extends GetView<CProfile> {
   UIProfile({Key? key}) : super(key: key);
 
   final pageC = Get.find<CPgeView>();
@@ -60,8 +61,8 @@ class UIProfile extends GetView<CHistory> {
                   const SizedBox(
                     height: 20.0,
                   ),
-                  const Text(
-                    'Fajar Ainur Roziqin',
+                  Text(
+                    controller.namaA.toString(),
                     style: TextStyle(color: Colors.white, fontFamily: 'Inter', fontWeight: FontWeight.w700, fontSize: 16),
                   ),
                 ],

@@ -159,7 +159,7 @@ class UIAbsenPulang extends GetView<CAbsenPulang> {
                 onTap: () {
                   // if()
                   // Get.toNamed(Routes.izinpulang);
-                  int.parse(DateFormat.H().format(DateTime.now())) <= 23
+                  int.parse(DateFormat.H().format(DateTime.now())) <= 14
                       ? Get.toNamed(Routes.izinpulang)
                       : controller.insertPulang();
                 },
