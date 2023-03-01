@@ -45,19 +45,27 @@ class CLoginPage extends GetxController {
 
   Future<void> setLogin(String _nama, String _pass) async {
     String uri = "https://sasapi.000webhostapp.com/api/siswas/";
+    // String uri = "https://sasapi.000webhostapp.com/api/siswas/21237";
     try {
-      var res = await http.post(Uri.parse(uri), body: {'NIS': _nama, 'IMEI': _imei.toString()});
-      final response = jsonDecode(res.body)['data'][0];
+      var res = await http.post(Uri.parse(uri), body: {
+        'NIS': _nama,
+        'IMEI': _imei.toString(),
+        'PASSWORD': _pass,
+      });
+      // var res = await http.get(Uri.parse(uri));
+      final response = jsonDecode(res.body);
       final message = jsonDecode(res.body)['message'];
       if (response["success"] == true) {
-        print(message);
+        ToastWidget.showToast(type: ToastWidgetType.ERROR, message: message);
         Get.toNamed(Routes.dashboard);
-        // print(tes[0]['PASSWORD']);
       } else {
-        ToastWidget.showToast(type: ToastWidgetType.ERROR, message: 'User Not Found');
+        ToastWidget.showToast(type: ToastWidgetType.ERROR, message: message);
       }
     } catch (e) {
-      ToastWidget.showToast(type: ToastWidgetType.ERROR, message: '${e}');
+      // ToastWidget.showToast(type: ToastWidgetType.ERROR, message: '${e}')
+      ToastWidget.showToast(
+          type: ToastWidgetType.ERROR, message: 'Periksa Koneksi Jaringan');
+      print(e);
     }
   }
 }

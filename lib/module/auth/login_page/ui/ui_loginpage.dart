@@ -7,6 +7,8 @@ import 'package:sas/routes/routes.dart';
 import 'package:sas/utils/AppLayout.dart';
 import 'package:sas/utils/AppThemes.dart';
 import 'package:sas/utils/const.dart';
+import 'package:sas/component/widget/toast_widget.dart';
+
 
 class UILoginPage extends GetView<CLoginPage> {
   const UILoginPage({Key? key}) : super(key: key);
@@ -85,7 +87,17 @@ class UILoginPage extends GetView<CLoginPage> {
                         InkWell(
                           child: const WButtonLogin(),
                           onTap: () {
+                            if (controller.namaController.text.isEmpty) {
+                              ToastWidget.showToast(
+                                  type: ToastWidgetType.ERROR,
+                                  message: 'Username tidak boleh kosong');
+                            } else if (controller.passController.text.isEmpty) {
+                              ToastWidget.showToast(
+                                  type: ToastWidgetType.ERROR,
+                                  message: 'Password tidak boleh kosong');
+                            } else {
                             controller.setLogin(controller.namaController.text, controller.passController.text);
+                            }
                           },
                         )
                       ],

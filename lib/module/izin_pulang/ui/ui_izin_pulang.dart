@@ -9,6 +9,8 @@ import 'package:sas/module/izin_pulang/widget/w_button_izin_pulang.dart';
 import 'package:sas/module/izin_pulang/controller/c_izin_pulang.dart';
 import 'package:sas/routes/routes.dart';
 import 'package:sas/utils/AppThemes.dart';
+import 'package:sas/component/widget/toast_widget.dart';
+
 
 class UIIzinPulang extends GetView<CIzinPulang> {
   final _formKey = GlobalKey<FormState>();
@@ -151,7 +153,9 @@ class UIIzinPulang extends GetView<CIzinPulang> {
                 child: const WButtonFormIzin(),
                 onTap: () {
                   if (controller.keterangan.text.isEmpty) {
-                    print('Keterangan is required');
+                    ToastWidget.showToast(
+                        type: ToastWidgetType.ERROR,
+                        message: 'Keterangan tidak boleh kosong');
                   } else {
                     controller.insertIzinPulang(controller.keterangan.text);
                   }

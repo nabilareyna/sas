@@ -129,7 +129,7 @@ class UIUbahProfile extends GetView<CUbahProfile> {
           SingleChildScrollView(
             controller: ScrollController(),
             child: Column(
-              children: const [
+              children: [
                 Gap(10),
                 Padding(
                   padding: EdgeInsets.only(top: 250, left: 16),
@@ -147,7 +147,7 @@ class UIUbahProfile extends GetView<CUbahProfile> {
                   child: Align(
                     alignment: Alignment.centerLeft,
                     child: Text(
-                      'XII Rekayasa Perangkat Lunak B',
+                      controller.kelasJurusan.toString(),
                       style: TextStyle(
                         fontSize: 14,
                         fontFamily: 'Roboto',
@@ -178,7 +178,7 @@ class UIUbahProfile extends GetView<CUbahProfile> {
                   child: Align(
                     alignment: Alignment.centerLeft,
                     child: Text(
-                      '03747483274747',
+                      controller.noHp.toString(),
                       style: TextStyle(
                         fontSize: 14,
                         fontFamily: 'Roboto',
@@ -209,7 +209,7 @@ class UIUbahProfile extends GetView<CUbahProfile> {
                   child: Align(
                     alignment: Alignment.centerLeft,
                     child: Text(
-                      'Smkn4@gmail.sh.id',
+                      controller.email.toString(),
                       style: TextStyle(
                         fontSize: 14,
                         fontFamily: 'Roboto',
@@ -240,7 +240,7 @@ class UIUbahProfile extends GetView<CUbahProfile> {
                   child: Align(
                     alignment: Alignment.centerLeft,
                     child: Text(
-                      '12345678',
+                      controller.pass.toString(),
                       style: TextStyle(
                         fontSize: 14,
                         fontFamily: 'Roboto',

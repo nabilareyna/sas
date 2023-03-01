@@ -63,8 +63,8 @@ class CAbsenDatang extends GetxController {
         'NIS': '065',
         'WAKTU': DateFormat("y-MM-d H:m:s").format(date),
         'LOKASI': '${loc.value.latitude}, ${loc.value.longitude}',
-        'STATUS': 'h',
-        'ID_KETERANGAN': 'null'
+        'STATUS': 'H',
+        // 'ID_KETERANGAN': 'null'
       });
       var response = jsonDecode(res.body);
       if (response["success"] == true) {

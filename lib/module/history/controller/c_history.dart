@@ -15,9 +15,23 @@ class CHistory extends GetxController {
   RxInt jmlHadir = 0.obs;
   RxInt jmlIzin = 0.obs;
 
-  List<String> bulans =
-      ['Pilih..', 'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'].obs;
-  RxList<String> status = <String>['Pilih..', 'Hadir & Pulang', 'Sakit & Izin'].obs;
+  List<String> bulans = [
+    'Pilih..',
+    'Januari',
+    'Februari',
+    'Maret',
+    'April',
+    'Mei',
+    'Juni',
+    'Juli',
+    'Agustus',
+    'September',
+    'Oktober',
+    'November',
+    'Desember'
+  ].obs;
+  RxList<String> status =
+      <String>['Pilih..', 'Hadir & Pulang', 'Sakit & Izin'].obs;
   RxBool loadingHistori = true.obs;
   List histori = [];
 
@@ -33,7 +47,11 @@ class CHistory extends GetxController {
     loadingHistori = true.obs;
 
     String uri = "https://sasapi.000webhostapp.com/api/histori/";
-    var res = await http.post(Uri.parse(uri), body: {'NIS': '212999', 'STATUS': nilaiStatus.hashCode.toString(), 'BULAN': nilaiBulans.hashCode.toString()});
+    var res = await http.post(Uri.parse(uri), body: {
+      'NIS': '2122',
+      'STATUS': nilaiStatus.hashCode.toString(),
+      'BULAN': nilaiBulans.hashCode.toString()
+    });
     final response = jsonDecode(res.body);
     var data = jsonDecode(res.body)['data'];
     try {
@@ -54,7 +72,11 @@ class CHistory extends GetxController {
     loadingHistori = true.obs;
 
     String uri = "https://sasapi.000webhostapp.com/api/jmlhistori/";
-    var res = await http.post(Uri.parse(uri), body: {'NIS': '212999', 'STATUS': nilaiStatus.hashCode.toString(), 'BULAN': nilaiBulans.hashCode.toString()});
+    var res = await http.post(Uri.parse(uri), body: {
+      'NIS': '2122',
+      'STATUS': nilaiStatus.hashCode.toString(),
+      'BULAN': nilaiBulans.hashCode.toString()
+    });
     final response = jsonDecode(res.body);
     var data = jsonDecode(res.body)['data'];
     try {
@@ -72,16 +94,3 @@ class CHistory extends GetxController {
     }
   }
 }
-
-// changeItems(String? selectedItems) {
-//   switch (selectedItems) {
-//     case 'Laporan Semester':
-//       print('changed to 1');
-//       break;
-//     case 'Laporan Bulanan':
-//       print('changed to 2');
-//       break;
-//     default:
-//       print('changed to 1');
-//   }
-// }
