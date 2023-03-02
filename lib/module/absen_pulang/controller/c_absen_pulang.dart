@@ -12,6 +12,7 @@ import 'package:latlong2/latlong.dart';
 import 'package:sas/component/widget/toast_widget.dart';
 import 'package:sas/model/location.dart';
 import 'package:sas/routes/routes.dart';
+import 'package:sas/utils/utils.dart';
 
 class CAbsenPulang extends GetxController {
   final store = GetStorage();
@@ -52,33 +53,82 @@ class CAbsenPulang extends GetxController {
   }
 
   Future<void> insertPulang() async {
-    try {
-      String uri = "https://sasapi.000webhostapp.com/api/kehadirans/";
-      var res = await http.post(Uri.parse(uri), body: {
-        'NIS': '213',
-        'WAKTU': DateFormat("y-MM-d H:m:s").format(datePulang),
-        'LOKASI': '${loc.value.latitude}, ${loc.value.longitude}',
-        'STATUS': 'P',
-      });
-      var response = jsonDecode(res.body);
-      if (response["success"] == true) {
-        print('terkirim ${response}');
-        Get.defaultDialog(
-            backgroundColor: Colors.white,
-            buttonColor: Colors.white,
-            title: 'Success!',
-            middleText: 'Presensi anda berhasil terkirim! Lihat Histori untuk lebih lengkapnya.',
-            middleTextStyle: const TextStyle(fontFamily: 'Roboto', fontWeight: FontWeight.w600, fontSize: 14),
-            textConfirm: 'OK',
-            onConfirm: () {
-              Get.toNamed(Routes.dashboard);
-            },
-            radius: 15);
-      } else {
-        ToastWidget.showToast(type: ToastWidgetType.ERROR, message: 'Error ${e}');
+    bool onSchoolArea =
+        await Utils.onSchoolArea(loc.value.latitude, loc.value.longitude);
+    if (onSchoolArea) {
+      try {
+        String uri = "https://sasapi.000webhostapp.com/api/kehadirans/";
+        var res = await http.post(Uri.parse(uri), body: {
+          'NIS': '212491524065',
+          'WAKTU': DateFormat("y-MM-d H:m:s").format(datePulang),
+          'LOKASI': '${loc.value.latitude}, ${loc.value.longitude}',
+          'STATUS': 'P',
+        });
+        var response = jsonDecode(res.body);
+        if (response["success"] == true) {
+          print('terkirim ${response}');
+          Get.defaultDialog(
+              backgroundColor: Colors.white,
+              buttonColor: Colors.white,
+              title: 'Success!',
+              middleText:
+                  'Presensi anda berhasil terkirim! Lihat Histori untuk lebih lengkapnya.',
+              middleTextStyle: const TextStyle(
+                  fontFamily: 'Roboto',
+                  fontWeight: FontWeight.w600,
+                  fontSize: 14),
+              textConfirm: 'OK',
+              onConfirm: () {
+                Get.toNamed(Routes.dashboard);
+              },
+              radius: 15);
+        } else if (response["success"] == false) {
+          Get.defaultDialog(
+              backgroundColor: Colors.white,
+              buttonColor: Colors.white,
+              title: 'Error',
+              titleStyle: const TextStyle(
+                  color: Colors.red,
+                  fontFamily: 'Roboto',
+                  fontWeight: FontWeight.w600,
+                  fontSize: 20),
+              middleText: 'Anda telah melakukan absensi',
+              middleTextStyle: const TextStyle(
+                  fontFamily: 'Roboto',
+                  fontWeight: FontWeight.w600,
+                  fontSize: 14),
+              textConfirm: 'OK',
+              onConfirm: () {
+                Get.toNamed(Routes.dashboard);
+              },
+              radius: 15);
+        } else {
+          ToastWidget.showToast(
+              type: ToastWidgetType.ERROR, message: 'Error ${e}');
+        }
+      } catch (e) {
+        ToastWidget.showToast(
+            type: ToastWidgetType.ERROR,
+            message: 'Periksa Jaringan Internet Anda. ${e}');
       }
-    } catch (e) {
-      ToastWidget.showToast(type: ToastWidgetType.ERROR, message: 'Periksa Jaringan Internet Anda. ${e}');
+    } else {
+      Get.defaultDialog(
+          backgroundColor: Colors.white,
+          buttonColor: Colors.white,
+          title: 'Error',
+          titleStyle: const TextStyle(
+              color: Colors.red,
+              fontFamily: 'Roboto',
+              fontWeight: FontWeight.w600,
+              fontSize: 20),
+          middleText: 'Anda berada di luar area',
+          middleTextStyle: const TextStyle(
+              fontFamily: 'Roboto', fontWeight: FontWeight.w600, fontSize: 14),
+          textConfirm: 'OK',
+          onConfirm: () {
+            Get.toNamed(Routes.dashboard);
+          },
+          radius: 15);
     }
   }
 

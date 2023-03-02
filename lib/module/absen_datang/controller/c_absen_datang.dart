@@ -56,14 +56,11 @@ class CAbsenDatang extends GetxController {
 
   Future<void> insertHadir() async {
     bool onSchoolArea = await Utils.onSchoolArea(loc.value.latitude, loc.value.longitude);
-    bool canAbsen = true;
-    String status = 'H';
     if (onSchoolArea) {
-      Utils.onTimeHadir(DateTime.now()) ? status = 'H' : status = 'HT';
       try {
         String uri = "https://sasapi.000webhostapp.com/api/kehadirans/";
         var res = await http.post(Uri.parse(uri), body: {
-          'NIS': '065',
+          'NIS': '212491524065',
           'WAKTU': DateFormat("y-MM-d H:m:s").format(date),
           'LOKASI': '${loc.value.latitude}, ${loc.value.longitude}',
           'STATUS': 'H',
@@ -104,7 +101,6 @@ class CAbsenDatang extends GetxController {
         ToastWidget.showToast(type: ToastWidgetType.ERROR, message: 'Periksa Jaringan Internet Anda. ${e}');
       }
     } else {
-      canAbsen = false;
       Get.defaultDialog(
           backgroundColor: Colors.white,
           buttonColor: Colors.white,

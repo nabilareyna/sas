@@ -101,7 +101,7 @@ class UIFeedback extends GetView<CFeedback> {
                     }
 
                     controller.insertFeedBack(
-                        controller.nisControllerFeedBack.text, controller.emailControllerFeedback.text, controller.feedbackController.text);
+                         controller.emailControllerFeedback.text, controller.feedbackController.text);
                   },
                 ),
               ],

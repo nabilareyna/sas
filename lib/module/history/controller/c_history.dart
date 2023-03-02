@@ -48,7 +48,7 @@ class CHistory extends GetxController {
 
     String uri = "https://sasapi.000webhostapp.com/api/histori/";
     var res = await http.post(Uri.parse(uri), body: {
-      'NIS': '2122',
+      'NIS': '212491524065',
       'STATUS': nilaiStatus.hashCode.toString(),
       'BULAN': nilaiBulans.hashCode.toString()
     });
@@ -73,7 +73,7 @@ class CHistory extends GetxController {
 
     String uri = "https://sasapi.000webhostapp.com/api/jmlhistori/";
     var res = await http.post(Uri.parse(uri), body: {
-      'NIS': '2122',
+      'NIS': '212491524065',
       'STATUS': nilaiStatus.hashCode.toString(),
       'BULAN': nilaiBulans.hashCode.toString()
     });

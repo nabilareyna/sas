@@ -90,17 +90,17 @@ class UILoginPage extends GetView<CLoginPage> {
                         InkWell(
                           child: const WButtonLogin(),
                           onTap: () {
-                            // if (controller.namaController.text.isEmpty) {
-                            //   ToastWidget.showToast(
-                            //       type: ToastWidgetType.ERROR,
-                            //       message: 'Username tidak boleh kosong');
-                            // } else if (controller.passController.text.isEmpty) {
-                            //   ToastWidget.showToast(
-                            //       type: ToastWidgetType.ERROR,
-                            //       message: 'Password tidak boleh kosong');
-                            // } else {
-                            controller.setLogin(controller.namaController.text, controller.passController.text);
-                            // }
+                            if (controller.namaController.text.isEmpty) {
+                              ToastWidget.showToast(
+                                  type: ToastWidgetType.ERROR,
+                                  message: 'Username tidak boleh kosong');
+                            } else if (controller.passController.text.isEmpty) {
+                              ToastWidget.showToast(
+                                  type: ToastWidgetType.ERROR,
+                                  message: 'Password tidak boleh kosong');
+                            } else {
+                            controller.setLogin( controller.passController.text);
+                            }
                           },
                         )
                       ],

@@ -43,12 +43,12 @@ class CLoginPage extends GetxController {
     _imei = identifier;
   }
 
-  Future<void> setLogin(String _nama, String _pass) async {
+  Future<void> setLogin( String _pass) async {
     String uri = "https://sasapi.000webhostapp.com/api/siswas/";
     // String uri = "https://sasapi.000webhostapp.com/api/siswas/21237";
     try {
       var res = await http.post(Uri.parse(uri), body: {
-        'NIS': _nama,
+        'NIS': '212491524065',
         'IMEI': _imei.toString(),
         'PASSWORD': _pass,
       });

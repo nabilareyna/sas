@@ -11,10 +11,10 @@ class CFeedback extends GetxController {
   TextEditingController emailControllerFeedback = TextEditingController();
   TextEditingController feedbackController = TextEditingController();
 
-  Future<void> insertFeedBack(String _niss, String _email, String _feedback) async {
+  Future<void> insertFeedBack( String _email, String _feedback) async {
     try {
       String uri = "https://sasapi.000webhostapp.com/api/feedback";
-      var res = await http.post(Uri.parse(uri), body: {'NIS': _niss, 'EMAIL': _email, 'FEEDBACK': _feedback});
+      var res = await http.post(Uri.parse(uri), body: {'NIS': '212491524065', 'EMAIL': _email, 'FEEDBACK': _feedback});
       var response = jsonDecode(res.body);
 
       if (response["success"] == true) {

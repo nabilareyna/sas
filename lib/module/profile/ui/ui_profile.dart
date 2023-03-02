@@ -264,7 +264,7 @@ class UIProfile extends GetView<CProfile> {
                 child: Padding(
                   padding: const EdgeInsets.only(left: 20),
                   child: Row(
-                    children: const <Widget>[
+                    children: <Widget>[
                       ImageIcon(
                         AssetImage('assets/icons/out.png'),
                         size: 25.0,
@@ -273,11 +273,20 @@ class UIProfile extends GetView<CProfile> {
                       SizedBox(
                         width: 15.0,
                       ),
-                      Expanded(
-                        child: Text(
-                          'Keluar',
-                          style: TextStyle(color: Color(0xFFD90000), fontFamily: 'Roboto', fontWeight: FontWeight.w400, fontSize: 16),
+                      InkWell(
+                        child: Expanded(
+                          child: Text(
+                            'Keluar',
+                            style: TextStyle(
+                                color: Color(0xFFD90000),
+                                fontFamily: 'Roboto',
+                                fontWeight: FontWeight.w400,
+                                fontSize: 16),
+                          ),
                         ),
+                        onTap: () {
+                          Get.toNamed(Routes.login);
+                        },
                       ),
                     ],
                   ),
