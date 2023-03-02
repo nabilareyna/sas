@@ -40,7 +40,7 @@ class Utils {
   }
 
   static Future<bool> onSchoolArea(lat, long) async {
-    double distanceInMeter = Geolocator.distanceBetween(-7.9889465, 112.62731, lat, long);
-    return (distanceInMeter <= 115) ? true : false;
+    double distanceInMeter = Geolocator.distanceBetween(-7.9899, 112.6273, lat, long);
+    return (distanceInMeter <= 34) ? true : false;
   }
 }

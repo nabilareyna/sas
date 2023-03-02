@@ -39,10 +39,7 @@ class AbsentSummary extends StatelessWidget {
               Text(jumlah.toString(), style: TextStyle(fontFamily: 'Inter', fontSize: 26, fontWeight: FontWeight.w700)),
               Text(
                 title,
-                style: TextStyle(
-                    fontFamily: 'Roboto',
-                    fontSize: 10,
-                    fontWeight: FontWeight.w400),
+                style: TextStyle(fontFamily: 'Roboto', fontSize: 12, fontWeight: FontWeight.w400),
                 softWrap: true,
               )
             ],

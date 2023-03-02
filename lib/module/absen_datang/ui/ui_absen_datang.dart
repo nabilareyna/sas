@@ -39,10 +39,7 @@ class UIAbsenDatang extends GetView<CAbsenDatang> {
             FlutterMap(
               mapController: controller.mapController,
               options: MapOptions(
-                center: controller.loc.value.latitude == 0
-                    ? LatLng(controller.recentLat, controller.recentLong)
-                    : LatLng(controller.loc.value.latitude,
-                        controller.loc.value.longitude),
+                center: LatLng(controller.loc.value.latitude, controller.loc.value.longitude),
                 zoom: 16.50,
                 maxZoom: 19.0,
               ),
@@ -63,11 +60,7 @@ class UIAbsenDatang extends GetView<CAbsenDatang> {
                     Marker(
                         width: 100.0,
                         height: 100.0,
-                        point: controller.loc.value.latitude == 0
-                            ? LatLng(
-                                controller.recentLat, controller.recentLong)
-                            : LatLng(controller.loc.value.latitude,
-                                controller.loc.value.longitude),
+                        point: LatLng(controller.loc.value.latitude, controller.loc.value.longitude),
                         builder: (ctx) => Icon(
                               Icons.location_on,
                               color: Colors.red,
@@ -77,7 +70,7 @@ class UIAbsenDatang extends GetView<CAbsenDatang> {
                 CircleLayer(
                   circles: [
                     CircleMarker(
-                        point: LatLng(-7.9898333, 112.62731),
+                        point: LatLng(-7.9899, 112.6273),
                         radius: 25,
                         borderColor: const Color(0xFFB71C1C),
                         color: Colors.redAccent.withOpacity(0.2),
@@ -95,10 +88,8 @@ class UIAbsenDatang extends GetView<CAbsenDatang> {
                   width: Get.width,
                   decoration: BoxDecoration(
                       color: Colors.white,
-                      borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(Const.parentMargin(x: 1.5)),
-                          topRight:
-                              Radius.circular(Const.parentMargin(x: 1.5)))),
+                      borderRadius:
+                          BorderRadius.only(topLeft: Radius.circular(Const.parentMargin(x: 1.5)), topRight: Radius.circular(Const.parentMargin(x: 1.5)))),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -110,8 +101,7 @@ class UIAbsenDatang extends GetView<CAbsenDatang> {
                       Row(
                         children: [
                           Text(
-                            DateFormat("d-M-yyyy" + ", ")
-                                .format(DateTime.now()),
+                            DateFormat("d-M-yyyy" + ", ").format(DateTime.now()),
                             style: Styles.absenPageSubHeading,
                           ),
                           Text(
@@ -136,38 +126,26 @@ class UIAbsenDatang extends GetView<CAbsenDatang> {
                         style: Styles.absenPageHeading,
                       ),
                       Gap(4),
-                      controller.loc.value.distance == 0
-                          ? Text(
-                              '${controller.recentDistanceInMeters}',
-                              style: Styles.absenPageSubHeading,
-                            )
-                          : Text(
-                              '${controller.loc.value.distance}',
-                              style: Styles.absenPageSubHeading,
-                            )
+                      Text(
+                        '${controller.loc.value.distance}',
+                        style: Styles.absenPageSubHeading,
+                      )
                     ],
                   ),
                 ),
                 InkWell(
                   onTap: () {
-                    controller.getLivePosition();
                     controller.insertHadir();
                   },
                   child: Container(
                     color: Styles.primaryColor,
                     width: Get.width,
-                    padding: EdgeInsets.symmetric(
-                        vertical: Const.parentMargin(x: 0.7)),
+                    padding: EdgeInsets.symmetric(vertical: Const.parentMargin(x: 0.7)),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text('SUBMIT',
-                            style: TextStyle(
-                                fontFamily: 'Montserrat',
-                                fontSize: 16,
-                                fontWeight: FontWeight.w600,
-                                color: Colors.white,
-                                letterSpacing: 2))
+                            style: TextStyle(fontFamily: 'Montserrat', fontSize: 16, fontWeight: FontWeight.w600, color: Colors.white, letterSpacing: 2))
                       ],
                     ),
                   ),

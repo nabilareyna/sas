@@ -347,7 +347,7 @@ class UIDashboard extends GetView<CDashboard> {
                       CircleLayer(
                         circles: [
                           CircleMarker(
-                            point: LatLng(-7.9898333, 112.62731),
+                            point: LatLng(-7.9899, 112.6273),
                             radius: 35,
                             borderColor: const Color(0xFFB71C1C),
                             color: Colors.redAccent.withOpacity(0.2),
