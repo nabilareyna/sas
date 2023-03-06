@@ -15,9 +15,9 @@ class CLoginPage extends GetxController {
   // RxBool setlog = false.obs;
   String _nama = '';
   String _pass = '';
-  RxString _identifier = 'Unknown'.obs;
+  // RxString _identifier = 'Unknown'.obs;
   String _imei = 'Unk';
-  RxString deviceId = ''.obs;
+  // RxString deviceId = ''.obs;
 
   TextEditingController namaController = TextEditingController();
   TextEditingController passController = TextEditingController();
@@ -43,12 +43,11 @@ class CLoginPage extends GetxController {
     _imei = identifier;
   }
 
-  Future<void> setLogin( String _pass) async {
+  Future<void> setLogin(String _nama, String _pass) async {
     String uri = "https://sasapi.000webhostapp.com/api/siswas/";
-    // String uri = "https://sasapi.000webhostapp.com/api/siswas/21237";
     try {
       var res = await http.post(Uri.parse(uri), body: {
-        'NIS': '212491524065',
+        'NIS': _nama,
         'IMEI': _imei.toString(),
         'PASSWORD': _pass,
       });

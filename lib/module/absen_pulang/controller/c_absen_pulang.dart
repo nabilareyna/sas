@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:async';
 import 'dart:math';
+import 'package:flutter/services.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
@@ -13,12 +14,61 @@ import 'package:sas/component/widget/toast_widget.dart';
 import 'package:sas/model/location.dart';
 import 'package:sas/routes/routes.dart';
 import 'package:sas/utils/utils.dart';
+import 'package:unique_identifier/unique_identifier.dart';
 
 class CAbsenPulang extends GetxController {
   final store = GetStorage();
   final loc = Location().obs;
   final mapController = MapController();
   DateTime datePulang = DateTime.now();
+  String _imei = 'Unk';
+  String _nis = '';
+
+  @override
+  void onInit() async {
+    initUniqueIdentifierState();
+    getLivePosition();
+    super.onInit();
+  }
+
+  Future<void> initUniqueIdentifierState() async {
+    String identifier;
+
+    try {
+      identifier = (await UniqueIdentifier.serial)!;
+      _imei = identifier;
+      getNis();
+      print(identifier);
+    } on PlatformException {
+      identifier = 'failed';
+    }
+    if (!isClosed) return;
+    _imei = identifier;
+  }
+
+  Future<void> getNis() async {
+    String uri = "https://sasapi.000webhostapp.com/api/jmlhistori/" + _imei;
+    var res = await http.get(Uri.parse(uri));
+
+    final response = jsonDecode(res.body);
+    var data = jsonDecode(res.body)['data'];
+
+    try {
+      if (response["success"] == true) {
+        _nis = data[0]['IMEI'].obs;
+      } else {
+        ToastWidget.showToast(
+            type: ToastWidgetType.ERROR,
+            message: 'Periksa koneksi jaringan anda');
+        print('Tidak ditemukan');
+      }
+    } catch (e) {
+      ToastWidget.showToast(
+          type: ToastWidgetType.ERROR,
+          message: 'Periksa koneksi jaringan anda');
+      print(e);
+    }
+  }
 
   Future<void> getLivePosition() async {
     bool serviceEnabled;
@@ -36,17 +86,21 @@ class CAbsenPulang extends GetxController {
     }
 
     if (permission == LocationPermission.deniedForever) {
-      return Future.error('Location permissions are permanently denied, we cannot request permissions.');
+      return Future.error(
+          'Location permissions are permanently denied, we cannot request permissions.');
     }
 
-    if (permission == LocationPermission.always || permission == LocationPermission.whileInUse) {
-      Position currentPosition = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.best);
+    if (permission == LocationPermission.always ||
+        permission == LocationPermission.whileInUse) {
+      Position currentPosition = await Geolocator.getCurrentPosition(
+          desiredAccuracy: LocationAccuracy.best);
       print("Logitude: " + currentPosition.longitude.toString());
       print("Latitude: " + currentPosition.latitude.toString());
       loc.update((val) {
         loc.value.latitude = currentPosition.latitude;
         loc.value.longitude = currentPosition.longitude;
-        mapController.move(LatLng(loc.value.latitude, loc.value.longitude), mapController.zoom);
+        mapController.move(LatLng(loc.value.latitude, loc.value.longitude),
+            mapController.zoom);
       });
       getDistanceRadius();
     }
@@ -59,7 +113,7 @@ class CAbsenPulang extends GetxController {
       try {
         String uri = "https://sasapi.000webhostapp.com/api/kehadirans/";
         var res = await http.post(Uri.parse(uri), body: {
-          'NIS': '212491524065',
+          'NIS': _nis,
           'WAKTU': DateFormat("y-MM-d H:m:s").format(datePulang),
           'LOKASI': '${loc.value.latitude}, ${loc.value.longitude}',
           'STATUS': 'P',
@@ -133,16 +187,11 @@ class CAbsenPulang extends GetxController {
   }
 
   Future<void> getDistanceRadius() async {
-    double distanceInMeters = Geolocator.distanceBetween(-7.9899, 112.6273, loc.value.latitude, loc.value.longitude);
+    double distanceInMeters = Geolocator.distanceBetween(
+        -7.9899, 112.6273, loc.value.latitude, loc.value.longitude);
     loc.update((val) {
       loc.value.distance = distanceInMeters;
     });
     print(distanceInMeters);
-  }
-
-  @override
-  void onInit() async {
-    getLivePosition();
-    super.onInit();
   }
 }

@@ -1,12 +1,17 @@
 import 'dart:convert';
 import 'dart:async';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:sas/routes/routes.dart';
 import 'package:intl/intl.dart';
+import 'package:unique_identifier/unique_identifier.dart';
+import 'package:sas/component/widget/toast_widget.dart';
 
 class CIzinPulang extends GetxController {
+  String _imei = 'Unk';
+  String _nis = '';
   DateTime dateizin = DateTime.now();
   Rxn<String> selectedValue = Rxn<String>();
   RxInt jmlIzin = 1.obs;
@@ -51,13 +56,54 @@ class CIzinPulang extends GetxController {
         DateFormat('y').format(dateizin);
     // tanggalIzin.text =
     // int.parse(DateFormat('M').format(dateizin)) - 1);
+    initUniqueIdentifierState();
+    // getNis();
+  }
+
+  Future<void> initUniqueIdentifierState() async {
+    String identifier;
+
+    try {
+      identifier = (await UniqueIdentifier.serial)!;
+      _imei = identifier;
+      getNis();
+      print(identifier);
+    } on PlatformException {
+      identifier = 'failed';
+    }
+    if (!isClosed) return;
+    _imei = identifier;
+  }
+
+  Future<void> getNis() async {
+    String uri = "https://sasapi.000webhostapp.com/api/jmlhistori/" + _imei;
+    var res = await http.get(Uri.parse(uri));
+
+    final response = jsonDecode(res.body);
+    var data = jsonDecode(res.body)['data'];
+
+    try {
+      if (response["success"] == true) {
+        _nis = data[0]['IMEI'].obs;
+      } else {
+        ToastWidget.showToast(
+            type: ToastWidgetType.ERROR,
+            message: 'Periksa koneksi jaringan anda');
+        print('Tidak ditemukan');
+      }
+    } catch (e) {
+      ToastWidget.showToast(
+          type: ToastWidgetType.ERROR,
+          message: 'Periksa koneksi jaringan anda');
+      print(e);
+    }
   }
 
   Future<void> insertIzinPulang(String textKeterangan) async {
     try {
       String uri = "https://sasapi.000webhostapp.com/api/kehadirans/";
       var resb = await http.post(Uri.parse(uri), body: {
-        'NIS': '212491524065',
+        'NIS': _nis,
         'WAKTU': DateFormat("y-MM-d H:m:s").format(dateizin),
         'LOKASI': 'lokasi',
         'KETERANGAN': textKeterangan,

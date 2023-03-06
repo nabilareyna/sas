@@ -136,9 +136,8 @@ class UIHistory extends GetView<CHistory> {
                             )
                           ],
                         )
-                      : Padding(
-                          padding: const EdgeInsets.all(5.0),
-                          child: ListView.builder(
+                      : Expanded(
+                           child: ListView.builder(
                               scrollDirection: Axis.vertical,
                               shrinkWrap: true,
                               itemCount: controller.histori.length,

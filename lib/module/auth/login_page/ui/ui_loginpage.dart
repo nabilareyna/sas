@@ -9,7 +9,6 @@ import 'package:sas/utils/AppThemes.dart';
 import 'package:sas/utils/const.dart';
 import 'package:sas/component/widget/toast_widget.dart';
 
-
 class UILoginPage extends GetView<CLoginPage> {
   const UILoginPage({Key? key}) : super(key: key);
 
@@ -42,47 +41,60 @@ class UILoginPage extends GetView<CLoginPage> {
                           decoration: BoxDecoration(
                               border: Border.all(color: Styles.secondaryColor),
                               color: Colors.white,
-                              borderRadius: const BorderRadius.all(Radius.circular(10)),
+                              borderRadius:
+                                  const BorderRadius.all(Radius.circular(10)),
                               boxShadow: [
                                 BoxShadow(
-                                  color: Styles.secondaryColor.withOpacity(0.50),
+                                  color:
+                                      Styles.secondaryColor.withOpacity(0.50),
                                   spreadRadius: 2,
                                   blurRadius: 4,
                                   offset: Offset.fromDirection(0.5, 1.0),
                                 )
                               ]),
                           width: size.width,
-                          padding: EdgeInsets.symmetric(vertical: 8, horizontal: Const.siblingMargin(x: 4)),
+                          padding: EdgeInsets.symmetric(
+                              vertical: 8,
+                              horizontal: Const.siblingMargin(x: 4)),
                           margin: const EdgeInsets.symmetric(vertical: 50),
-                          child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                            const Text(
-                              'Username',
-                              style: TextStyle(fontFamily: 'Montserrat'),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.symmetric(vertical: Const.siblingMargin(x: 2)),
-                              child: TextField(
-                                controller: controller.namaController,
-                                decoration: InputDecoration(
-                                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(30.0)),
-                                  hintText: 'Masukkan NIS',
+                          child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const Text(
+                                  'Username',
+                                  style: TextStyle(fontFamily: 'Montserrat'),
                                 ),
-                              ),
-                            ),
-                            const Text(
-                              'Password',
-                              style: TextStyle(fontFamily: 'Montserrat'),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 8, bottom: 8),
-                              child: TextField(
-                                controller: controller.passController,
-                                obscureText: true,
-                                decoration:
-                                    InputDecoration(border: OutlineInputBorder(borderRadius: BorderRadius.circular(30.0)), hintText: 'Masukkan password'),
-                              ),
-                            ),
-                          ]),
+                                Padding(
+                                  padding: EdgeInsets.symmetric(
+                                      vertical: Const.siblingMargin(x: 2)),
+                                  child: TextField(
+                                    controller: controller.namaController,
+                                    decoration: InputDecoration(
+                                      border: OutlineInputBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(30.0)),
+                                      hintText: 'Masukkan NIS',
+                                    ),
+                                  ),
+                                ),
+                                const Text(
+                                  'Password',
+                                  style: TextStyle(fontFamily: 'Montserrat'),
+                                ),
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.only(top: 8, bottom: 8),
+                                  child: TextField(
+                                    controller: controller.passController,
+                                    obscureText: true,
+                                    decoration: InputDecoration(
+                                        border: OutlineInputBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(30.0)),
+                                        hintText: 'Masukkan password'),
+                                  ),
+                                ),
+                              ]),
                         ),
                         // const Gap(65),
                         SizedBox(
@@ -99,7 +111,9 @@ class UILoginPage extends GetView<CLoginPage> {
                                   type: ToastWidgetType.ERROR,
                                   message: 'Password tidak boleh kosong');
                             } else {
-                            controller.setLogin( controller.passController.text);
+                              controller.setLogin(
+                                  controller.namaController.text,
+                                  controller.passController.text);
                             }
                           },
                         )
