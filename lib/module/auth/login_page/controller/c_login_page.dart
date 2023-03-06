@@ -1,15 +1,18 @@
 import 'dart:convert';
 import 'dart:async';
+import 'dart:ffi';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:sas/component/widget/toast_widget.dart';
 import 'package:unique_identifier/unique_identifier.dart';
 import 'package:http/http.dart' as http;
 import 'package:sas/routes/routes.dart';
 
 class CLoginPage extends GetxController {
+  final store = GetStorage();
   late Rx<TabController> tabController;
 
   // RxBool setlog = false.obs;
@@ -55,6 +58,7 @@ class CLoginPage extends GetxController {
       final response = jsonDecode(res.body);
       final message = jsonDecode(res.body)['message'];
       if (response["success"] == true) {
+        storeNis(_nama);
         ToastWidget.showToast(type: ToastWidgetType.SUCCESS, message: message);
         Get.toNamed(Routes.dashboard);
       } else {
@@ -62,9 +66,12 @@ class CLoginPage extends GetxController {
       }
     } catch (e) {
       // ToastWidget.showToast(type: ToastWidgetType.ERROR, message: '${e}')
-      ToastWidget.showToast(
-          type: ToastWidgetType.ERROR, message: 'Periksa Koneksi Jaringan');
+      ToastWidget.showToast(type: ToastWidgetType.ERROR, message: 'Periksa Koneksi Jaringan');
       print(e);
     }
+  }
+
+  void storeNis(String _nama) {
+    store.write('nis', _nama);
   }
 }

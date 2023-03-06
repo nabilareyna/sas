@@ -3,6 +3,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
 import 'package:sas/routes/routes.dart';
 import 'package:get/get.dart';
@@ -10,8 +11,9 @@ import 'package:unique_identifier/unique_identifier.dart';
 import 'package:sas/component/widget/toast_widget.dart';
 
 class CHistory extends GetxController {
+  final store = GetStorage();
   late Rx<TabController> tabController;
-  RxString _nis = ''.obs;
+  String _nis = '';
 
   RxInt nilaiBulans = 0.obs;
   RxInt nilaiStatus = 0.obs;
@@ -20,23 +22,9 @@ class CHistory extends GetxController {
 
   String _imei = 'Unk';
 
-  List<String> bulans = [
-    'Pilih..',
-    'Januari',
-    'Februari',
-    'Maret',
-    'April',
-    'Mei',
-    'Juni',
-    'Juli',
-    'Agustus',
-    'September',
-    'Oktober',
-    'November',
-    'Desember'
-  ].obs;
-  RxList<String> status =
-      <String>['Pilih..', 'Hadir & Pulang', 'Sakit & Izin'].obs;
+  List<String> bulans =
+      ['Pilih..', 'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'].obs;
+  RxList<String> status = <String>['Pilih..', 'Hadir & Pulang', 'Sakit & Izin'].obs;
   RxBool loadingHistori = true.obs;
   List histori = [];
 
@@ -44,64 +32,28 @@ class CHistory extends GetxController {
   void onInit() {
     // TODO: implement onInit
     super.onInit();
-    initUniqueIdentifierState();
-    getNis();
+    readNis();
     getJmlHistori();
     getHistori();
   }
 
-  Future<void> initUniqueIdentifierState() async {
-    String identifier;
-
-    try {
-      identifier = (await UniqueIdentifier.serial)!;
-      _imei = identifier;
-      print(identifier);
-    } on PlatformException {
-      identifier = 'failed';
-    }
-    if (!isClosed) return;
-    _imei = identifier;
-  }
-
-  Future<void> getNis() async {
-    String uri = "https://sasapi.000webhostapp.com/api/jmlhistori/" + _imei;
-    var res = await http.get(Uri.parse(uri));
-
-    final response = jsonDecode(res.body);
-    var data = jsonDecode(res.body)['data'];
-
-    try {
-      if (response["success"] == true) {
-        _nis = data[0]['IMEI'].obs;
-      } else {
-        ToastWidget.showToast(
-            type: ToastWidgetType.ERROR,
-            message: 'Periksa koneksi jaringan anda');
-        print('Tidak ditemukan');
-      }
-    } catch (e) {
-      ToastWidget.showToast(
-          type: ToastWidgetType.ERROR,
-          message: 'Periksa koneksi jaringan anda');
-      print(e);
-    }
+  String readNis() {
+    _nis = store.read('nis');
+    print(_nis);
+    return _nis;
   }
 
   Future<void> getHistori() async {
-    loadingHistori = true.obs;
+    loadingHistori.value = true;
 
     String uri = "https://sasapi.000webhostapp.com/api/histori/";
-    var res = await http.post(Uri.parse(uri), body: {
-      'NIS': _nis,
-      'STATUS': nilaiStatus.hashCode.toString(),
-      'BULAN': nilaiBulans.hashCode.toString()
-    });
+    var res =
+        await http.post(Uri.parse(uri), body: {'NIS': _nis.toString(), 'STATUS': nilaiStatus.hashCode.toString(), 'BULAN': nilaiBulans.hashCode.toString()});
     final response = jsonDecode(res.body);
     var data = jsonDecode(res.body)['data'];
     try {
       if (response["success"] == true) {
-        loadingHistori = false.obs;
+        loadingHistori.value = false;
         histori = data;
         // print(nilaiStatus);
         // print(histori);
@@ -114,18 +66,16 @@ class CHistory extends GetxController {
   }
 
   Future<void> getJmlHistori() async {
-    loadingHistori = true.obs;
+    loadingHistori.value = true;
 
     String uri = "https://sasapi.000webhostapp.com/api/jmlhistori/";
-    var res = await http.post(Uri.parse(uri), body: {
-      'NIS': _nis,
-      'STATUS': nilaiStatus.hashCode.toString(),
-      'BULAN': nilaiBulans.hashCode.toString()
-    });
+    var res =
+        await http.post(Uri.parse(uri), body: {'NIS': _nis.toString(), 'STATUS': nilaiStatus.hashCode.toString(), 'BULAN': nilaiBulans.hashCode.toString()});
     final response = jsonDecode(res.body);
     var data = jsonDecode(res.body)['data'];
     try {
       if (response["success"] == true) {
+        loadingHistori.value = false;
         jmlIzin = data[0]['jmlIzin'].hashCode.obs;
         jmlHadir = data[0]['jmlHadir'].hashCode.obs;
         // jmlhadir = int.parse(data[0]['jmlHadir'].toString()).obs;

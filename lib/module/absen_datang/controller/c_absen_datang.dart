@@ -28,48 +28,15 @@ class CAbsenDatang extends GetxController {
 
   @override
   void onInit() async {
-    initUniqueIdentifierState();
+    readNis();
     getLivePosition();
     super.onInit();
   }
 
-  Future<void> initUniqueIdentifierState() async {
-    String identifier;
-
-    try {
-      identifier = (await UniqueIdentifier.serial)!;
-      _imei = identifier;
-      getNis();
-      print(identifier);
-    } on PlatformException {
-      identifier = 'failed';
-    }
-    if (!isClosed) return;
-    _imei = identifier;
-  }
-
-  Future<void> getNis() async {
-    String uri = "https://sasapi.000webhostapp.com/api/jmlhistori/" + _imei;
-    var res = await http.get(Uri.parse(uri));
-
-    final response = jsonDecode(res.body);
-    var data = jsonDecode(res.body)['data'];
-
-    try {
-      if (response["success"] == true) {
-        _nis = data[0]['IMEI'].obs;
-      } else {
-        ToastWidget.showToast(
-            type: ToastWidgetType.ERROR,
-            message: 'Periksa koneksi jaringan anda');
-        print('Tidak ditemukan');
-      }
-    } catch (e) {
-      ToastWidget.showToast(
-          type: ToastWidgetType.ERROR,
-          message: 'Periksa koneksi jaringan anda');
-      print(e);
-    }
+  String readNis() {
+    _nis = store.read('nis');
+    print(_nis);
+    return _nis;
   }
 
   Future<void> getLivePosition() async {
@@ -88,29 +55,24 @@ class CAbsenDatang extends GetxController {
     }
 
     if (permission == LocationPermission.deniedForever) {
-      return Future.error(
-          'Location permissions are permanently denied, we cannot request permissions.');
+      return Future.error('Location permissions are permanently denied, we cannot request permissions.');
     }
 
-    if (permission == LocationPermission.always ||
-        permission == LocationPermission.whileInUse) {
-      Position currentPosition = await Geolocator.getCurrentPosition(
-          desiredAccuracy: LocationAccuracy.best);
+    if (permission == LocationPermission.always || permission == LocationPermission.whileInUse) {
+      Position currentPosition = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.best);
       print("Logitude: " + currentPosition.longitude.toString());
       print("Latitude: " + currentPosition.latitude.toString());
       loc.update((val) {
         loc.value.latitude = currentPosition.latitude;
         loc.value.longitude = currentPosition.longitude;
-        mapController.move(LatLng(loc.value.latitude, loc.value.longitude),
-            mapController.zoom);
+        mapController.move(LatLng(loc.value.latitude, loc.value.longitude), mapController.zoom);
       });
       getDistanceRadius();
     }
   }
 
   Future<void> insertHadir() async {
-    bool onSchoolArea =
-        await Utils.onSchoolArea(loc.value.latitude, loc.value.longitude);
+    bool onSchoolArea = await Utils.onSchoolArea(loc.value.latitude, loc.value.longitude);
     if (onSchoolArea) {
       try {
         String uri = "https://sasapi.000webhostapp.com/api/kehadirans/";
@@ -128,12 +90,8 @@ class CAbsenDatang extends GetxController {
               backgroundColor: Colors.white,
               buttonColor: Colors.white,
               title: 'Success!',
-              middleText:
-                  'Presensi anda berhasil terkirim! Lihat Histori untuk lebih lengkapnya.',
-              middleTextStyle: const TextStyle(
-                  fontFamily: 'Roboto',
-                  fontWeight: FontWeight.w600,
-                  fontSize: 14),
+              middleText: 'Presensi anda berhasil terkirim! Lihat Histori untuk lebih lengkapnya.',
+              middleTextStyle: const TextStyle(fontFamily: 'Roboto', fontWeight: FontWeight.w600, fontSize: 14),
               textConfirm: 'OK',
               onConfirm: () {
                 Get.toNamed(Routes.dashboard);
@@ -144,16 +102,9 @@ class CAbsenDatang extends GetxController {
               backgroundColor: Colors.white,
               buttonColor: Colors.white,
               title: 'Error',
-              titleStyle: const TextStyle(
-                  color: Colors.red,
-                  fontFamily: 'Roboto',
-                  fontWeight: FontWeight.w600,
-                  fontSize: 20),
+              titleStyle: const TextStyle(color: Colors.red, fontFamily: 'Roboto', fontWeight: FontWeight.w600, fontSize: 20),
               middleText: 'Anda telah melakukan absensi',
-              middleTextStyle: const TextStyle(
-                  fontFamily: 'Roboto',
-                  fontWeight: FontWeight.w600,
-                  fontSize: 14),
+              middleTextStyle: const TextStyle(fontFamily: 'Roboto', fontWeight: FontWeight.w600, fontSize: 14),
               textConfirm: 'OK',
               onConfirm: () {
                 Get.toNamed(Routes.dashboard);
@@ -164,23 +115,16 @@ class CAbsenDatang extends GetxController {
           print('false ${e}');
         }
       } catch (e) {
-        ToastWidget.showToast(
-            type: ToastWidgetType.ERROR,
-            message: 'Periksa Jaringan Internet Anda. ${e}');
+        ToastWidget.showToast(type: ToastWidgetType.ERROR, message: 'Periksa Jaringan Internet Anda. ${e}');
       }
     } else {
       Get.defaultDialog(
           backgroundColor: Colors.white,
           buttonColor: Colors.white,
           title: 'Error',
-          titleStyle: const TextStyle(
-              color: Colors.red,
-              fontFamily: 'Roboto',
-              fontWeight: FontWeight.w600,
-              fontSize: 20),
+          titleStyle: const TextStyle(color: Colors.red, fontFamily: 'Roboto', fontWeight: FontWeight.w600, fontSize: 20),
           middleText: 'Anda berada di luar area',
-          middleTextStyle: const TextStyle(
-              fontFamily: 'Roboto', fontWeight: FontWeight.w600, fontSize: 14),
+          middleTextStyle: const TextStyle(fontFamily: 'Roboto', fontWeight: FontWeight.w600, fontSize: 14),
           textConfirm: 'OK',
           onConfirm: () {
             Get.toNamed(Routes.dashboard);
@@ -190,8 +134,7 @@ class CAbsenDatang extends GetxController {
   }
 
   Future<void> getDistanceRadius() async {
-    double distanceInMeters = Geolocator.distanceBetween(
-        -7.9899, 112.6273, loc.value.latitude, loc.value.longitude);
+    double distanceInMeters = Geolocator.distanceBetween(-7.9899, 112.6273, loc.value.latitude, loc.value.longitude);
     loc.update((val) {
       loc.value.distance = distanceInMeters;
     });

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:sas/utils/utils.dart';
 
 class AppBarWidget extends StatelessWidget {
   const AppBarWidget({Key? key, this.title, this.centerTitle = true, this.leading}) : super(key: key);
@@ -13,7 +14,7 @@ class AppBarWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: const BoxDecoration(boxShadow: [BoxShadow(color: Colors.black, offset: Offset(0, 0.1), blurRadius: 4, spreadRadius: 0)]),
+      decoration: BoxDecoration(boxShadow: [Utils.shadow(x: 0.5)]),
       child: AppBar(
         backgroundColor: Colors.white,
         title: title,

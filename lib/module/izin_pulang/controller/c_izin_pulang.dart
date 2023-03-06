@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
 import 'package:sas/routes/routes.dart';
 import 'package:intl/intl.dart';
@@ -10,6 +11,7 @@ import 'package:unique_identifier/unique_identifier.dart';
 import 'package:sas/component/widget/toast_widget.dart';
 
 class CIzinPulang extends GetxController {
+  final store = GetStorage();
   String _imei = 'Unk';
   String _nis = '';
   DateTime dateizin = DateTime.now();
@@ -47,6 +49,7 @@ class CIzinPulang extends GetxController {
   void onInit() {
     // TODO: implement onInit
     super.onInit();
+    readNis();
     tanggalIzin.text = hari[DateFormat('EEEE').format(dateizin)].toString() +
         ', ' +
         DateFormat('d').format(dateizin) +
@@ -56,47 +59,12 @@ class CIzinPulang extends GetxController {
         DateFormat('y').format(dateizin);
     // tanggalIzin.text =
     // int.parse(DateFormat('M').format(dateizin)) - 1);
-    initUniqueIdentifierState();
-    // getNis();
   }
 
-  Future<void> initUniqueIdentifierState() async {
-    String identifier;
-
-    try {
-      identifier = (await UniqueIdentifier.serial)!;
-      _imei = identifier;
-      getNis();
-      print(identifier);
-    } on PlatformException {
-      identifier = 'failed';
-    }
-    if (!isClosed) return;
-    _imei = identifier;
-  }
-
-  Future<void> getNis() async {
-    String uri = "https://sasapi.000webhostapp.com/api/jmlhistori/" + _imei;
-    var res = await http.get(Uri.parse(uri));
-
-    final response = jsonDecode(res.body);
-    var data = jsonDecode(res.body)['data'];
-
-    try {
-      if (response["success"] == true) {
-        _nis = data[0]['IMEI'].obs;
-      } else {
-        ToastWidget.showToast(
-            type: ToastWidgetType.ERROR,
-            message: 'Periksa koneksi jaringan anda');
-        print('Tidak ditemukan');
-      }
-    } catch (e) {
-      ToastWidget.showToast(
-          type: ToastWidgetType.ERROR,
-          message: 'Periksa koneksi jaringan anda');
-      print(e);
-    }
+  String readNis() {
+    _nis = store.read('nis');
+    print(_nis);
+    return _nis;
   }
 
   Future<void> insertIzinPulang(String textKeterangan) async {

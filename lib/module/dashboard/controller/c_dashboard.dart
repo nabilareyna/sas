@@ -10,6 +10,7 @@ class CDashboard extends GetxController {
   final store = GetStorage();
   final loc = Location().obs;
   final mapController = MapController();
+  String nis = '';
 
   Future<void> getCurrentPosition() async {
     bool serviceEnabled;
@@ -41,9 +42,16 @@ class CDashboard extends GetxController {
     }
   }
 
+  String readNis() {
+    nis = store.read('nis');
+    print(nis);
+    return nis;
+  }
+
   @override
   void onInit() async {
     getCurrentPosition();
+    readNis();
     super.onInit();
   }
 }

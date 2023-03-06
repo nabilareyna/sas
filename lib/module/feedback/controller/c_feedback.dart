@@ -3,12 +3,14 @@ import 'dart:async';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
 import 'package:sas/routes/routes.dart';
 import 'package:unique_identifier/unique_identifier.dart';
 import 'package:sas/component/widget/toast_widget.dart';
 
 class CFeedback extends GetxController {
+  final store = GetStorage();
   String _imei = 'Unk';
   String _nis = '';
 
@@ -19,55 +21,20 @@ class CFeedback extends GetxController {
   @override
   void onInit() {
     // TODO: implement onInit
+    readNis();
     super.onInit();
-    initUniqueIdentifierState();
   }
 
-  Future<void> initUniqueIdentifierState() async {
-    String identifier;
-
-    try {
-      identifier = (await UniqueIdentifier.serial)!;
-      _imei = identifier;
-      getNis();
-
-      print(identifier);
-    } on PlatformException {
-      identifier = 'failed';
-    }
-    if (!isClosed) return;
-    _imei = identifier;
-  }
-
-  Future<void> getNis() async {
-    String uri = "https://sasapi.000webhostapp.com/api/jmlhistori/" + _imei;
-    var res = await http.get(Uri.parse(uri));
-
-    final response = jsonDecode(res.body);
-    var data = jsonDecode(res.body)['data'];
-
-    try {
-      if (response["success"] == true) {
-        _nis = data[0]['IMEI'].obs;
-      } else {
-        ToastWidget.showToast(
-            type: ToastWidgetType.ERROR,
-            message: 'Periksa koneksi jaringan anda');
-        print('Tidak ditemukan');
-      }
-    } catch (e) {
-      ToastWidget.showToast(
-          type: ToastWidgetType.ERROR,
-          message: 'Periksa koneksi jaringan anda');
-      print(e);
-    }
+  String readNis() {
+    _nis = store.read('nis');
+    print(_nis);
+    return _nis;
   }
 
   Future<void> insertFeedBack(String _email, String _feedback) async {
     try {
       String uri = "https://sasapi.000webhostapp.com/api/feedback";
-      var res = await http.post(Uri.parse(uri),
-          body: {'NIS': _nis, 'EMAIL': _email, 'FEEDBACK': _feedback});
+      var res = await http.post(Uri.parse(uri), body: {'NIS': _nis, 'EMAIL': _email, 'FEEDBACK': _feedback});
       var response = jsonDecode(res.body);
 
       if (response["success"] == true) {

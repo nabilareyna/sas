@@ -8,6 +8,7 @@ import 'package:sas/module/dashboard/controller/c_dashboard.dart';
 import 'package:sas/routes/routes.dart';
 import 'package:sas/utils/AppLayout.dart';
 import 'package:sas/utils/AppThemes.dart';
+import 'package:sas/utils/utils.dart';
 
 class UIDashboard extends GetView<CDashboard> {
   const UIDashboard({Key? key}) : super(key: key);
@@ -238,7 +239,7 @@ class UIDashboard extends GetView<CDashboard> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
+                    children: [
                       Padding(
                         padding: EdgeInsets.only(top: 0, bottom: 11),
                         child: Text(
@@ -248,6 +249,8 @@ class UIDashboard extends GetView<CDashboard> {
                             fontSize: 20,
                             fontWeight: FontWeight.w500,
                             fontFamily: 'Montserrat',
+                            color: Colors.white,
+                            shadows: <Shadow>[Utils.shadow(x: 2)],
                           ),
                         ),
                       ),
@@ -258,6 +261,8 @@ class UIDashboard extends GetView<CDashboard> {
                           fontSize: 10,
                           fontWeight: FontWeight.w500,
                           fontFamily: 'Montserrat',
+                          color: Colors.white,
+                          shadows: <Shadow>[Utils.shadow(x: 2)],
                         ),
                       ),
                       Text(
@@ -267,6 +272,8 @@ class UIDashboard extends GetView<CDashboard> {
                           fontSize: 10,
                           fontWeight: FontWeight.w500,
                           fontFamily: 'Montserrat',
+                          color: Colors.white,
+                          shadows: <Shadow>[Utils.shadow(x: 2)],
                         ),
                       ),
                     ],

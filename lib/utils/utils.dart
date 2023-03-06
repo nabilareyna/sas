@@ -1,4 +1,7 @@
+import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:sas/utils/AppThemes.dart';
+import 'package:sas/utils/const.dart';
 
 class Utils {
   static bool onTimeHadir(DateTime time) {
@@ -42,5 +45,13 @@ class Utils {
   static Future<bool> onSchoolArea(lat, long) async {
     double distanceInMeter = Geolocator.distanceBetween(-7.9899, 112.6273, lat, long);
     return (distanceInMeter <= 34) ? true : false;
+  }
+
+  static BoxShadow shadow({double x = 1}) {
+    return BoxShadow(color: Styles.shadowGrey, offset: const Offset(0, 0), blurRadius: Const.BLUR_RADIUS * x);
+  }
+
+  static BoxShadow shadow2({double x = 1}) {
+    return BoxShadow(color: Styles.shadowGrey, offset: const Offset(0, 4), blurRadius: Const.BLUR_RADIUS * x);
   }
 }

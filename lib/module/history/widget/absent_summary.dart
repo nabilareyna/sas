@@ -4,6 +4,7 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:sas/utils/AppThemes.dart';
 import 'package:sas/utils/const.dart';
+import 'package:sas/utils/utils.dart';
 
 class AbsentSummary extends StatelessWidget {
   final String title;
@@ -19,7 +20,7 @@ class AbsentSummary extends StatelessWidget {
           border: Border.all(color: Styles.secondaryGreyColor),
           borderRadius: BorderRadius.circular(Const.siblingMargin(x: 2)),
           color: Colors.white,
-          boxShadow: [BoxShadow(color: Colors.black, offset: Offset(0, 0.1), blurRadius: 4, spreadRadius: 0)]),
+          boxShadow: [Utils.shadow2(x: 1)]),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
