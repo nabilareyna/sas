@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:async';
 
+import 'package:sas/component/widget/toast_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get_storage/get_storage.dart';
@@ -22,9 +23,23 @@ class CHistory extends GetxController {
 
   String _imei = 'Unk';
 
-  List<String> bulans =
-      ['Pilih..', 'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'].obs;
-  RxList<String> status = <String>['Pilih..', 'Hadir & Pulang', 'Sakit & Izin'].obs;
+  List<String> bulans = [
+    'Pilih..',
+    'Januari',
+    'Februari',
+    'Maret',
+    'April',
+    'Mei',
+    'Juni',
+    'Juli',
+    'Agustus',
+    'September',
+    'Oktober',
+    'November',
+    'Desember'
+  ].obs;
+  RxList<String> status =
+      <String>['Pilih..', 'Hadir & Pulang', 'Sakit & Izin'].obs;
   RxBool loadingHistori = true.obs;
   List histori = [];
 
@@ -47,8 +62,11 @@ class CHistory extends GetxController {
     loadingHistori.value = true;
 
     String uri = "https://sasapi.000webhostapp.com/api/histori/";
-    var res =
-        await http.post(Uri.parse(uri), body: {'NIS': _nis.toString(), 'STATUS': nilaiStatus.hashCode.toString(), 'BULAN': nilaiBulans.hashCode.toString()});
+    var res = await http.post(Uri.parse(uri), body: {
+      'NIS': _nis.toString(),
+      'STATUS': nilaiStatus.hashCode.toString(),
+      'BULAN': nilaiBulans.hashCode.toString()
+    });
     final response = jsonDecode(res.body);
     var data = jsonDecode(res.body)['data'];
     try {
@@ -61,6 +79,8 @@ class CHistory extends GetxController {
         print('Tidak ditemukan');
       }
     } catch (e) {
+      ToastWidget.showToast(
+          type: ToastWidgetType.ERROR, message: 'Periksa Koneksi Jaringan');
       print(e);
     }
   }
@@ -69,22 +89,26 @@ class CHistory extends GetxController {
     loadingHistori.value = true;
 
     String uri = "https://sasapi.000webhostapp.com/api/jmlhistori/";
-    var res =
-        await http.post(Uri.parse(uri), body: {'NIS': _nis.toString(), 'STATUS': nilaiStatus.hashCode.toString(), 'BULAN': nilaiBulans.hashCode.toString()});
+    var res = await http.post(Uri.parse(uri), body: {
+      'NIS': _nis.toString(),
+      'STATUS': nilaiStatus.hashCode.toString(),
+      'BULAN': nilaiBulans.hashCode.toString()
+    });
     final response = jsonDecode(res.body);
     var data = jsonDecode(res.body)['data'];
     try {
       if (response["success"] == true) {
+        jmlIzin.value = data[0]['jmlIzin'].hashCode;
+        jmlHadir.value = data[0]['jmlHadir'].hashCode;
         loadingHistori.value = false;
-        jmlIzin = data[0]['jmlIzin'].hashCode.obs;
-        jmlHadir = data[0]['jmlHadir'].hashCode.obs;
-        // jmlhadir = int.parse(data[0]['jmlHadir'].toString()).obs;
         print(jmlIzin);
         print(jmlHadir);
       } else {
         print('Tidak ditemukan');
       }
     } catch (e) {
+      // ToastWidget.showToast(
+      //     type: ToastWidgetType.ERROR, message: 'Periksa Koneksi Jaringan');
       print(e);
     }
   }

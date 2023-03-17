@@ -12,7 +12,7 @@ import 'package:sas/routes/routes.dart';
 import 'package:sas/utils/AppThemes.dart';
 
 class UIFormIzin extends GetView<CFormIzin> {
-  final _formKey = GlobalKey<FormState>();
+  // final _formKey = GlobalKey<FormState>();
   UIFormIzin({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -38,12 +38,17 @@ class UIFormIzin extends GetView<CFormIzin> {
                 Column(
                   children: [
                     const Padding(
-                      padding: EdgeInsets.only(top: 25, left: 15, right: 15, bottom: 5),
+                      padding: EdgeInsets.only(
+                          top: 25, left: 15, right: 15, bottom: 5),
                       child: Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
                           'Pilih Jenis Izin :',
-                          style: TextStyle(color: Colors.black, fontSize: 12, fontFamily: 'Roboto', fontWeight: FontWeight.w400),
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 12,
+                              fontFamily: 'Roboto',
+                              fontWeight: FontWeight.w400),
                         ),
                       ),
                     ),
@@ -65,14 +70,24 @@ class UIFormIzin extends GetView<CFormIzin> {
                               Expanded(
                                   child: DropdownButton(
                                 // elevation: 10,
-                                value: controller.ketIzin[controller.noKetIzin.hashCode],
+                                value: controller
+                                    .ketIzin[controller.noKetIzin.toInt()],
                                 isDense: true,
                                 isExpanded: true,
                                 onChanged: (String? value) {
-                                  controller.noKetIzin = controller.ketIzin.indexOf(value ?? "").obs;
+                                  controller.noKetIzin.value =
+                                      controller.ketIzin.indexOf(value ?? "");
                                 },
-                                items: controller.ketIzin.map((e) => DropdownMenuItem(value: e, child: Text(e))).toList(),
-                                style: const TextStyle(fontFamily: 'Roboto', fontSize: 12, fontWeight: FontWeight.w400, color: Colors.black, letterSpacing: 1),
+                                items: controller.ketIzin
+                                    .map((e) => DropdownMenuItem(
+                                        value: e, child: Text(e)))
+                                    .toList(),
+                                style: const TextStyle(
+                                    fontFamily: 'Roboto',
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w400,
+                                    color: Colors.black,
+                                    letterSpacing: 1),
                                 dropdownColor: const Color(0xFFE7EFF1),
                                 hint: const Text(
                                   'Pilih...',
@@ -98,7 +113,11 @@ class UIFormIzin extends GetView<CFormIzin> {
                         alignment: Alignment.centerLeft,
                         child: Text(
                           'Tanggal Izin',
-                          style: TextStyle(color: Colors.black, fontSize: 12, fontFamily: 'Roboto', fontWeight: FontWeight.w400),
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 12,
+                              fontFamily: 'Roboto',
+                              fontWeight: FontWeight.w400),
                         ),
                       ),
                     ),
@@ -151,7 +170,11 @@ class UIFormIzin extends GetView<CFormIzin> {
                         alignment: Alignment.centerLeft,
                         child: Text(
                           'Jangka Waktu Izin',
-                          style: TextStyle(color: Colors.black, fontSize: 12, fontFamily: 'Roboto', fontWeight: FontWeight.w400),
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 12,
+                              fontFamily: 'Roboto',
+                              fontWeight: FontWeight.w400),
                         ),
                       ),
                     ),
@@ -164,7 +187,11 @@ class UIFormIzin extends GetView<CFormIzin> {
                               Expanded(
                                 child: Text(
                                   '* Dihitung tanpa hari Sabtu dan Minggu',
-                                  style: TextStyle(color: Colors.grey, fontSize: 12, fontFamily: 'Roboto', fontWeight: FontWeight.w400),
+                                  style: TextStyle(
+                                      color: Colors.grey,
+                                      fontSize: 12,
+                                      fontFamily: 'Roboto',
+                                      fontWeight: FontWeight.w400),
                                 ),
                               )
                             ],
@@ -185,7 +212,8 @@ class UIFormIzin extends GetView<CFormIzin> {
                                 ),
                               ),
                               child: Padding(
-                                padding: const EdgeInsets.only(left: 0, right: 0),
+                                padding:
+                                    const EdgeInsets.only(left: 0, right: 0),
                                 child: Row(
                                   children: [
                                     Expanded(
@@ -194,7 +222,8 @@ class UIFormIzin extends GetView<CFormIzin> {
                                         max: 14,
                                         value: 1,
                                         onChanged: (value) {
-                                          controller.jmlIzin = value.toInt().obs;
+                                          controller.jmlIzin =
+                                              value.toInt().obs;
                                         },
                                       ),
                                     )
@@ -213,7 +242,11 @@ class UIFormIzin extends GetView<CFormIzin> {
                         alignment: Alignment.centerLeft,
                         child: Text(
                           'Keterangan',
-                          style: TextStyle(color: Colors.black, fontSize: 12, fontFamily: 'Roboto', fontWeight: FontWeight.w400),
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 12,
+                              fontFamily: 'Roboto',
+                              fontWeight: FontWeight.w400),
                         ),
                       ),
                     ),

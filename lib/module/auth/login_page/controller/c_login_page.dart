@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:async';
-import 'dart:ffi';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -66,7 +65,8 @@ class CLoginPage extends GetxController {
       }
     } catch (e) {
       // ToastWidget.showToast(type: ToastWidgetType.ERROR, message: '${e}')
-      ToastWidget.showToast(type: ToastWidgetType.ERROR, message: 'Periksa Koneksi Jaringan');
+      ToastWidget.showToast(
+          type: ToastWidgetType.ERROR, message: 'Periksa Koneksi Jaringan');
       print(e);
     }
   }

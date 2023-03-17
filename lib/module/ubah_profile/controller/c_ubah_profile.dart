@@ -34,7 +34,8 @@ class CUbahProfile extends GetxController {
 
   Future<void> getProfile() async {
     loadingProfil.value = true;
-    String uri = "https://sasapi.000webhostapp.com/api/siswas/" + nis.toString();
+    String uri =
+        "https://sasapi.000webhostapp.com/api/siswas/" + nis.toString();
     var res = await http.get(Uri.parse(uri));
     var body = jsonDecode(res.body)['data'][0];
     try {
@@ -43,6 +44,8 @@ class CUbahProfile extends GetxController {
       email.value = body['EMAIL'].toString();
       pass.value = body['PASSWORD'].toString();
       loadingProfil.value = false;
+      kelasJurusan.value =
+          body['KELAS'].toString() + ' ' + body['JURUSAN'].toString();
       print(body);
     } catch (e) {
       print('turu');

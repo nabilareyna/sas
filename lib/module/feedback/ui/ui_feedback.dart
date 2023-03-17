@@ -5,9 +5,9 @@ import 'package:sas/module/feedback/controller/c_feedback.dart';
 import 'package:sas/module/feedback/widget/w_button_feedback.dart';
 import 'package:sas/routes/routes.dart';
 import 'package:sas/utils/AppThemes.dart';
+import 'package:sas/component/widget/toast_widget.dart';
 
 class UIFeedback extends GetView<CFeedback> {
-  final _formKey = GlobalKey<FormState>();
   UIFeedback({Key? key}) : super(key: key);
 
   @override
@@ -45,7 +45,12 @@ class UIFeedback extends GetView<CFeedback> {
                         children: const [
                           Text(
                             'Feedback',
-                            style: TextStyle(color: Colors.white, fontSize: 20, fontFamily: 'Roboto', fontWeight: FontWeight.w600, letterSpacing: 2),
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 20,
+                                fontFamily: 'Roboto',
+                                fontWeight: FontWeight.w600,
+                                letterSpacing: 2),
                           )
                         ],
                       ),
@@ -58,35 +63,27 @@ class UIFeedback extends GetView<CFeedback> {
                     children: [
                       TextFormField(
                         controller: controller.nisControllerFeedBack,
-                        decoration: const InputDecoration(border: UnderlineInputBorder(), labelText: 'Nama', hintText: 'Masukkan nama anda'),
-                        validator: (value) {
-                          if (value!.isEmpty) {
-                            return 'Note Title is Required!';
-                          }
-                          return null;
-                        },
+                        decoration: const InputDecoration(
+                            border: UnderlineInputBorder(),
+                            labelText: 'Nama',
+                            hintText: 'Masukkan nama anda'),
+                            readOnly: true,
                       ),
                       TextFormField(
                         controller: controller.emailControllerFeedback,
-                        decoration: const InputDecoration(border: UnderlineInputBorder(), labelText: 'Email', hintText: 'Masukkan email anda'),
-                        validator: (value) {
-                          if (value!.isEmpty) {
-                            return 'Note Title is Required!';
-                          }
-                          return null;
-                        },
+                        decoration: const InputDecoration(
+                            border: UnderlineInputBorder(),
+                            labelText: 'Email',
+                            hintText: 'Masukkan email anda'),
                       ),
                       TextFormField(
                         controller: controller.feedbackController,
                         maxLines: 4,
                         keyboardType: TextInputType.multiline,
-                        decoration: const InputDecoration(border: UnderlineInputBorder(), labelText: 'Your Feedback', hintText: 'Masukkan feedback anda'),
-                        validator: (value) {
-                          if (value!.isEmpty) {
-                            return 'Note Title is Required!';
-                          }
-                          return null;
-                        },
+                        decoration: const InputDecoration(
+                            border: UnderlineInputBorder(),
+                            labelText: 'Your Feedback',
+                            hintText: 'Masukkan feedback anda'),
                       ),
                     ],
                   ),
@@ -96,12 +93,16 @@ class UIFeedback extends GetView<CFeedback> {
                   child: const WButtonFeedback(),
                   onTap: () {
                     // Get.toNamed(Routes.getProfileRoute());
-                    if (_formKey.currentState!.validate()) {
-//send data to database with this method
+                    if (controller.emailControllerFeedback.text.isEmpty ||
+                        controller.feedbackController.text.isEmpty) {
+                      ToastWidget.showToast(
+                          type: ToastWidgetType.ERROR,
+                          message: 'Kolom Harus diisi tidak boleh kosong');
+                    } else {
+                      controller.insertFeedBack(
+                          controller.emailControllerFeedback.text,
+                          controller.feedbackController.text);
                     }
-
-                    controller.insertFeedBack(
-                         controller.emailControllerFeedback.text, controller.feedbackController.text);
                   },
                 ),
               ],

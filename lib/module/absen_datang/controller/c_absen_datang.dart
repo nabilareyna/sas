@@ -55,29 +55,34 @@ class CAbsenDatang extends GetxController {
     }
 
     if (permission == LocationPermission.deniedForever) {
-      return Future.error('Location permissions are permanently denied, we cannot request permissions.');
+      return Future.error(
+          'Location permissions are permanently denied, we cannot request permissions.');
     }
 
-    if (permission == LocationPermission.always || permission == LocationPermission.whileInUse) {
-      Position currentPosition = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.best);
+    if (permission == LocationPermission.always ||
+        permission == LocationPermission.whileInUse) {
+      Position currentPosition = await Geolocator.getCurrentPosition(
+          desiredAccuracy: LocationAccuracy.best);
       print("Logitude: " + currentPosition.longitude.toString());
       print("Latitude: " + currentPosition.latitude.toString());
       loc.update((val) {
         loc.value.latitude = currentPosition.latitude;
         loc.value.longitude = currentPosition.longitude;
-        mapController.move(LatLng(loc.value.latitude, loc.value.longitude), mapController.zoom);
+        mapController.move(LatLng(loc.value.latitude, loc.value.longitude),
+            mapController.zoom);
       });
       getDistanceRadius();
     }
   }
 
   Future<void> insertHadir() async {
-    bool onSchoolArea = await Utils.onSchoolArea(loc.value.latitude, loc.value.longitude);
+    bool onSchoolArea =
+        await Utils.onSchoolArea(loc.value.latitude, loc.value.longitude);
     if (onSchoolArea) {
       try {
         String uri = "https://sasapi.000webhostapp.com/api/kehadirans/";
         var res = await http.post(Uri.parse(uri), body: {
-          'NIS': _nis,
+          'NIS': _nis.toString(),
           'WAKTU': DateFormat("y-MM-d H:m:s").format(date),
           'LOKASI': '${loc.value.latitude}, ${loc.value.longitude}',
           'STATUS': 'H',
@@ -90,11 +95,15 @@ class CAbsenDatang extends GetxController {
               backgroundColor: Colors.white,
               buttonColor: Colors.white,
               title: 'Success!',
-              middleText: 'Presensi anda berhasil terkirim! Lihat Histori untuk lebih lengkapnya.',
-              middleTextStyle: const TextStyle(fontFamily: 'Roboto', fontWeight: FontWeight.w600, fontSize: 14),
+              middleText:
+                  'Presensi anda berhasil terkirim! Lihat Histori untuk lebih lengkapnya.',
+              middleTextStyle: const TextStyle(
+                  fontFamily: 'Roboto',
+                  fontWeight: FontWeight.w600,
+                  fontSize: 14),
               textConfirm: 'OK',
               onConfirm: () {
-                Get.toNamed(Routes.dashboard);
+                Get.toNamed(Routes.history);
               },
               radius: 15);
         } else if (response["success"] == false) {
@@ -102,29 +111,45 @@ class CAbsenDatang extends GetxController {
               backgroundColor: Colors.white,
               buttonColor: Colors.white,
               title: 'Error',
-              titleStyle: const TextStyle(color: Colors.red, fontFamily: 'Roboto', fontWeight: FontWeight.w600, fontSize: 20),
+              titleStyle: const TextStyle(
+                  color: Colors.red,
+                  fontFamily: 'Roboto',
+                  fontWeight: FontWeight.w600,
+                  fontSize: 20),
               middleText: 'Anda telah melakukan absensi',
-              middleTextStyle: const TextStyle(fontFamily: 'Roboto', fontWeight: FontWeight.w600, fontSize: 14),
+              middleTextStyle: const TextStyle(
+                  fontFamily: 'Roboto',
+                  fontWeight: FontWeight.w600,
+                  fontSize: 14),
               textConfirm: 'OK',
               onConfirm: () {
                 Get.toNamed(Routes.dashboard);
               },
               radius: 15);
         } else {
-          ToastWidget.showToast(type: ToastWidgetType.ERROR, message: 'Error');
-          print('false ${e}');
+          ToastWidget.showToast(
+              type: ToastWidgetType.ERROR,
+              message: 'Anda telah melakukan presensi hari ini');
+          // print('false ${e}');
         }
       } catch (e) {
-        ToastWidget.showToast(type: ToastWidgetType.ERROR, message: 'Periksa Jaringan Internet Anda. ${e}');
+        ToastWidget.showToast(
+            type: ToastWidgetType.ERROR,
+            message: 'Periksa Jaringan Internet Anda. ${e}');
       }
     } else {
       Get.defaultDialog(
           backgroundColor: Colors.white,
           buttonColor: Colors.white,
           title: 'Error',
-          titleStyle: const TextStyle(color: Colors.red, fontFamily: 'Roboto', fontWeight: FontWeight.w600, fontSize: 20),
+          titleStyle: const TextStyle(
+              color: Colors.red,
+              fontFamily: 'Roboto',
+              fontWeight: FontWeight.w600,
+              fontSize: 20),
           middleText: 'Anda berada di luar area',
-          middleTextStyle: const TextStyle(fontFamily: 'Roboto', fontWeight: FontWeight.w600, fontSize: 14),
+          middleTextStyle: const TextStyle(
+              fontFamily: 'Roboto', fontWeight: FontWeight.w600, fontSize: 14),
           textConfirm: 'OK',
           onConfirm: () {
             Get.toNamed(Routes.dashboard);
@@ -134,7 +159,8 @@ class CAbsenDatang extends GetxController {
   }
 
   Future<void> getDistanceRadius() async {
-    double distanceInMeters = Geolocator.distanceBetween(-7.9899, 112.6273, loc.value.latitude, loc.value.longitude);
+    double distanceInMeters = Geolocator.distanceBetween(
+        -7.9899, 112.6273, loc.value.latitude, loc.value.longitude);
     loc.update((val) {
       loc.value.distance = distanceInMeters;
     });

@@ -81,12 +81,20 @@ class CIzinPulang extends GetxController {
       var body = jsonDecode(resb.body);
       if (body["success"] == true) {
         print('amann');
-        Get.toNamed(Routes.dashboard);
+        ToastWidget.showToast(
+            type: ToastWidgetType.SUCCESS, message: 'Perizinan telah dikirim');
+        Get.toNamed(Routes.history);
       } else {
-        print('duplikat');
+        ToastWidget.showToast(
+            type: ToastWidgetType.ERROR,
+            message: 'Anda telah melakukan presensi hari ini');
+        Get.toNamed(Routes.dashboard);
+        // print('duplikat');
       }
       // print(body);
     } catch (e) {
+      ToastWidget.showToast(
+          type: ToastWidgetType.ERROR, message: 'Periksa Koneksi Jaringan');
       print(e);
     }
   }

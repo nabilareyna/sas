@@ -27,6 +27,7 @@ class CFeedback extends GetxController {
 
   String readNis() {
     _nis = store.read('nis');
+    nisControllerFeedBack.text = _nis;
     print(_nis);
     return _nis;
   }
@@ -34,16 +35,22 @@ class CFeedback extends GetxController {
   Future<void> insertFeedBack(String _email, String _feedback) async {
     try {
       String uri = "https://sasapi.000webhostapp.com/api/feedback";
-      var res = await http.post(Uri.parse(uri), body: {'NIS': _nis, 'EMAIL': _email, 'FEEDBACK': _feedback});
+      var res = await http.post(Uri.parse(uri),
+          body: {'NIS': _nis, 'EMAIL': _email, 'FEEDBACK': _feedback});
       var response = jsonDecode(res.body);
 
       if (response["success"] == true) {
-        print('aman');
+        // print('aman');
+        ToastWidget.showToast(
+            type: ToastWidgetType.SUCCESS, message: 'Feedback telah dikirim');
         Get.toNamed(Routes.getProfileRoute());
       } else {
         print('ga aman');
       }
     } catch (e) {
+      ToastWidget.showToast(
+          type: ToastWidgetType.ERROR, message: 'Periksa koneksi jaringan');
+      Get.toNamed(Routes.getProfileRoute());
       print(e);
     }
   }

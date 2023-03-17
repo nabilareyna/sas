@@ -82,15 +82,25 @@ class CFormIzin extends GetxController {
       });
       var response = jsonDecode(res.body);
       if (response["success"] == true) {
-        print(response);
-        print('amann');
+        // print(response);
+        // print('amann');
+        ToastWidget.showToast(
+            type: ToastWidgetType.SUCCESS,
+            message: 'Perizinan telah dikirim' + jmlIzin.toString() + ' hari');
+        Get.toNamed(Routes.history);
       } else {
-        print(response);
-        print('ga');
+        // print(response);
+        ToastWidget.showToast(
+            type: ToastWidgetType.ERROR,
+            message: 'Anda telah melakukan presensi hari ini');
+        Get.toNamed(Routes.dashboard);
+        // print('ga');
       }
       // print(response);
     } catch (e) {
-      print(e);
+      ToastWidget.showToast(
+          type: ToastWidgetType.ERROR, message: 'Periksa Koneksi Jaringan');
+      // print(e);
     }
   }
 }
